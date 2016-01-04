@@ -2,15 +2,15 @@
 
 if [ "$1" == "init" ]
 then
+    git checkout aca
 elif [ "$1" == "pull" ]
 then
-    git pull
     git checkout aca
-    git fetch orign
-    git merge orign/master
+    git pull origin aca
+    git pull origin master
 elif [ "$1" == "commit" ]
+then
     git add *
     git commit -m "$2" -a
-    git push
-then
+    git push orign aca
 fi
