@@ -36,10 +36,8 @@ typedef struct sPlayerTexture
 class Player
 {
     private:
-        float x;
-        float y;
-        float width;
-        float height;
+        SDL_Rect coords;
+        SDL_Rect collCoords;
         float speed;
         float helth;
         int angle;
@@ -55,14 +53,13 @@ class Player
         void render(void);
         void collision(float width, float height);
         void collision(Tile *tile);
-        /*
-        float getX(void);
-        float getY(void);
-        float getWidth(void);
-        float getHeight(void);
-        void setX(float value);
-        void setY(float value);
-        */
+
+        float getX(void) { return this->coords.x; };
+        float getY(void) { return this->coords.y; };
+        float getWidth(void) { return this->coords.w; };
+        float getHeight(void) { return this->coords.h; };
+        void setX(float value) { this->coords.x = value; };
+        void setY(float value) { this->coords.y = value; };
 };
 
 #endif  // PLAYER_H

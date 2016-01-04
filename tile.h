@@ -7,10 +7,8 @@
 class Tile
 {
     private:
-        float x;
-        float y;
-        float width;
-        float height;
+        SDL_Rect coords;
+        SDL_Rect collCoords;
         int type;
         unsigned int texture;
 
@@ -21,10 +19,10 @@ class Tile
         void loadTexture(void);
         void render(void);
 
-        float getX(void) { return this->x; };
-        float getY(void) { return this->y; };
-        float getWidth(void) { return this->width; };
-        float getHeight(void) { return this->height; };
+        float getX(void) { return this->coords.x; };
+        float getY(void) { return this->coords.y; };
+        float getWidth(void) { return this->coords.w; };
+        float getHeight(void) { return this->coords.h; };
 };
 
 #endif  // TILE_H

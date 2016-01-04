@@ -14,7 +14,6 @@ class Splash
         Mix_Music *music;
         unsigned int texture;
         void loadTexture(void);
-        unsigned int loadModel(SDL_Surface *image, SDL_Rect imageRect);
 
     public:
         Splash(float wWidth, float wHeight);

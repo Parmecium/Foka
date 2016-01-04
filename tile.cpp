@@ -4,19 +4,19 @@
 
 Tile::Tile(void)
 {
-    this->x = 0;
-    this->y = 0;
-    this->width = 0;
-    this->height = 0;
+    this->coords.x = 0;
+    this->coords.y = 0;
+    this->coords.w = 0;
+    this->coords.h = 0;
     this->type = TILE_TYPE_UNKNOWN;
 }
 
 Tile::Tile(float x, float y, float width, float height, int type)
 {
-    this->x = x;
-    this->y = y;
-    this->width = width;
-    this->height = height;
+    this->coords.x = x;
+    this->coords.y = y;
+    this->coords.w = width;
+    this->coords.h = height;
     this->type = type;
 }
 
@@ -36,10 +36,10 @@ void Tile::render(void)
 
     glBindTexture(GL_TEXTURE_2D, this->texture);
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
-        glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
-        glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
-        glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
+        glTexCoord2d(0, 1); glVertex2f(this->coords.x, this->coords.y);
+        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w, this->coords.y);
+        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w, this->coords.y + this->coords.h);
+        glTexCoord2d(0, 0); glVertex2f(this->coords.x, this->coords.y + this->coords.h);
     glEnd();
     glDisable(GL_TEXTURE_2D);
 }
