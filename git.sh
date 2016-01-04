@@ -12,5 +12,5 @@ elif [ "$1" == "commit" ]
 then
     git add *
     git commit -m "$2" -a
-    git push orign aca
+    git push origin aca
 fi

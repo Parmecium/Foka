@@ -18,6 +18,7 @@ class Tile
         Tile(void);
         Tile(float x, float y, float width, float height, int type);
         ~Tile(void);
+        void loadTexture(void);
         void render(void);
 
         float getX(void) { return this->x; };
