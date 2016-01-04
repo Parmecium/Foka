@@ -5,10 +5,10 @@
 
 Player::Player(void)
 {
-    this->x = 0.0;
-    this->y = 0.0;
-    this->width = 74.0;
-    this->height = 90.0;
+    this->coords.x = 0.0;
+    this->coords.y = 0.0;
+    this->coords.w = 74.0;
+    this->coords.h = 90.0;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
@@ -26,22 +26,22 @@ void Player::move(void)
 {
     if(this->moveState.down)
     {
-        this->y -= this->speed;
+        this->coords.y -= this->speed;
         this->angle = PLAYER_ANGLE_DOWN;
     }
     else if(this->moveState.up)
     {
-        this->y += this->speed;
+        this->coords.y += this->speed;
         this->angle = PLAYER_ANGLE_UP;
     }
     else if(this->moveState.left)
     {
-        this->x -= this->speed;
+        this->coords.x -= this->speed;
         this->angle = PLAYER_ANGLE_LEFT;
     }
     else if(this->moveState.right)
     {
-        this->x += this->speed;
+        this->coords.x += this->speed;
         this->angle = PLAYER_ANGLE_RIGHT;
     }
 }
@@ -89,49 +89,10 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(void)
 {
-    SDL_Surface *image = IMG_Load("data/player.png");
-    //SDL_Surface *image = IMG_Load("data/foka2.png");
-    SDL_DisplayFormatAlpha(image);
-    SDL_Rect imageRect;
-
-    /*
-    imageRect.x = 0;
-    imageRect.y = 0;
-    imageRect.w = 200.0;
-    imageRect.h = 159.0;
-    this->texture.right = this->loadModel(image, imageRect);
-    imageRect.x += imageRect.w;
-    this->texture.left = this->loadModel(image, imageRect);
-    imageRect.x += imageRect.w;
-    imageRect.w = 135.0;
-    this->texture.down = this->loadModel(image, imageRect);
-    imageRect.x += imageRect.w;
-    this->texture.up = this->loadModel(image, imageRect);
-    */
-
-    /*
-    imageRect.x = 0;
-    imageRect.y = 0;
-    imageRect.w = 300;
-    imageRect.h = 300;
-    this->texture.down = this->loadModel(image, imageRect);
-    */
-
-    imageRect.x = 0;
-    imageRect.y = 0;
-    imageRect.w = 300;
-    imageRect.h = 300;
-
-    image = IMG_Load("data/foka.png");
-    this->texture.down = loadModel(image, imageRect);
-    image = IMG_Load("data/foka2.png");
-    this->texture.right = loadModel(image, imageRect);
-    image = IMG_Load("data/foka3.png");
-    this->texture.left = loadModel(image, imageRect);
-    image = IMG_Load("data/foka4.png");
-    this->texture.up = loadModel(image, imageRect);
-
-    SDL_FreeSurface(image);
+    this->texture.down = loadModel("data/foka.png");
+    this->texture.right = loadModel("data/foka2.png");
+    this->texture.left = loadModel("data/foka3.png");
+    this->texture.up = loadModel("data/foka4.png");
 }
 
 // Render player
@@ -157,10 +118,10 @@ void Player::render(void)
     }
 
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
-        glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
-        glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
-        glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
+        glTexCoord2d(0, 1); glVertex2f(this->coords.x, this->coords.y);
+        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w, this->coords.y);
+        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w, this->coords.y + this->coords.h);
+        glTexCoord2d(0, 0); glVertex2f(this->coords.x, this->coords.y + this->coords.h);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);
@@ -168,22 +129,22 @@ void Player::render(void)
 
 void Player::collision(float width, float height)
 {
-    if(this->x < 0)
-        this->x = 0;
-    else if(this->x + this->width > width)
-        this->x = width - this->width;
-    if(this->y < 0)
-        this->y = 0;
-    else if(this->y + this->height > height)
-        this->y = height - this->height;
+    if(this->coords.x < 0)
+        this->coords.x = 0;
+    else if(this->coords.x + this->coords.w > width)
+        this->coords.x = width - this->coords.w;
+    if(this->coords.y < 0)
+        this->coords.y = 0;
+    else if(this->coords.y + this->coords.h > height)
+        this->coords.y = height - this->coords.h;
 }
 
 void Player::collision(Tile *tile)
 {
-    if(this->x + this->width > tile->getX() &&
-            this->x < tile->getX() + tile->getWidth())
-        if(this->y + this->height > tile->getY() &&
-                this->y < tile->getY() + tile->getHeight())
+    if(this->coords.x + this->coords.w > tile->getX() &&
+            this->coords.x < tile->getX() + tile->getWidth())
+        if(this->coords.y + this->coords.h > tile->getY() &&
+                this->coords.y < tile->getY() + tile->getHeight())
         {
             /*
             if(this->moveState.down)
@@ -198,16 +159,16 @@ void Player::collision(Tile *tile)
             switch(this->angle)
             {
                 case PLAYER_ANGLE_DOWN:
-                    this->y = tile->getY() + tile->getHeight();
+                    this->coords.y = tile->getY() + tile->getHeight();
                     break;
                 case PLAYER_ANGLE_RIGHT:
-                    this->x = tile->getX() - this->width;
+                    this->coords.x = tile->getX() - this->coords.w;
                     break;
                 case PLAYER_ANGLE_UP:
-                    this->y = tile->getY() - this->height;
+                    this->coords.y = tile->getY() - this->coords.h;
                     break;
                 case PLAYER_ANGLE_LEFT:
-                    this->x = tile->getX() + tile->getWidth();
+                    this->coords.x = tile->getX() + tile->getWidth();
                     break;
             }
         }
