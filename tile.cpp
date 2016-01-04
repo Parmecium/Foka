@@ -23,6 +23,11 @@ Tile::~Tile(void)
 {
 }
 
+void Tile::loadTexture(void)
+{
+    loadModel("data/zid1.png");
+}
+
 void Tile::render(void)
 {
     glColor4ub(0, 0, 255, 255); // Blue color
