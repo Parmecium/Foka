@@ -9,6 +9,7 @@ then
     git fetch orign
     git merge orign/master
 elif [ "$1" == "commit" ]
+    git add *
     git commit -m "$2" -a
     git push
 then
