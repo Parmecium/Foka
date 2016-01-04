@@ -8,7 +8,7 @@ Game::Game(void)
 {
     this->width = 840;
     this->height = 680;
-    this->caption = "Parmecium";
+    this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
     this->player = new Player();
@@ -70,15 +70,15 @@ void Game::init(void)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    std::cout << "OpenGL is initialize\n";
-
-    // Initialize texture
-    this->player->loadTexture();
-    std::cout << "texture is initialize\n";
+    std::cout << "OpenGL is initialize" << std::endl;
 
     // Load map
     this->loadMap();
-    std::cout << "map is loaded\n";
+    std::cout << "map is loaded" << std::endl;
+
+    // Initialize texture
+    this->player->loadTexture();
+    std::cout << "texture is initialize" << std::endl;
 }
 
 void Game::splash(void)
@@ -92,6 +92,9 @@ void Game::loadMap(void)
 {
     this->tile.push_back(new Tile(100, 100, 100, 100, TILE_TYPE_BLOCK));
     this->tile.push_back(new Tile(200, 200, 100, 100, TILE_TYPE_BLOCK));
+
+    for(i = 0; i < this->tile.size(); i++)
+        this->
 }
 
 void Game::render(void)
