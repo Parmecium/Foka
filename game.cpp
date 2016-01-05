@@ -92,8 +92,8 @@ void Game::loadMap(void)
 {
     int i;
 
-    this->tile.push_back(new Tile(100, 100, 100, 100, TILE_TYPE_BLOCK));
-    this->tile.push_back(new Tile(200, 200, 100, 100, TILE_TYPE_BLOCK));
+    this->tile.push_back(new Tile(100, 100, 50, 100, TILE_TYPE_BLOCK));
+    this->tile.push_back(new Tile(150, 200, 50, 100, TILE_TYPE_BLOCK));
 
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
