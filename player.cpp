@@ -1,6 +1,5 @@
 #include "main.h"
 #include "functions.h"
-#include "tile.h"
 #include "player.h"
 
 Player::Player(void)
@@ -29,17 +28,17 @@ void Player::move(void)
         this->coords.y -= this->speed;
         this->angle = PLAYER_ANGLE_DOWN;
     }
-    else if(this->moveState.up)
+    if(this->moveState.up)
     {
         this->coords.y += this->speed;
         this->angle = PLAYER_ANGLE_UP;
     }
-    else if(this->moveState.left)
+    if(this->moveState.left)
     {
         this->coords.x -= this->speed;
         this->angle = PLAYER_ANGLE_LEFT;
     }
-    else if(this->moveState.right)
+    if(this->moveState.right)
     {
         this->coords.x += this->speed;
         this->angle = PLAYER_ANGLE_RIGHT;
@@ -139,6 +138,7 @@ void Player::collision(float width, float height)
         this->coords.y = height - this->coords.h;
 }
 
+/*
 void Player::collision(Tile *tile)
 {
     if(this->coords.x + this->coords.w > tile->getX() &&
@@ -146,7 +146,7 @@ void Player::collision(Tile *tile)
         if(this->coords.y + this->coords.h > tile->getY() &&
                 this->coords.y < tile->getY() + tile->getHeight())
         {
-            /*
+            / *
             if(this->moveState.down)
                 this->y = tile->getY() + tile->getHeight();
             else if(this->moveState.right)
@@ -155,7 +155,7 @@ void Player::collision(Tile *tile)
                 this->y = tile->getY() - this->height;
             else if(this->moveState.left)
                 this->x = tile->getX() + tile->getWidth();
-            */
+            * /
             switch(this->angle)
             {
                 case PLAYER_ANGLE_DOWN:
@@ -173,3 +173,4 @@ void Player::collision(Tile *tile)
             }
         }
 }
+*/

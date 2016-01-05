@@ -52,7 +52,7 @@ class Player
         void loadTexture(void);
         void render(void);
         void collision(float width, float height);
-        void collision(Tile *tile);
+        //void collision(Tile *tile);
 
         float getX(void) { return this->coords.x; };
         float getY(void) { return this->coords.y; };
