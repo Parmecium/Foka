@@ -92,9 +92,18 @@ void Game::loadMap(void)
 {
     int i;
 
+    // Test walls
     this->tile.push_back(new Tile(100, 100, 50, 100, TILE_TYPE_BLOCK));
     this->tile.push_back(new Tile(150, 200, 50, 100, TILE_TYPE_BLOCK));
 
+    // Wall sides
+    for(i = 0; i < this->width; i += 100)
+    {
+        this->tile.push_back(new Tile(0, i, 24, 100, TILE_TYPE_BLOCK));
+        this->tile.push_back(new Tile(this->width - 24, i, 25, 100, TILE_TYPE_BLOCK));
+    }
+
+    // Load textures for tiles
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
 }
