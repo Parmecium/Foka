@@ -1,7 +1,7 @@
 #include "main.h"
 #include "splash.h"
-#include "tile.h"
 #include "player.h"
+#include "tile.h"
 #include "game.h"
 
 Game::Game(void)
@@ -118,7 +118,8 @@ void Game::logic(void)
     player->collision(this->width, this->height);
     for(i = 0; i < this->tile.size(); i++)
     {
-        player->collision(tile[i]);
+        //player->collision(tile[i]);
+        this->tile[i]->collision(player);
     }
 }
 

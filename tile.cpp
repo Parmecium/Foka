@@ -1,5 +1,6 @@
 #include "main.h"
 #include "functions.h"
+#include "player.h"
 #include "tile.h"
 
 Tile::Tile(void)
@@ -8,6 +9,7 @@ Tile::Tile(void)
     this->coords.y = 0;
     this->coords.w = 0;
     this->coords.h = 0;
+    this->collCoords = this->coords;
     this->type = TILE_TYPE_UNKNOWN;
 }
 
@@ -17,6 +19,7 @@ Tile::Tile(float x, float y, float width, float height, int type)
     this->coords.y = y;
     this->coords.w = width;
     this->coords.h = height;
+    this->collCoords = this->coords;
     this->type = type;
 }
 
@@ -27,6 +30,30 @@ Tile::~Tile(void)
 void Tile::loadTexture(void)
 {
     texture = loadModel("data/zid1.png");
+}
+
+void Tile::collision(Player *player)
+{
+    SDL_Rect tmpCoords = this->collCoords;
+    tmpCoords.x += 8;
+    tmpCoords.y += 8;
+    tmpCoords.w -= 8;
+    tmpCoords.h -= 8;
+
+    if(player->getX() + player->getWidth() > this->collCoords.x &&
+            player->getX() < this->collCoords.x + this->collCoords.w &&
+            player->getY() + player->getHeight() > this->collCoords.y &&
+            player->getY() < this->collCoords.y + this->collCoords.h)
+    {
+        if(player->getX() + player->getWidth() <= tmpCoords.x)
+            player->setX(this->collCoords.x - player->getWidth());
+        if(player->getX() >= tmpCoords.x + tmpCoords.w)
+            player->setX(this->collCoords.x + this->collCoords.w);
+        if(player->getY() + player->getHeight() <= tmpCoords.y)
+            player->setY(this->collCoords.y - player->getHeight());
+        if(player->getY() >= tmpCoords.y + tmpCoords.h)
+            player->setY(this->collCoords.y + this->collCoords.h);
+    }
 }
 
 void Tile::render(void)

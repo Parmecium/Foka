@@ -17,6 +17,7 @@ class Tile
         Tile(float x, float y, float width, float height, int type);
         ~Tile(void);
         void loadTexture(void);
+        void collision(Player *player);
         void render(void);
 
         float getX(void) { return this->coords.x; };
