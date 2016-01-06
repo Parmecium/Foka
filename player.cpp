@@ -17,6 +17,21 @@ Player::Player(void)
     this->angle = PLAYER_ANGLE_DOWN;
 }
 
+Player::Player(float x, float y)
+{
+    this->coords.x = x;
+    this->coords.y = y;
+    this->coords.w = 74.0;
+    this->coords.h = 90.0;
+    this->speed = 5.0;
+    this->helth = 3.0;
+    this->moveState.down = false;
+    this->moveState.right = false;
+    this->moveState.up = false;
+    this->moveState.left = false;
+    this->angle = PLAYER_ANGLE_DOWN;
+}
+
 Player::~Player(void)
 {
 }

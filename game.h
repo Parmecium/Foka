@@ -11,6 +11,7 @@ class Game
         int fps;
         SDL_Event event;
         Player *player;
+        Player *player2;
         std::vector<Tile *> tile;
         Mix_Music *music;
 
