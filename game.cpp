@@ -12,6 +12,7 @@ Game::Game(void)
     this->isRunning = true;
     this->fps = 10;
     this->player = new Player();
+    this->player2 = new Player(50, 0);
     this->music = NULL;
 }
 
@@ -78,6 +79,7 @@ void Game::init(void)
 
     // Initialize texture
     this->player->loadTexture();
+    this->player2->loadTexture();
     std::cout << "texture is initialize" << std::endl;
 }
 
@@ -113,6 +115,7 @@ void Game::render(void)
     int i;
 
     this->player->render();
+    this->player2->render();
     for(i = 0; i < this->tile.size(); i++)
     {
         this->tile[i]->render();
@@ -125,10 +128,13 @@ void Game::logic(void)
 
     player->move();
     player->collision(this->width, this->height);
+    player2->move();
+    player2->collision(this->width, this->height);
     for(i = 0; i < this->tile.size(); i++)
     {
         //player->collision(tile[i]);
         this->tile[i]->collision(player);
+        this->tile[i]->collision(player2);
     }
 }
 
@@ -158,6 +164,18 @@ void Game::events(SDL_Event event)
                     case SDLK_LEFT:
                         player->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
+                    case SDLK_s:
+                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
+                        break;
+                    case SDLK_d:
+                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
+                        break;
+                    case SDLK_w:
+                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
+                        break;
+                    case SDLK_a:
+                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
+                        break;
                     case SDLK_ESCAPE:
                         isRunning = false;
                         break;
@@ -177,6 +195,18 @@ void Game::events(SDL_Event event)
                         break;
                     case SDLK_LEFT:
                         player->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
+                        break;
+                    case SDLK_s:
+                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
+                        break;
+                    case SDLK_d:
+                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
+                        break;
+                    case SDLK_w:
+                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
+                        break;
+                    case SDLK_a:
+                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
                         break;
                 }
                 break;

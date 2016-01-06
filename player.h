@@ -46,6 +46,7 @@ class Player
 
     public:
         Player(void);
+        Player(float x, float y);
         ~Player(void);
         void move(void);
         void changeMoveState(int type, int size);
