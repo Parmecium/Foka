@@ -8,6 +8,7 @@ Player::Player(void)
     this->coords.y = 0.0;
     this->coords.w = 74.0;
     this->coords.h = 90.0;
+    //this->collCoords = this->coords;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
@@ -23,6 +24,7 @@ Player::Player(float x, float y)
     this->coords.y = y;
     this->coords.w = 74.0;
     this->coords.h = 90.0;
+    //this->collCoords = this->coords;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
