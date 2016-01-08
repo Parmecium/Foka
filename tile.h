@@ -2,7 +2,10 @@
 #define TILE_H
 
 #define TILE_TYPE_UNKNOWN       0
-#define TILE_TYPE_BLOCK         1
+#define TILE_WALL_DOWN          1
+#define TILE_WALL_RIGHT         2
+#define TILE_WALL_UP            3
+#define TILE_WALL_LEFT          4
 
 class Tile
 {
