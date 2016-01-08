@@ -108,10 +108,7 @@ SDL_Rect Player::getCollCoords(void)
     switch(this->angle)
     {
         case PLAYER_ANGLE_DOWN:
-            collCoords.x += 16;
-            collCoords.y += 16;
-            collCoords.w -= 16;
-            collCoords.h -= 16;
+            collCoords.h -= 100;
             break;
         case PLAYER_ANGLE_RIGHT:
             collCoords.x += 25;
@@ -127,9 +124,6 @@ SDL_Rect Player::getCollCoords(void)
             break;
         case PLAYER_ANGLE_LEFT:
             collCoords.x += 23;
-            collCoords.y += 25;
-            collCoords.w -= 25;
-            collCoords.h -= 25;
             break;
     }
     return collCoords;
