@@ -27,7 +27,7 @@ void Splash::loadTexture(void)
 void Splash::show(void)
 {
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("data/muzika/music.wav");
+    music = Mix_LoadMUS("data/muzika/opening.mp3");
     Mix_PlayMusic(music, -1);
 
     glClear(GL_COLOR_BUFFER_BIT);
