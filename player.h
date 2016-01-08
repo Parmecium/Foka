@@ -37,8 +37,6 @@ class Player
 {
     private:
         SDL_Rect coords;
-        SDL_Rect collCoordsP;
-        SDL_Rect collCoordsL;
         float speed;
         float helth;
         int angle;
@@ -46,7 +44,6 @@ class Player
         PlayerTexture texture;
 
     public:
-        Player(void);
         Player(float x, float y);
         ~Player(void);
         void move(void);
