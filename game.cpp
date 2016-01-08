@@ -8,8 +8,8 @@ Game::Game(void)
 {
     //this->width = 1060;
     //this->height = 880;
-    this->width = 500;
-    this->height = 500;
+    this->width = 1060;
+    this->height = 880;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
