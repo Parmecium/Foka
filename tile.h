@@ -6,6 +6,7 @@
 #define TILE_WALL_RIGHT         2
 #define TILE_WALL_UP            3
 #define TILE_WALL_LEFT          4
+#define TILE_WALL_SIDE          5
 
 class Tile
 {

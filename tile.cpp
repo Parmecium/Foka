@@ -42,6 +42,9 @@ void Tile::loadTexture(void)
             break;
         case TILE_WALL_LEFT:
             this->texture = loadModel("data/zid_l.png");
+        case TILE_WALL_SIDE:
+            this->texture = loadModel("data/wallside.png");
+            break;
     }
 }
 
