@@ -35,23 +35,24 @@ void Tile::loadTexture(void)
 void Tile::collision(Player *player)
 {
     SDL_Rect tmpCoords = this->collCoords;
+    SDL_Rect playerCoords = player->getCollCoords();
     tmpCoords.x += 8;
     tmpCoords.y += 8;
     tmpCoords.w -= 8;
     tmpCoords.h -= 8;
 
-    if(player->getX() + player->getWidth() > this->collCoords.x &&
-            player->getX() < this->collCoords.x + this->collCoords.w &&
-            player->getY() + player->getHeight() > this->collCoords.y &&
-            player->getY() < this->collCoords.y + this->collCoords.h)
+    if(playerCoords.x + playerCoords.w > this->collCoords.x &&
+            playerCoords.x < this->collCoords.x + this->collCoords.w &&
+            playerCoords.y + playerCoords.h > this->collCoords.y &&
+            playerCoords.y < this->collCoords.y + this->collCoords.h)
     {
-        if(player->getX() + player->getWidth() <= tmpCoords.x)
-            player->setX(this->collCoords.x - player->getWidth());
-        if(player->getX() >= this->collCoords.x + tmpCoords.w)
+        if(playerCoords.x + playerCoords.w <= tmpCoords.x)
+            player->setX(this->collCoords.x - playerCoords.w;
+        if(playerCoords.x >= this->collCoords.x + tmpCoords.w)
             player->setX(this->collCoords.x + this->collCoords.w);
-        if(player->getY() + player->getHeight() <= tmpCoords.y)
-            player->setY(this->collCoords.y - player->getHeight());
-        if(player->getY() >= this->collCoords.y + tmpCoords.h)
+        if(playerCoords.y + player->getHeight() <= tmpCoords.y)
+            player->setY(this->collCoords.y - playerCoords.h);
+        if(playerCoords.y >= this->collCoords.y + tmpCoords.h)
             player->setY(this->collCoords.y + this->collCoords.h);
     }
 }

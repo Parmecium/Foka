@@ -37,7 +37,8 @@ class Player
 {
     private:
         SDL_Rect coords;
-        SDL_Rect collCoords;
+        SDL_Rect collCoordsP;
+        SDL_Rect collCoordsL;
         float speed;
         float helth;
         int angle;
@@ -50,7 +51,7 @@ class Player
         ~Player(void);
         void move(void);
         void changeMoveState(int type, int size);
-        void loadTexture(void);
+        void loadTexture(std::string file);
         void render(void);
         void collision(float width, float height);
         //void collision(Tile *tile);
@@ -61,6 +62,7 @@ class Player
         float getHeight(void) { return this->coords.h; };
         void setX(float value) { this->coords.x = value; };
         void setY(float value) { this->coords.y = value; };
+        SDL_Rect getCollCoords(void);
 };
 
 #endif  // PLAYER_H
