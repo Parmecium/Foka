@@ -6,13 +6,15 @@
 
 Game::Game(void)
 {
-    this->width = 1060;
-    this->height = 880;
+    //this->width = 1060;
+    //this->height = 880;
+    this->width = 500;
+    this->height = 500;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
-    this->player = new Player();
-    this->player2 = new Player(50, 0);
+    this->player = new Player(25, 25);
+    this->player2 = new Player(75, 25);
     this->music = NULL;
 }
 
@@ -95,14 +97,19 @@ void Game::loadMap(void)
     int i;
 
     // Test walls
-    this->tile.push_back(new Tile(100, 100, 50, 100, TILE_TYPE_BLOCK));
-    this->tile.push_back(new Tile(150, 200, 50, 100, TILE_TYPE_BLOCK));
+    this->tile.push_back(new Tile(100, 100, 50, 100, TILE_WALL_RIGHT));
+    this->tile.push_back(new Tile(150, 200, 50, 100, TILE_WALL_LEFT));
 
     // Wall sides
     for(i = 0; i < this->width; i += 100)
     {
-        this->tile.push_back(new Tile(0, i, 24, 100, TILE_TYPE_BLOCK));
-        this->tile.push_back(new Tile(this->width - 24, i, 25, 100, TILE_TYPE_BLOCK));
+        this->tile.push_back(new Tile(0, i, 24, 100, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->width - 24, i, 25, 100, TILE_WALL_LEFT));
+    }
+    // Wall down and up
+    for(i = 0; i < this->height; i+= 100)
+    {
+        this->tile.push_back(new Tile(i, 0, 100, 24, TILE_WALL_UP));
     }
 
     // Load textures for tiles

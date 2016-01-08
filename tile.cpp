@@ -29,7 +29,20 @@ Tile::~Tile(void)
 
 void Tile::loadTexture(void)
 {
-    texture = loadModel("data/zid1.png");
+    switch(this->type)
+    {
+        case TILE_WALL_DOWN:
+            this->texture = loadModel("data/zid_d.png");
+            break;
+        case TILE_WALL_RIGHT:
+            this->texture = loadModel("data/zid_r.png");
+            break;
+        case TILE_WALL_UP:
+            this->texture = loadModel("data/zid_u.png");
+            break;
+        case TILE_WALL_LEFT:
+            this->texture = loadModel("data/zid_l.png");
+    }
 }
 
 void Tile::collision(Player *player)
@@ -47,7 +60,7 @@ void Tile::collision(Player *player)
             playerCoords.y < this->collCoords.y + this->collCoords.h)
     {
         if(playerCoords.x + playerCoords.w <= tmpCoords.x)
-            player->setX(this->collCoords.x - playerCoords.w;
+            player->setX(this->collCoords.x - playerCoords.w);
         if(playerCoords.x >= this->collCoords.x + tmpCoords.w)
             player->setX(this->collCoords.x + this->collCoords.w);
         if(playerCoords.y + player->getHeight() <= tmpCoords.y)
