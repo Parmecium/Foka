@@ -8,15 +8,6 @@ Player::Player(float x, float y)
     this->coords.y = y;
     this->coords.w = 74.0;
     this->coords.h = 90.0;
-    this->collCoordsP = this->coords;
-    //this->collCoordsP.x +=;
-    //this->collCoordsP.y +=;
-    //this->collCoordsP.w -=;
-    //this->collCoordsP.h -=;
-    //this->collCoordsL.x +=;
-    //this->collCoordsL.y +=;
-    //this->collCoordsL.w +=;
-    //this->collCoordsL.h +=;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
@@ -105,10 +96,26 @@ void Player::loadTexture(std::string file)
 
 SDL_Rect Player::getCollCoords(void)
 {
+    /*
     if(this->angle == PLAYER_ANGLE_DOWN || this->angle == PLAYER_ANGLE_UP)
         return this->collCoordsP;
     else
         return this->collCoordsL;
+    */
+
+    SDL_Rect collCoords;
+    collCoords = this->coords;
+    switch(this->angle)
+    {
+        case PLAYER_ANGLE_DOWN:
+            break;
+        case PLAYER_ANGLE_RIGHT:
+            break;
+        case PLAYER_ANGLE_UP:
+            break;
+        case PLAYER_ANGLE_LEFT:
+            break;
+    }
 }
 
 // Render player
