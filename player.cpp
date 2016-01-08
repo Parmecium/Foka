@@ -103,12 +103,20 @@ void Player::changeMoveState(int type, int state)
     }
 }
 
-void Player::loadTexture(void)
+void Player::loadTexture(std::string file)
 {
-    this->texture.down = loadModel("data/foka.png");
-    this->texture.right = loadModel("data/foka2.png");
-    this->texture.left = loadModel("data/foka3.png");
-    this->texture.up = loadModel("data/foka4.png");
+    this->texture.down = loadModel("data/" + file + "_d.png");
+    this->texture.right = loadModel("data/" + file + "_r.png");
+    this->texture.left = loadModel("data/" + file + "_l.png");
+    this->texture.up = loadModel("data/" + file + "_u.png");
+}
+
+SDL_Rect Player::getCollCoords(void)
+{
+    if(this->angle == PLAYER_ANGLE_DOWN || this->angle == PLAYER_ANGLE_UP)
+        return this->collCoordsP;
+    else
+        return this->collCoordsL;
 }
 
 // Render player

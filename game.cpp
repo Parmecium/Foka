@@ -78,8 +78,8 @@ void Game::init(void)
     std::cout << "map is loaded" << std::endl;
 
     // Initialize texture
-    this->player->loadTexture();
-    this->player2->loadTexture();
+    this->player->loadTexture("foka");
+    this->player2->loadTexture("foka");
     std::cout << "texture is initialize" << std::endl;
 }
 
