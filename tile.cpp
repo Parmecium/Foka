@@ -62,8 +62,9 @@ void Tile::collision(Player *player)
         if(playerCoords.x + playerCoords.w <= tmpCoords.x)
             player->setX(this->collCoords.x - playerCoords.w);
         if(playerCoords.x >= this->collCoords.x + tmpCoords.w)
-            player->setX(this->collCoords.x + this->collCoords.w);
-        if(playerCoords.y + player->getHeight() <= tmpCoords.y)
+            player->setX(this->collCoords.x + this->collCoords.w
+                    - playerCoords.x + player->getX());
+        if(playerCoords.y + playerCoords.h <= tmpCoords.y)
             player->setY(this->collCoords.y - playerCoords.h);
         if(playerCoords.y >= this->collCoords.y + tmpCoords.h)
             player->setY(this->collCoords.y + this->collCoords.h);
