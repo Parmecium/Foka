@@ -101,15 +101,15 @@ void Game::loadMap(void)
     this->tile.push_back(new Tile(150, 200, 50, 100, TILE_WALL_LEFT));
 
     // Wall sides
-    for(i = 0; i < this->width; i += 15)
+    for(i = 0; i < this->width; i += 100)
     {
-        this->tile.push_back(new Tile(0, i, 15, 15, TILE_WALL_SIDE));
-        this->tile.push_back(new Tile(this->width - 15, i, 15, 15, TILE_WALL_SIDE));
+        this->tile.push_back(new Tile(0, i, 24, 100, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->width - 24, i, 25, 100, TILE_WALL_LEFT));
     }
     // Wall down and up
-    for(i = 0; i < this->height; i+= 15)
+    for(i = 0; i < this->height; i+= 100)
     {
-        this->tile.push_back(new Tile(i, 0, 15, 15, TILE_WALL_SIDE));
+        this->tile.push_back(new Tile(i, 0, 100, 24, TILE_WALL_UP));
     }
 
     // Load textures for tiles
