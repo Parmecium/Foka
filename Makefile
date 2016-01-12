@@ -20,11 +20,11 @@ all: linux
 	echo All done
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) foka
 	echo Clean done
 
 linux: $(OBJS)
-	$(CXX) $(CXXFLAGS) -o foka $^
+	$(CXX) $(CXXFLAGS) -o foka $^ $(LIBS)
 
 %.o : %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
