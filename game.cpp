@@ -112,6 +112,9 @@ void Game::loadMap(void)
         this->tile.push_back(new Tile(i, 0, 100, 24, TILE_WALL_UP));
     }
 
+    // Desk for test
+    this->tile.push_back(new Tile(250, 250, TILE_DESK));
+
     // Load textures for tiles
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
