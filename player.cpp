@@ -6,8 +6,9 @@ Player::Player(float x, float y)
 {
     this->coords.x = x;
     this->coords.y = y;
-    this->coords.w = 74.0;
-    this->coords.h = 90.0;
+    this->coords.w = 54.0;
+    this->coords.h = 70.0;
+    this->collCoords = this->coords;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
@@ -88,47 +89,13 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(std::string file)
 {
-    this->texture.down = loadModel("data/" + file + "_d.png");
+    //this->texture.down = loadModel("data/" + file + "_d.png");
     this->texture.right = loadModel("data/" + file + "_r.png");
     this->texture.left = loadModel("data/" + file + "_l.png");
-    this->texture.up = loadModel("data/" + file + "_u.png");
-}
-
-SDL_Rect Player::getCollCoords(void)
-{
-    /*
-    if(this->angle == PLAYER_ANGLE_DOWN || this->angle == PLAYER_ANGLE_UP)
-        return this->collCoordsP;
-    else
-        return this->collCoordsL;
-    */
-
-    SDL_Rect collCoords;
-    collCoords = this->coords;
-    switch(this->angle)
-    {
-        case PLAYER_ANGLE_DOWN:
-            //collCoords.h -= 30;
-            break;
-        case PLAYER_ANGLE_RIGHT:
-            //collCoords.x += 25;
-            //collCoords.y += 25;
-            collCoords.w -= 24;
-            collCoords.h -= 16;
-            break;
-        case PLAYER_ANGLE_UP:
-            //collCoords.x += 16;
-            //collCoords.y += 16;
-            //collCoords.w -= 16;
-            collCoords.h -= 16;
-            break;
-        case PLAYER_ANGLE_LEFT:
-            //collCoords.x -= 23;
-            collCoords.w -= 24;
-            collCoords.h -= 16;
-            break;
-    }
-    return collCoords;
+    //this->texture.up = loadModel("data/" + file + "_u.png");
+    // Test, privremeno:
+    this->texture.down = this->texture.right;
+    this->texture.up = this->texture.left;
 }
 
 // Render player
