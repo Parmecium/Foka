@@ -124,6 +124,8 @@ SDL_Rect Player::getCollCoords(void)
             break;
         case PLAYER_ANGLE_LEFT:
             //collCoords.x -= 23;
+            collCoords.w -= 24;
+            collCoords.h -= 16;
             break;
     }
     return collCoords;
