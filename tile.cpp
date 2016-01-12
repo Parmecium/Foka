@@ -52,10 +52,10 @@ void Tile::collision(Player *player)
 {
     SDL_Rect tmpCoords = this->collCoords;
     SDL_Rect playerCoords = player->getCollCoords();
-    tmpCoords.x += 8;
-    tmpCoords.y += 8;
-    tmpCoords.w -= 8;
-    tmpCoords.h -= 8;
+    tmpCoords.x += 10;
+    tmpCoords.y += 10;
+    tmpCoords.w -= 10;
+    tmpCoords.h -= 10;
 
     if(playerCoords.x + playerCoords.w > this->collCoords.x &&
             playerCoords.x < this->collCoords.x + this->collCoords.w &&
@@ -64,13 +64,12 @@ void Tile::collision(Player *player)
     {
         if(playerCoords.x + playerCoords.w <= tmpCoords.x)
             player->setX(this->collCoords.x - playerCoords.w);
-        if(playerCoords.x >= this->collCoords.x + tmpCoords.w)
-            player->setX(this->collCoords.x + this->collCoords.w
-                    - playerCoords.x + player->getX());
+        else if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
+            std::cout << "test" << std::endl;
         if(playerCoords.y + playerCoords.h <= tmpCoords.y)
             player->setY(this->collCoords.y - playerCoords.h);
-        if(playerCoords.y >= this->collCoords.y + tmpCoords.h)
-            player->setY(this->collCoords.y + this->collCoords.h);
+        else if(playerCoords.y >= tmpCoords.y + tmpCoords.h)
+            std::cout << "test 2" << std::endl;
     }
 }
 
