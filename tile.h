@@ -7,6 +7,7 @@
 #define TILE_WALL_UP            3
 #define TILE_WALL_LEFT          4
 #define TILE_WALL_SIDE          5
+#define TILE_DESK               6
 
 class Tile
 {
@@ -17,8 +18,8 @@ class Tile
         unsigned int texture;
 
     public:
-        Tile(void);
         Tile(float x, float y, float width, float height, int type);
+        Tile(float x, float y, int type);
         ~Tile(void);
         void loadTexture(void);
         void collision(Player *player);

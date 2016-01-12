@@ -3,16 +3,6 @@
 #include "player.h"
 #include "tile.h"
 
-Tile::Tile(void)
-{
-    this->coords.x = 0;
-    this->coords.y = 0;
-    this->coords.w = 0;
-    this->coords.h = 0;
-    this->collCoords = this->coords;
-    this->type = TILE_TYPE_UNKNOWN;
-}
-
 Tile::Tile(float x, float y, float width, float height, int type)
 {
     this->coords.x = x;
@@ -21,6 +11,23 @@ Tile::Tile(float x, float y, float width, float height, int type)
     this->coords.h = height;
     this->collCoords = this->coords;
     this->type = type;
+}
+
+Tile::Tile(float x, float y, int type)
+{
+    this->coords.x = x;
+    this->coords.y = y;
+    this->type = type;
+
+    switch(type)
+    {
+        case TILE_DESK:
+            this->coords.w = 50;
+            this->coords.h = 50;
+            break;
+    }
+
+    this->collCoords = this->coords;
 }
 
 Tile::~Tile(void)
@@ -45,6 +52,9 @@ void Tile::loadTexture(void)
         case TILE_WALL_SIDE:
             this->texture = loadModel("data/wallside.png");
             break;
+        case TILE_DESK:
+            this->texture = loadModel("data/stocic.png");
+            break;
     }
 }
 
@@ -52,10 +62,10 @@ void Tile::collision(Player *player)
 {
     SDL_Rect tmpCoords = this->collCoords;
     SDL_Rect playerCoords = player->getCollCoords();
-    tmpCoords.x += 10;
-    tmpCoords.y += 10;
-    tmpCoords.w -= 10;
-    tmpCoords.h -= 10;
+    tmpCoords.x += 8;
+    tmpCoords.y += 8;
+    tmpCoords.w -= 8;
+    tmpCoords.h -= 8;
 
     if(playerCoords.x + playerCoords.w > this->collCoords.x &&
             playerCoords.x < this->collCoords.x + this->collCoords.w &&
