@@ -4,7 +4,7 @@ if [ "$1" == "debug" ]
 then
     make clean
     make debug
-    ./foka
+    gdb foka
 elif [ "$1" == "run" ]
 then
     make clean
