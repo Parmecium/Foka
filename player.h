@@ -37,6 +37,7 @@ class Player
 {
     private:
         SDL_Rect coords;
+        SDL_Rect collCoords;
         float speed;
         float helth;
         int angle;
@@ -59,7 +60,7 @@ class Player
         float getHeight(void) { return this->coords.h; };
         void setX(float value) { this->coords.x = value; };
         void setY(float value) { this->coords.y = value; };
-        SDL_Rect getCollCoords(void);
+        SDL_Rect getCollCoords(void) { return this->collCoords; };
 };
 
 #endif  // PLAYER_H

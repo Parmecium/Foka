@@ -18,7 +18,6 @@ Tile::Tile(float x, float y, int type)
     this->coords.x = x;
     this->coords.y = y;
     this->type = type;
-
     switch(type)
     {
         case TILE_DESK:
@@ -26,7 +25,6 @@ Tile::Tile(float x, float y, int type)
             this->coords.h = 50;
             break;
     }
-
     this->collCoords = this->coords;
 }
 
@@ -49,8 +47,6 @@ void Tile::loadTexture(void)
             break;
         case TILE_WALL_LEFT:
             this->texture = loadModel("data/zid_l.png");
-        case TILE_WALL_SIDE:
-            this->texture = loadModel("data/wallside.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic.png");

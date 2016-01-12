@@ -8,8 +8,8 @@ Game::Game(void)
 {
     //this->width = 1060;
     //this->height = 880;
-    this->width = 1060;
-    this->height = 880;
+    this->width = 680;
+    this->height = 420;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
@@ -80,8 +80,8 @@ void Game::init(void)
     std::cout << "map is loaded" << std::endl;
 
     // Initialize texture
-    this->player->loadTexture("foka");
-    this->player2->loadTexture("foka");
+    this->player->loadTexture("pig");
+    this->player2->loadTexture("pig");
     std::cout << "texture is initialize" << std::endl;
 }
 
@@ -101,13 +101,13 @@ void Game::loadMap(void)
     this->tile.push_back(new Tile(150, 200, 50, 100, TILE_WALL_LEFT));
 
     // Wall sides
-    for(i = 0; i < this->width; i += 100)
+    for(i = 0; i < this->height; i += 100)
     {
         this->tile.push_back(new Tile(0, i, 24, 100, TILE_WALL_RIGHT));
-        this->tile.push_back(new Tile(this->width - 24, i, 25, 100, TILE_WALL_LEFT));
+        this->tile.push_back(new Tile(this->width - 24, i, 24, 100, TILE_WALL_LEFT));
     }
     // Wall down and up
-    for(i = 0; i < this->height; i+= 100)
+    for(i = 0; i < this->width; i += 100)
     {
         this->tile.push_back(new Tile(i, 0, 100, 24, TILE_WALL_UP));
     }
