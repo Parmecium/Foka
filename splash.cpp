@@ -36,7 +36,7 @@ void Splash::show(void)
 
     // Begin render
 
-     glColor4ub(0, 0, 0, 255);       // Black color
+     glColor4ub( 30, 30, 30, 255);       // Gray color
     glBegin(GL_QUADS);
         glVertex2f(0, 0);
         glVertex2f(this->wWidth, 0);
