@@ -27,10 +27,10 @@ typedef struct sPlayerMove
 
 typedef struct sPlayerTexture
 {
-    unsigned int down;
-    unsigned int right;
-    unsigned int up;
-    unsigned int left;
+    unsigned int down[3];
+    unsigned int right[3];
+    unsigned int up[3];
+    unsigned int left[3];
 } PlayerTexture;
 
 class Player
@@ -43,6 +43,9 @@ class Player
         int angle;
         PlayerMove moveState;
         PlayerTexture texture;
+        int textureState;
+        int textureIncrement;
+        bool moving;
 
     public:
         Player(float x, float y);
@@ -61,6 +64,8 @@ class Player
         void setX(float value) { this->coords.x = value; };
         void setY(float value) { this->coords.y = value; };
         SDL_Rect getCollCoords(void) { return this->collCoords; };
+        int getTextureIncrement(void) { return this->textureIncrement; };
+        void setTextureIncrement(int textureIncrement) { return this->textureIncrement = value; };
 };
 
 #endif  // PLAYER_H

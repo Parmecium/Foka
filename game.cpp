@@ -1,4 +1,6 @@
 #include "main.h"
+#include "functions.h"
+#include "timer.h"
 #include "splash.h"
 #include "player.h"
 #include "tile.h"
@@ -16,6 +18,7 @@ Game::Game(void)
     this->player = new Player(25, 25);
     this->player2 = new Player(75, 25);
     this->music = NULL;
+    this->timer = new Timer();
 }
 
 Game::~Game(void)
@@ -23,10 +26,12 @@ Game::~Game(void)
     int i;
 
     delete this->player;
+    delete this->player2;
     for(i = 0; i < this->tile.size(); i++)
     {
         delete this->tile[i];
     }
+    delete this->timer;
 
     // Free
     SDL_Quit();
@@ -146,6 +151,7 @@ void Game::logic(void)
         this->tile[i]->collision(player);
         this->tile[i]->collision(player2);
     }
+    timer->tick();
 }
 
 void Game::events(SDL_Event event)
