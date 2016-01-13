@@ -97,19 +97,19 @@ void Game::loadMap(void)
     int i;
 
     // Test walls
-    this->tile.push_back(new Tile(100, 100, 50, 100, TILE_WALL_RIGHT));
-    this->tile.push_back(new Tile(150, 200, 50, 100, TILE_WALL_LEFT));
+    this->tile.push_back(new Tile(100, 100,  TILE_WALL_RIGHT));
+    this->tile.push_back(new Tile(150, 200, TILE_WALL_LEFT));
 
     // Wall sides
     for(i = 0; i < this->height; i += 100)
     {
-        this->tile.push_back(new Tile(0, i, 24, 100, TILE_WALL_RIGHT));
-        this->tile.push_back(new Tile(this->width - 24, i, 24, 100, TILE_WALL_LEFT));
+        this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->width - 50, i, TILE_WALL_LEFT));
     }
     // Wall down and up
     for(i = 0; i < this->width; i += 100)
     {
-        this->tile.push_back(new Tile(i, 0, 100, 24, TILE_WALL_UP));
+        this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
     }
 
     // Desk for test

@@ -3,16 +3,6 @@
 #include "player.h"
 #include "tile.h"
 
-Tile::Tile(float x, float y, float width, float height, int type)
-{
-    this->coords.x = x;
-    this->coords.y = y;
-    this->coords.w = width;
-    this->coords.h = height;
-    this->collCoords = this->coords;
-    this->type = type;
-}
-
 Tile::Tile(float x, float y, int type)
 {
     this->coords.x = x;
@@ -20,6 +10,14 @@ Tile::Tile(float x, float y, int type)
     this->type = type;
     switch(type)
     {
+        case TILE_WALL_LEFT: case TILE_WALL_RIGHT:
+            this->coords.w = 50;
+            this->coords.h = 100;
+            break;
+        case TILE_WALL_UP: case TILE_WALL_DOWN:
+            this->coords.w = 100;
+            this->coords.h = 50;
+            break;
         case TILE_DESK:
             this->coords.w = 50;
             this->coords.h = 50;
@@ -68,14 +66,7 @@ void Tile::collision(Player *player)
             playerCoords.y + playerCoords.h > this->collCoords.y &&
             playerCoords.y < this->collCoords.y + this->collCoords.h)
     {
-        if(playerCoords.x + playerCoords.w <= tmpCoords.x)
-            player->setX(this->collCoords.x - playerCoords.w);
-        else if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
-            std::cout << "test" << std::endl;
-        if(playerCoords.y + playerCoords.h <= tmpCoords.y)
-            player->setY(this->collCoords.y - playerCoords.h);
-        else if(playerCoords.y >= tmpCoords.y + tmpCoords.h)
-            std::cout << "test 2" << std::endl;
+        // TODO: Collision
     }
 }
 
