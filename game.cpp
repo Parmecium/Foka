@@ -80,8 +80,8 @@ void Game::init(void)
     std::cout << "map is loaded" << std::endl;
 
     // Initialize texture
-    this->player->loadTexture("pig");
-    this->player2->loadTexture("creep");
+    this->player->loadTexture("/pig/pig");
+    this->player2->loadTexture("/creep/creep");
     std::cout << "texture is initialize" << std::endl;
 }
 
