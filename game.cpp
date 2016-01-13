@@ -6,10 +6,10 @@
 
 Game::Game(void)
 {
-    //this->width = 1060;
-    //this->height = 880;
-    this->width = 680;
-    this->height = 420;
+    //this->width = 680;
+    //this->height = 420;
+    this->width = 1060;
+    this->height = 880;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
@@ -81,7 +81,7 @@ void Game::init(void)
 
     // Initialize texture
     this->player->loadTexture("pig");
-    this->player2->loadTexture("pig");
+    this->player2->loadTexture("creep");
     std::cout << "texture is initialize" << std::endl;
 }
 
