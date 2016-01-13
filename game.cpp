@@ -54,7 +54,7 @@ void Game::init(void)
 
     // Specific the clear color
     //glClearColor(0, 0, 0, 1);   // Black color
-    glClearColor(0.08, 0, 0, 1);
+    glClearColor(0.06, 0.06, 0.06, 1);
 
     // What portion of the screen we will display
     glViewport(0, 0, this->width, this->height);
