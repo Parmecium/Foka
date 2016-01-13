@@ -17,7 +17,6 @@ class Tile
         unsigned int texture;
 
     public:
-        Tile(float x, float y, float width, float height, int type);
         Tile(float x, float y, int type);
         ~Tile(void);
         void loadTexture(void);
