@@ -89,13 +89,10 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(std::string file)
 {
-    //this->texture.down = loadModel("data/" + file + "_d.png");
+    this->texture.down = loadModel("data/" + file + "_d.png");
     this->texture.right = loadModel("data/" + file + "_r.png");
     this->texture.left = loadModel("data/" + file + "_l.png");
-    //this->texture.up = loadModel("data/" + file + "_u.png");
-    // Test, privremeno:
-    this->texture.down = this->texture.right;
-    this->texture.up = this->texture.left;
+    this->texture.up = loadModel("data/" + file + "_u.png");
 }
 
 // Render player
