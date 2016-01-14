@@ -14,6 +14,7 @@ class Game
         Player *player2;
         std::vector<Tile *> tile;
         Mix_Music *music;
+        Timer *timer;
 
         void events(SDL_Event event);
         void init(void);

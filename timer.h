@@ -1,26 +1,25 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-class Tick
+class Ticker
 {
     public:
-        public virtual void tick(void);
-}
+        virtual void tick(void) {}
+};
 
 class Timer
 {
     private:
-        std::vector<Ticker> tickers;
-        std::vector<int> intervals;
-        long before;
-        int now;
-
-        void tick(void);
+        std::vector<Ticker *> ticker;
+        std::vector<int> interval;
+        std::vector<int> now;
+        unsigned int before;
 
     public:
         Timer(void);
         ~Timer(void);
-        void add(int interval, Ticker ticker);
+        void tick(void);
+        void add(int interval, Ticker *ticker);
 };
 
 #endif  // TIMER_H

@@ -1,8 +1,26 @@
 #include "main.h"
 #include "functions.h"
+#include "timer.h"
 #include "player.h"
 
-Player::Player(float x, float y)
+class PlayerAnimator : public Ticker
+{
+    private:
+        Player *player;
+
+    public:
+        PlayerAnimator(Player *player)
+        {
+            this->player = player;
+        }
+
+        virtual void tick(void)
+        {
+            this->player->changeTexture();
+        }
+};
+
+Player::Player(float x, float y, Timer *timer)
 {
     this->coords.x = x;
     this->coords.y = y;
@@ -16,6 +34,10 @@ Player::Player(float x, float y)
     this->moveState.up = false;
     this->moveState.left = false;
     this->angle = PLAYER_ANGLE_DOWN;
+    this->textureState = 1;
+    this->textureIncrement = 0;
+
+    timer->add(250, new PlayerAnimator(this));
 }
 
 Player::~Player(void)
@@ -24,25 +46,37 @@ Player::~Player(void)
 
 void Player::move(void)
 {
-    if(this->moveState.down)
+    if(!this->moveState.down &&
+            !this->moveState.up &&
+            !this->moveState.left &&
+            !this->moveState.right)
     {
-        this->coords.y -= this->speed;
-        this->angle = PLAYER_ANGLE_DOWN;
-    }
-    if(this->moveState.up)
+        this->textureState = 1;
+        this->textureIncrement = 0;
+    } else
     {
-        this->coords.y += this->speed;
-        this->angle = PLAYER_ANGLE_UP;
-    }
-    if(this->moveState.left)
-    {
-        this->coords.x -= this->speed;
-        this->angle = PLAYER_ANGLE_LEFT;
-    }
-    if(this->moveState.right)
-    {
-        this->coords.x += this->speed;
-        this->angle = PLAYER_ANGLE_RIGHT;
+        if(this->textureIncrement == 0)
+            this->textureIncrement = 1;
+        if(this->moveState.down)
+        {
+            this->coords.y -= this->speed;
+            this->angle = PLAYER_ANGLE_DOWN;
+        }
+        if(this->moveState.up)
+        {
+            this->coords.y += this->speed;
+            this->angle = PLAYER_ANGLE_UP;
+        }
+        if(this->moveState.left)
+        {
+            this->coords.x -= this->speed;
+            this->angle = PLAYER_ANGLE_LEFT;
+        }
+        if(this->moveState.right)
+        {
+            this->coords.x += this->speed;
+            this->angle = PLAYER_ANGLE_RIGHT;
+        }
     }
 }
 
@@ -89,10 +123,25 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(std::string file)
 {
-    this->texture.down = loadModel("data/" + file + "_d.png");
-    this->texture.right = loadModel("data/" + file + "_r.png");
-    this->texture.left = loadModel("data/" + file + "_l.png");
-    this->texture.up = loadModel("data/" + file + "_u.png");
+    this->texture.down[0] = loadModel("data/" + file + "_d2.png");
+    this->texture.right[0] = loadModel("data/" + file + "_r2.png");
+    this->texture.left[0] = loadModel("data/" + file + "_l2.png");
+    this->texture.up[0] = loadModel("data/" + file + "_u2.png");
+    this->texture.down[1] = loadModel("data/" + file + "_d.png");
+    this->texture.right[1] = loadModel("data/" + file + "_r.png");
+    this->texture.left[1] = loadModel("data/" + file + "_l.png");
+    this->texture.up[1] = loadModel("data/" + file + "_u.png");
+    this->texture.down[2] = loadModel("data/" + file + "_d3.png");
+    this->texture.right[2] = loadModel("data/" + file + "_r3.png");
+    this->texture.left[2] = loadModel("data/" + file + "_l3.png");
+    this->texture.up[2] = loadModel("data/" + file + "_u3.png");
+}
+
+void Player::changeTexture(void)
+{
+    this->textureState += this->textureIncrement;
+    if(this->textureState != 1)
+        this->textureIncrement = -this->textureIncrement;
 }
 
 // Render player
@@ -104,16 +153,16 @@ void Player::render(void)
     switch(this->angle)
     {
         case PLAYER_ANGLE_DOWN:
-            glBindTexture(GL_TEXTURE_2D, this->texture.down);
+            glBindTexture(GL_TEXTURE_2D, this->texture.down[this->textureState]);
             break;
         case PLAYER_ANGLE_RIGHT:
-            glBindTexture(GL_TEXTURE_2D, this->texture.right);
+            glBindTexture(GL_TEXTURE_2D, this->texture.right[this->textureState]);
             break;
         case PLAYER_ANGLE_UP:
-            glBindTexture(GL_TEXTURE_2D, this->texture.up);
+            glBindTexture(GL_TEXTURE_2D, this->texture.up[this->textureState]);
             break;
         case PLAYER_ANGLE_LEFT:
-            glBindTexture(GL_TEXTURE_2D, this->texture.left);
+            glBindTexture(GL_TEXTURE_2D, this->texture.left[this->textureState]);
             break;
     }
 
