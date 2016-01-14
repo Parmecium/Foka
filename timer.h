@@ -4,7 +4,7 @@
 class Ticker
 {
     public:
-        virtual void tick(void);
+        virtual void tick(void) {}
 };
 
 class Timer
@@ -13,7 +13,7 @@ class Timer
         std::vector<Ticker *> ticker;
         std::vector<int> interval;
         std::vector<int> now;
-        long before;
+        unsigned int before;
 
     public:
         Timer(void);

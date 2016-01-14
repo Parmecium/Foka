@@ -8,17 +8,17 @@
 
 Game::Game(void)
 {
-    //this->width = 680;
-    //this->height = 420;
-    this->width = 1060;
-    this->height = 880;
+    this->width = 680;
+    this->height = 420;
+    //this->width = 1060;
+    //this->height = 880;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
-    this->player = new Player(25, 25);
-    this->player2 = new Player(75, 25);
-    this->music = NULL;
     this->timer = new Timer();
+    this->player = new Player(25, 25, timer);
+    this->player2 = new Player(75, 25, timer);
+    this->music = NULL;
 }
 
 Game::~Game(void)

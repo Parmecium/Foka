@@ -4,22 +4,27 @@
 
 Timer::Timer(void)
 {
-    this->before = SDL_GetTicks();
+    this->before = 0;
 }
 
 Timer::~Timer(void)
 {
+    int i;
+
+    for(i = 0; i < ticker.size(); i++)
+        delete ticker[i];
 }
 
 void Timer::add(int interval, Ticker *ticker)
 {
     this->ticker.push_back(ticker);
     this->interval.push_back(interval);
+    this->now.push_back(0);
 }
 
 void Timer::tick(void)
 {
-    int ticks;
+    unsigned int ticks;
     int now;
     int i;
 
@@ -30,7 +35,7 @@ void Timer::tick(void)
     for(i = 0; i < ticker.size(); i++)
     {
         this->now[i] += now;
-        if(this->now[i] > this->interval[i])
+        if(this->now[i] >= this->interval[i])
         {
             ticker[i]->tick();
             this->now[i] = 0;

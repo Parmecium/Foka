@@ -45,10 +45,9 @@ class Player
         PlayerTexture texture;
         int textureState;
         int textureIncrement;
-        bool moving;
 
     public:
-        Player(float x, float y);
+        Player(float x, float y, Timer *timer);
         ~Player(void);
         void move(void);
         void changeMoveState(int type, int size);
@@ -56,6 +55,7 @@ class Player
         void render(void);
         void collision(float width, float height);
         //void collision(Tile *tile);
+        void changeTexture(void);
 
         float getX(void) { return this->coords.x; };
         float getY(void) { return this->coords.y; };
@@ -65,7 +65,7 @@ class Player
         void setY(float value) { this->coords.y = value; };
         SDL_Rect getCollCoords(void) { return this->collCoords; };
         int getTextureIncrement(void) { return this->textureIncrement; };
-        void setTextureIncrement(int textureIncrement) { return this->textureIncrement = value; };
+        void setTextureIncrement(int value) { this->textureIncrement = value; };
 };
 
 #endif  // PLAYER_H
