@@ -132,13 +132,9 @@ void Player::loadTexture(std::string file)
     this->texture.left[1] = loadModel("data/" + file + "_l.png");
     this->texture.up[1] = loadModel("data/" + file + "_u.png");
     this->texture.down[2] = loadModel("data/" + file + "_d3.png");
-    //this->texture.right[2] = loadModel("data/" + file + "_r3.png");
-    //this->texture.left[2] = loadModel("data/" + file + "_l3.png");
+    this->texture.right[2] = loadModel("data/" + file + "_r3.png");
+    this->texture.left[2] = loadModel("data/" + file + "_l3.png");
     this->texture.up[2] = loadModel("data/" + file + "_u3.png");
-
-    // Test
-    this->texture.right[2] = this->texture.right[0];
-    this->texture.left[2] = this->texture.left[0];
 }
 
 void Player::changeTexture(void)
