@@ -67,7 +67,8 @@ void Tile::collision(Player *player)
             playerCoords.y + playerCoords.h > this->collCoords.y &&
             playerCoords.y < this->collCoords.y + this->collCoords.h)
     {
-        // TODO: Collision
+        if(playerCoords.x + playerCoords.w <= tmpCoords.x)
+            player->setX(this->coords.x - playerCoords.w);
     }
 }
 
