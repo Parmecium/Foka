@@ -4,6 +4,7 @@ CXXFLAGS = -O2 -Wall
 SRC =  \
 	main.cpp \
 	functions.cpp \
+	timer.cpp \
 	game.cpp \
 	splash.cpp \
 	player.cpp \

@@ -1,5 +1,6 @@
 #include "main.h"
 #include "functions.h"
+#include "timer.h"
 #include "player.h"
 #include "tile.h"
 
