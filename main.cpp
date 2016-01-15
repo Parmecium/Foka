@@ -4,6 +4,7 @@
 #include "splash.h"
 #include "player.h"
 #include "tile.h"
+#include "map.h"
 #include "game.h"
 
 int main(int argc, char *argv[])

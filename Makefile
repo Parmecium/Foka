@@ -6,6 +6,7 @@ SRC =  \
 	functions.cpp \
 	timer.cpp \
 	game.cpp \
+	map.cpp \
 	splash.cpp \
 	player.cpp \
 	tile.cpp \

@@ -10,18 +10,16 @@ class Game
         bool isRunning;
         int fps;
         SDL_Event event;
-        Player *player;
-        Player *player2;
-        std::vector<Tile *> tile;
         Mix_Music *music;
         Timer *timer;
+        Map *map;
 
         void events(SDL_Event event);
         void init(void);
         void splash(void);
-        void loadMap(void);
-        void render(void);
-        void logic(void);
+        //void loadMap(void);
+        //void render(void);
+        //void logic(void);
 
     public:
         Game(void);
