@@ -18,7 +18,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     timer = new Timer();
     player = new Player(55, 55, timer);
-    player2 = new Player(55, 75, timer);
+    player2 = new Player(120, 55, timer);
 
     // Test
     this->tile.push_back(new Tile(300, 300, TILE_DESK));
