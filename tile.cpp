@@ -59,15 +59,22 @@ void Tile::collision(Player *player)
     SDL_Rect playerCoords = player->getCollCoords();
     tmpCoords.x += 8;
     tmpCoords.y += 8;
-    tmpCoords.w -= 8;
-    tmpCoords.h -= 8;
+    tmpCoords.w -= 15;
+    tmpCoords.h -= 15;
 
     if(playerCoords.x + playerCoords.w > this->collCoords.x &&
             playerCoords.x < this->collCoords.x + this->collCoords.w &&
             playerCoords.y + playerCoords.h > this->collCoords.y &&
             playerCoords.y < this->collCoords.y + this->collCoords.h)
     {
-        // TODO: Collision
+        if(playerCoords.x + playerCoords.w <= tmpCoords.x)
+            player->setX(this->collCoords.x - playerCoords.w);
+        if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
+            player->setX(this->collCoords.x + this->collCoords.w);
+        if(playerCoords.y + playerCoords.h <= tmpCoords.y)
+            player->setY(this->collCoords.y - playerCoords.h);
+        if(playerCoords.y >= tmpCoords.y + tmpCoords.h)
+            player->setY(this->collCoords.y + this->collCoords.h);
     }
 }
 
