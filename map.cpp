@@ -15,12 +15,22 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->camera = {0, 0, this->sWidth, this->sHeight };
 
     timer = new Timer();
-    player = new Player(10, 10, timer);
-    player2 = new Player(50, 10, timer);
+    player = new Player(55, 55, timer);
+    player2 = new Player(55, 75, timer);
 
     this->tile.push_back(new Tile(100, 100, TILE_WALL_RIGHT));
     this->tile.push_back(new Tile(150, 200, TILE_WALL_LEFT));
     this->tile.push_back(new Tile(300, 300, TILE_DESK));
+
+    // Test
+    int i;
+    for(i = 0; i <= width - 100; i += 100)
+        this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
+    for(i = 0; i <= height - 100; i+= 100)
+    {
+        this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
+    }
 }
 
 Map::~Map(void)
