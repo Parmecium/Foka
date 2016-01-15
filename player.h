@@ -52,7 +52,7 @@ class Player
         void move(void);
         void changeMoveState(int type, int size);
         void loadTexture(std::string file);
-        void render(void);
+        void render(float cameraX, float cameraY);
         void collision(float width, float height);
         //void collision(Tile *tile);
         void changeTexture(void);

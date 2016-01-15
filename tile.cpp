@@ -78,17 +78,17 @@ void Tile::collision(Player *player)
     }
 }
 
-void Tile::render(void)
+void Tile::render(int cameraX, int cameraY)
 {
     glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
 
     glBindTexture(GL_TEXTURE_2D, this->texture);
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->coords.x, this->coords.y);
-        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w, this->coords.y);
-        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w, this->coords.y + this->coords.h);
-        glTexCoord2d(0, 0); glVertex2f(this->coords.x, this->coords.y + this->coords.h);
+        glTexCoord2d(0, 1); glVertex2f(this->coords.x - cameraX, this->coords.y - cameraY);
+        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w - cameraX, this->coords.y - cameraY);
+        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w - cameraX, this->coords.y + this->coords.h - cameraY);
+        glTexCoord2d(0, 0); glVertex2f(this->coords.x - cameraX, this->coords.y + this->coords.h - cameraY);
     glEnd();
     glDisable(GL_TEXTURE_2D);
 }

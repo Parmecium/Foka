@@ -134,6 +134,7 @@ void Player::loadTexture(std::string file)
     this->texture.right[2] = loadModel("data/" + file + "_r3.png");
     this->texture.left[2] = loadModel("data/" + file + "_l3.png");
     this->texture.up[2] = loadModel("data/" + file + "_u3.png");
+    std::cout << "Player texture initialized" << std::endl;
 }
 
 void Player::changeTexture(void)
@@ -144,7 +145,7 @@ void Player::changeTexture(void)
 }
 
 // Render player
-void Player::render(void)
+void Player::render(float cameraX, float cameraY)
 {
     glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
@@ -166,10 +167,10 @@ void Player::render(void)
     }
 
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->coords.x, this->coords.y);
-        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w, this->coords.y);
-        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w, this->coords.y + this->coords.h);
-        glTexCoord2d(0, 0); glVertex2f(this->coords.x, this->coords.y + this->coords.h);
+        glTexCoord2d(0, 1); glVertex2f(this->coords.x - cameraX, this->coords.y - cameraY);
+        glTexCoord2d(1, 1); glVertex2f(this->coords.x - cameraX + this->coords.w, this->coords.y - cameraY);
+        glTexCoord2d(1, 0); glVertex2f(this->coords.x - cameraX + this->coords.w, this->coords.y + this->coords.h - cameraY);
+        glTexCoord2d(0, 0); glVertex2f(this->coords.x - cameraX, this->coords.y + this->coords.h - cameraY);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);
