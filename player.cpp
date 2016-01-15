@@ -36,11 +36,7 @@ Player::Player(float x, float y, Timer *timer)
     this->textureState = 1;
     this->textureIncrement = 0;
 
-<<<<<<< HEAD
     timer->add(90, new PlayerAnimator(this));
-=======
-    timer->add(100, new PlayerAnimator(this));
->>>>>>> 8cfebb480d611e2a0f63de85d4e57cf4a7690650
 }
 
 Player::~Player(void)
