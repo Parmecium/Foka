@@ -8,8 +8,8 @@
 
 Game::Game(void)
 {
-    this->width = 680;
-    this->height = 420;
+    this->width = 1060;
+    this->height = 880;
     //this->width = 1060;
     //this->height = 880;
     this->caption = "Foka";
