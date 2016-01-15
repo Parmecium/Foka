@@ -7,6 +7,8 @@
 
 Map::Map(float width, float height, float sWidth, float sHeight)
 {
+    int i;
+
     this->width = width;
     this->height = height;
     this->sWidth = sWidth;
@@ -18,14 +20,13 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player = new Player(55, 55, timer);
     player2 = new Player(55, 75, timer);
 
-    this->tile.push_back(new Tile(100, 100, TILE_WALL_RIGHT));
-    this->tile.push_back(new Tile(150, 200, TILE_WALL_LEFT));
-    this->tile.push_back(new Tile(300, 300, TILE_DESK));
-
     // Test
-    int i;
+    this->tile.push_back(new Tile(300, 300, TILE_DESK));
     for(i = 0; i <= width - 100; i += 100)
+    {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
+        this->tile.push_back(new Tile(i, this->width - 50, TILE_WALL_DOWN));
+    }
     for(i = 0; i <= height - 100; i+= 100)
     {
         this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
@@ -62,20 +63,18 @@ void Map::setCamera(void)
     if(camera.x < 0)
         this->camera.x = 0;
     else if(this->camera.x + this->camera.w > this->width)
-        this->camera.x = this->sWidth - this->camera.w;
+        this->camera.x = this->width - this->camera.w;
     if(this->camera.y < 0)
         this->camera.y = 0;
     else if(this->camera.y + this->camera.h > this->height)
-        this->camera.y = this->sWidth - this->camera.h;
+        this->camera.y = this->width - this->camera.h;
 }
 
 void Map::logic(void)
 {
     int i;
     player->move();
-    player->collision(this->sWidth, this->sHeight);
     player2->move();
-    player2->collision(this->sWidth, this->sHeight);
     for(i = 0; i < tile.size(); i++)
     {
         this->tile[i]->collision(player);
