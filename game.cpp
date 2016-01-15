@@ -4,34 +4,25 @@
 #include "splash.h"
 #include "player.h"
 #include "tile.h"
+#include "map.h"
 #include "game.h"
 
 Game::Game(void)
 {
-    this->width = 1060;
-    this->height = 880;
+    this->width = 860;
+    this->height = 630;
     //this->width = 1060;
     //this->height = 880;
     this->caption = "Foka";
     this->isRunning = true;
     this->fps = 10;
-    this->timer = new Timer();
-    this->player = new Player(25, 25, timer);
-    this->player2 = new Player(75, 25, timer);
     this->music = NULL;
+    this->map = new Map(9000, 9000, this->width, this->height);
 }
 
 Game::~Game(void)
 {
-    int i;
-
-    delete this->player;
-    delete this->player2;
-    for(i = 0; i < this->tile.size(); i++)
-    {
-        delete this->tile[i];
-    }
-    delete this->timer;
+    delete this->map;
 
     // Free
     SDL_Quit();
@@ -81,13 +72,10 @@ void Game::init(void)
     std::cout << "OpenGL is initialize" << std::endl;
 
     // Load map
-    this->loadMap();
-    std::cout << "map is loaded" << std::endl;
+    //this->loadMap();
+    std::cout << "Map is loaded" << std::endl;
 
     // Initialize texture
-    this->player->loadTexture("/pig/pig");
-    this->player2->loadTexture("/creep/creep");
-    std::cout << "texture is initialize" << std::endl;
 }
 
 void Game::splash(void)
@@ -95,65 +83,6 @@ void Game::splash(void)
     Splash *splash = new Splash(this->width, this->height);
     splash->show();
     delete splash;
-}
-
-void Game::loadMap(void)
-{
-    int i;
-
-    // Test walls
-    this->tile.push_back(new Tile(100, 100,  TILE_WALL_RIGHT));
-    this->tile.push_back(new Tile(150, 200, TILE_WALL_LEFT));
-
-    /*
-    // Wall sides
-    for(i = 0; i < this->height; i += 100)
-    {
-        this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
-        this->tile.push_back(new Tile(this->width - 50, i, TILE_WALL_LEFT));
-    }
-    // Wall down and up
-    for(i = 0; i < this->width; i += 100)
-    {
-        this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
-    }
-    */
-
-    // Desk for test
-    this->tile.push_back(new Tile(300, 300, TILE_DESK));
-
-    // Load textures for tiles
-    for(i = 0; i < this->tile.size(); i++)
-        this->tile[i]->loadTexture();
-}
-
-void Game::render(void)
-{
-    int i;
-
-    this->player->render();
-    this->player2->render();
-    for(i = 0; i < this->tile.size(); i++)
-    {
-        this->tile[i]->render();
-    }
-}
-
-void Game::logic(void)
-{
-    int i;
-
-    player->move();
-    player->collision(this->width, this->height);
-    player2->move();
-    player2->collision(this->width, this->height);
-    for(i = 0; i < this->tile.size(); i++)
-    {
-        //player->collision(tile[i]);
-        this->tile[i]->collision(player);
-        this->tile[i]->collision(player2);
-    }
-    timer->tick();
 }
 
 void Game::events(SDL_Event event)
@@ -171,28 +100,28 @@ void Game::events(SDL_Event event)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_DOWN:
-                        player->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
                         break;
                     case SDLK_RIGHT:
-                        player->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
                         break;
                     case SDLK_UP:
-                        player->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
                         break;
                     case SDLK_LEFT:
-                        player->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_s:
-                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
                         break;
                     case SDLK_d:
-                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
                         break;
                     case SDLK_w:
-                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
                         break;
                     case SDLK_a:
-                        player2->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_ESCAPE:
                         isRunning = false;
@@ -203,28 +132,28 @@ void Game::events(SDL_Event event)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_DOWN:
-                        player->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
                         break;
                     case SDLK_RIGHT:
-                        player->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
                         break;
                     case SDLK_UP:
-                        player->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
                         break;
                     case SDLK_LEFT:
-                        player->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
+                        map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_s:
-                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
                         break;
                     case SDLK_d:
-                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
                         break;
                     case SDLK_w:
-                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
                         break;
                     case SDLK_a:
-                        player2->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
+                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
                         break;
                 }
                 break;
@@ -240,6 +169,9 @@ void Game::mainLoop(void)
     // Splash screen
     this->splash();
 
+    // Initialize texture
+    this->map->loadTexture();
+
     // Main loop
     std::cout << "Main loop is started\n";
     while(isRunning)
@@ -248,14 +180,14 @@ void Game::mainLoop(void)
         this->events(event);
 
         // Logic
-        this->logic();
+        this->map->logic();
 
         // Render
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
         glOrtho(0, this->width, 0, this->height, -1, 1);    // Set the matrix
         // Begin render
-        this->render();
+        this->map->render();
         // End render
         glPopMatrix();
         SDL_GL_SwapBuffers();
