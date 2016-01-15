@@ -137,6 +137,13 @@ void Player::loadTexture(std::string file)
     std::cout << "Player texture initialized" << std::endl;
 }
 
+SDL_Rect Player::getCollCoords(void)
+{
+    SDL_Rect collCoords = this->coords;
+    collCoords.h -= 45;
+    return collCoords;
+}
+
 void Player::changeTexture(void)
 {
     this->textureState += this->textureIncrement;

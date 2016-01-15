@@ -61,7 +61,7 @@ class Player
         float getHeight(void) { return this->coords.h; };
         void setX(float value) { this->coords.x = value; };
         void setY(float value) { this->coords.y = value; };
-        SDL_Rect getCollCoords(void) { return this->coords; };
+        SDL_Rect getCollCoords(void);
         int getTextureIncrement(void) { return this->textureIncrement; };
         void setTextureIncrement(int value) { this->textureIncrement = value; };
 };
