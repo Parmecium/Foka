@@ -17,7 +17,7 @@ Game::Game(void)
     this->isRunning = true;
     this->fps = 10;
     this->music = NULL;
-    this->map = new Map(9000, 9000, this->width, this->height);
+    this->map = new Map(5000, 5000, this->width, this->height);
 }
 
 Game::~Game(void)
