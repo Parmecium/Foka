@@ -8,8 +8,8 @@
 
 Game::Game(void)
 {
-    this->width = 680;
-    this->height = 420;
+    this->width = 1060;
+    this->height = 880;
     //this->width = 1060;
     //this->height = 880;
     this->caption = "Foka";
@@ -105,6 +105,7 @@ void Game::loadMap(void)
     this->tile.push_back(new Tile(100, 100,  TILE_WALL_RIGHT));
     this->tile.push_back(new Tile(150, 200, TILE_WALL_LEFT));
 
+    /*
     // Wall sides
     for(i = 0; i < this->height; i += 100)
     {
@@ -116,9 +117,10 @@ void Game::loadMap(void)
     {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
     }
+    */
 
     // Desk for test
-    this->tile.push_back(new Tile(250, 250, TILE_DESK));
+    this->tile.push_back(new Tile(300, 300, TILE_DESK));
 
     // Load textures for tiles
     for(i = 0; i < this->tile.size(); i++)
