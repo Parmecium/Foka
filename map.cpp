@@ -87,8 +87,8 @@ void Map::logic(void)
 void Map::render(void)
 {
     int i;
-    this->player->render(camera.x, camera.y);
-    this->player2->render(camera.x, camera.y);
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera.x, camera.y);
+    this->player->render(camera.x, camera.y);
+    this->player2->render(camera.x, camera.y);
 }
