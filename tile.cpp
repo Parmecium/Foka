@@ -13,10 +13,10 @@ Tile::Tile(float x, float y, int type)
     {
         case TILE_WALL_LEFT: case TILE_WALL_RIGHT:
             this->coords.w = 50;
-            this->coords.h = 50;
+            this->coords.h = 100;
             break;
         case TILE_WALL_UP: case TILE_WALL_DOWN:
-            this->coords.w = 50;
+            this->coords.w = 100;
             this->coords.h = 50;
             break;
         case TILE_DESK:
