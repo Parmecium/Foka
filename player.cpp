@@ -152,7 +152,7 @@ void Player::changeTexture(void)
 }
 
 // Render player
-void Player::render(float cameraX, float cameraY)
+void Player::render(SDL_Rect camera)
 {
     glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
@@ -174,10 +174,10 @@ void Player::render(float cameraX, float cameraY)
     }
 
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->coords.x - cameraX, this->coords.y - cameraY);
-        glTexCoord2d(1, 1); glVertex2f(this->coords.x - cameraX + this->coords.w, this->coords.y - cameraY);
-        glTexCoord2d(1, 0); glVertex2f(this->coords.x - cameraX + this->coords.w, this->coords.y + this->coords.h - cameraY);
-        glTexCoord2d(0, 0); glVertex2f(this->coords.x - cameraX, this->coords.y + this->coords.h - cameraY);
+        glTexCoord2d(0, 1); glVertex2f(this->coords.x - camera.x, this->coords.y - camera.y);
+        glTexCoord2d(1, 1); glVertex2f(this->coords.x - camera.x + this->coords.w, this->coords.y - camera.y);
+        glTexCoord2d(1, 0); glVertex2f(this->coords.x - camera.x + this->coords.w, this->coords.y + this->coords.h - camera.y);
+        glTexCoord2d(0, 0); glVertex2f(this->coords.x - camera.x, this->coords.y + this->coords.h - camera.y);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);

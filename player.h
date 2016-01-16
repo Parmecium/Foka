@@ -52,7 +52,7 @@ class Player
         void move(void);
         void changeMoveState(int type, int size);
         void loadTexture(std::string file);
-        void render(float cameraX, float cameraY);
+        void render(SDL_Rect camera);
         void changeTexture(void);
 
         float getX(void) { return this->coords.x; };

@@ -14,6 +14,8 @@ class Map
         std::vector<Tile *> tile;
         Timer *timer;
         SDL_Rect camera;
+        SDL_Rect bgCoords;
+        unsigned int bgImg;
 
     public:
         Map(float width, float height, float sWidth, float sHeight);
@@ -22,6 +24,7 @@ class Map
 
         void setCamera(void);
         void loadTexture(void);
+        void renderBackground(void);
         void logic(void);
         void render(void);
 
