@@ -20,6 +20,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player = new Player(55, 55, timer);
     player2 = new Player(120, 55, timer);
 
+    this->bgCoords = {0, 0, 32, 32};
+
     // Test
     this->tile.push_back(new Tile(300, 300, TILE_DESK));
     for(i = 0; i <= width - 100; i += 100)
@@ -52,6 +54,7 @@ void Map::loadTexture(void)
     player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
+    this->bgImg = loadModel("data/zid/sf.png");
 }
 
 void Map::setCamera(void)
@@ -86,7 +89,32 @@ void Map::logic(void)
 
 void Map::render(void)
 {
-    int i;
+    int i, j;
+
+    for(i = 0; i < this->width - this->bgCoords.w; i += this->bgCoords.w)
+        for(j = 0; j < this->height - this->bgCoords.h; j += this->bgCoords.h)
+        {
+            this->bgCoords.x = i;
+            this->bgCoords.y = j;
+
+            if(this->bgCoords.x + this->bgCoords.w > this->camera.x &&
+                    this->bgCoords.y + this->bgCoords.h > this->camera.y &&
+                    this->bgCoords.x < this->camera.x + camera.w &&
+                    this->bgCoords.y < this->camera.y + camera.h)
+            {
+                glColor4ub(255, 255, 255, 255);
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, this->bgImg);
+                glBegin(GL_QUADS);
+                    glTexCoord2d(0, 1); glVertex2f(this->bgCoords.x - this->camera.x, this->bgCoords.y - this->camera.y);
+                    glTexCoord2d(1, 1); glVertex2f(this->bgCoords.x - this->camera.x + this->bgCoords.w, this->bgCoords.y - this->camera.y);
+                    glTexCoord2d(1, 0); glVertex2f(this->bgCoords.x - this->camera.x + this->bgCoords.w, this->bgCoords.y - this->camera.y + this->bgCoords.h);
+                    glTexCoord2d(0, 1); glVertex2f(this->bgCoords.x - this->camera.x, this->bgCoords.y - this->camera.y + this->bgCoords.h);
+                glEnd();
+                glDisable(GL_TEXTURE_2D);
+            }
+        }
+
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera.x, camera.y);
     this->player->render(camera.x, camera.y);
