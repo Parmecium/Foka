@@ -78,17 +78,23 @@ void Tile::collision(Player *player)
     }
 }
 
-void Tile::render(int cameraX, int cameraY)
+void Tile::render(SDL_Rect camera)
 {
-    glColor4ub(255, 255, 255, 255); // White color
-    glEnable(GL_TEXTURE_2D);
+    if(this->coords.x + this->coords.w > camera.x &&
+            this->coords.y + this->coords.h > camera.y &&
+            this->coords.x < camera.x + camera.w &&
+            this->coords.y < camera.y + camera.h)
+    {
+        glColor4ub(255, 255, 255, 255); // White color
+        glEnable(GL_TEXTURE_2D);
 
-    glBindTexture(GL_TEXTURE_2D, this->texture);
-    glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->coords.x - cameraX, this->coords.y - cameraY);
-        glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w - cameraX, this->coords.y - cameraY);
-        glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w - cameraX, this->coords.y + this->coords.h - cameraY);
-        glTexCoord2d(0, 0); glVertex2f(this->coords.x - cameraX, this->coords.y + this->coords.h - cameraY);
-    glEnd();
-    glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this->texture);
+        glBegin(GL_QUADS);
+            glTexCoord2d(0, 1); glVertex2f(this->coords.x - camera.x, this->coords.y - camera.y);
+            glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w - camera.x, this->coords.y - camera.y);
+            glTexCoord2d(1, 0); glVertex2f(this->coords.x + this->coords.w - camera.x, this->coords.y + this->coords.h - camera.y);
+            glTexCoord2d(0, 0); glVertex2f(this->coords.x - camera.x, this->coords.y + this->coords.h - camera.y);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
 }
