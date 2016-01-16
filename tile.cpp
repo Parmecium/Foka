@@ -48,7 +48,7 @@ void Tile::loadTexture(void)
             this->texture = loadModel("data/zid/zid_l.png");
             break;
         case TILE_DESK:
-            this->texture = loadModel("data/zbun.png");
+            this->texture = loadModel("data/stocic.png");
             break;
     }
 }
