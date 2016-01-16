@@ -21,7 +21,7 @@ class Tile
         ~Tile(void);
         void loadTexture(void);
         void collision(Player *player);
-        void render(int cameraX, int cameraY);
+        void render(SDL_Rect camera);
 
         float getX(void) { return this->coords.x; };
         float getY(void) { return this->coords.y; };
