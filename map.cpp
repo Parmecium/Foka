@@ -51,7 +51,7 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
-    player2->loadTexture("demon/demon");
+    player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     this->bgImg = loadModel("data/zid/zid_braon.png");
