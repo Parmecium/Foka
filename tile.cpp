@@ -23,6 +23,10 @@ Tile::Tile(float x, float y, int type)
             this->coords.w = 50;
             this->coords.h = 50;
             break;
+        case TILE_TREE_FALL:
+            this->coords.w = 100;
+            this->coords.h = 70;
+            break;
     }
     this->collCoords = this->coords;
 }
@@ -49,6 +53,9 @@ void Tile::loadTexture(void)
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic.png");
+            break;
+        case TILE_TREE_FALL:
+            this->texture = loadModel("data/panj.png");
             break;
     }
 }
