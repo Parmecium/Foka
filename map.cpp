@@ -23,7 +23,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     //this->bgCoords = {0, 0, 60, 60};
 
     // Test
-    this->tile.push_back(new Tile(300, 300, TILE_TREE_FALL));
+   
+    this->tile.push_back(new Tile(600, 300, TILE_TREE_FALL));
     for(i = 0; i <= width - 100; i += 100)
     {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
@@ -51,7 +52,7 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
-    player2->loadTexture("demon/demon");
+    player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     //this->bgImg = loadModel("data/zid/zid_braon.png");
