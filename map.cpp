@@ -23,8 +23,11 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     //this->bgCoords = {0, 0, 60, 60};
 
     // Test
-   
+    /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
+    for(i = 0; i <= width - 100; i += 100)*/
+    {
     this->tile.push_back(new Tile(600, 300, TILE_TREE_FALL));
+    }
     for(i = 0; i <= width - 100; i += 100)
     {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
