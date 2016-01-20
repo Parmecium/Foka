@@ -4,8 +4,8 @@
 
 Splash::Splash(float wWidth, float wHeight)
 {
-    this->width = 300;
-    this->height = 300;
+    this->width = 400;
+    this->height = 400;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
@@ -21,7 +21,7 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture = loadModel("data/ja.png");
+    this->texture = loadModel("data/logo.png");
 }
 
 void Splash::show(void)
