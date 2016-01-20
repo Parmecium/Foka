@@ -20,13 +20,17 @@ Tile::Tile(float x, float y, int type)
             this->coords.h = 50;
             break;
         case TILE_DESK:
-            this->coords.w = 50;
-            this->coords.h = 50;
+            this->coords.w = 250;
+            this->coords.h = 250;
             break;
         case TILE_TREE_FALL:
             this->coords.w = 160;
             this->coords.h = 100;
             break;
+        /*case TILE_LEAF:
+            this->coords.w = 140;
+            this->coords.h = 80;
+            break;*/
     }
     this->collCoords = this->coords;
 }
@@ -40,16 +44,16 @@ void Tile::loadTexture(void)
     switch(this->type)
     {
         case TILE_WALL_DOWN:
-            this->texture = loadModel("data/zid/zid_d.png");
+            this->texture = loadModel("data/zid/zid_purple_d.png");
             break;
         case TILE_WALL_RIGHT:
-            this->texture = loadModel("data/zid/zid_r.png");
+            this->texture = loadModel("data/zid/zid_purple_r.png");
             break;
         case TILE_WALL_UP:
-            this->texture = loadModel("data/zid/zid_u.png");
+            this->texture = loadModel("data/zid/zid_purple_u.png");
             break;
         case TILE_WALL_LEFT:
-            this->texture = loadModel("data/zid/zid_l.png");
+            this->texture = loadModel("data/zid/zid_purple_l.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic.png");
@@ -57,6 +61,9 @@ void Tile::loadTexture(void)
         case TILE_TREE_FALL:
             this->texture = loadModel("data/panj.png");
             break;
+        /*case TILE_LEAF:
+            this->texture = loadModel("data/list.png");
+            break; */
     }
 }
 

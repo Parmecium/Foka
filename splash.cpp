@@ -21,7 +21,7 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture = loadModel("data/foka logo.png");
+    this->texture = loadModel("data/ja.png");
 }
 
 void Splash::show(void)
@@ -36,7 +36,8 @@ void Splash::show(void)
 
     // Begin render
 
-     glColor4ub( 30, 30, 30, 255);       // Gray color
+     //glColor4ub( 30, 30, 30, 255);       // Gray color
+    glColor4ub( 0, 0, 0, 255);
     glBegin(GL_QUADS);
         glVertex2f(0, 0);
         glVertex2f(this->wWidth, 0);
