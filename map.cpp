@@ -20,7 +20,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player = new Player(55, 55, timer);
     player2 = new Player(120, 55, timer);
 
-    //this->bgCoords = {0, 0, 60, 60};
+    this->bgCoords = {0, 0, 448, 426};
 
     // Test
     /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
@@ -58,7 +58,7 @@ void Map::loadTexture(void)
     player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
-    //this->bgImg = loadModel("data/zid/zid_braon.png");
+    this->bgImg = loadModel("data/zid/pod.png");
 }
 
 void Map::setCamera(void)
@@ -95,7 +95,6 @@ void Map::render(void)
 {
     int i, j;
 
-    /*
     for(i = 0; i < this->width - this->bgCoords.w; i += this->bgCoords.w)
         for(j = 0; j < this->height - this->bgCoords.h; j += this->bgCoords.h)
         {
@@ -119,7 +118,6 @@ void Map::render(void)
                 glDisable(GL_TEXTURE_2D);
             }
         }
-    */
 
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
