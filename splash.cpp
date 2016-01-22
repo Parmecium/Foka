@@ -21,7 +21,7 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture = loadModel("data/logo.png");
+    this->texture = loadModel("data/splash.png");
 }
 
 void Splash::show(void)
