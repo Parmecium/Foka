@@ -20,7 +20,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player = new Player(55, 55, timer);
     player2 = new Player(120, 55, timer);
 
-    this->bgCoords = {0, 0, 448, 426};
+    this->bgCoords = {0, 0, 98, 98};
 
     // Test
     /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
@@ -58,7 +58,7 @@ void Map::loadTexture(void)
     player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
-    this->bgImg = loadModel("data/zid/pod.png");
+    this->bgImg = loadModel("data/testBg.png");
 }
 
 void Map::setCamera(void)
