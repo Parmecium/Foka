@@ -54,7 +54,7 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("pig/pig");
+    player->loadTexture("grim/grim");
     player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
