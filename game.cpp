@@ -13,7 +13,7 @@ Game::Game(void)
     //this->height = 630;
     this->width = 1200;
     this->height = 900;
-    this->caption = "Foka";
+    this->caption = "Zhu the Pig";
     this->isRunning = true;
     this->fps = 15;
     this->music = NULL;
@@ -50,7 +50,7 @@ void Game::init(void)
 
     // Specific the clear color
     glClearColor(0, 0, 0, 1);   // Black color
-    //glClearColor(0.2, 0.06, 0.06, 1);  // Braon color
+    glClearColor(0.2, 0.06, 0.06, 1);  // Braon color
 
     // What portion of the screen we will display
     glViewport(0, 0, this->width, this->height);
