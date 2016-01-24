@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "player.h"
 #include "tile.h"
+#include "enemy.h"
 #include "map.h"
 
 Map::Map(float width, float height, float sWidth, float sHeight)
@@ -38,6 +39,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
         this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
     }
+
+    enemy.push_back(new Enemy(300, 410, timer));
 }
 
 Map::~Map(void)
@@ -48,6 +51,8 @@ Map::~Map(void)
     delete this->player2;
     for(i = 0; i < this->tile.size(); i++)
         delete this->tile[i];
+    for(i = 0; i < this->enemy.size(); i++)
+        delete this->enemy[i];
     delete timer;
 }
 
@@ -55,9 +60,15 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
+<<<<<<< HEAD
     player2->loadTexture("grim/grim");
+=======
+    player2->loadTexture("creep/creep");
+>>>>>>> de799e4b6e1a90485e8cbe9a6a473393f883c2db
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
+    for(i = 0; i < this->enemy.size(); i++)
+        this->enemy[i]->loadTexture("grim/grim");
     this->bgImg = loadModel("data/testBg.png");
 }
 
@@ -87,6 +98,8 @@ void Map::logic(void)
         this->tile[i]->collision(player);
         this->tile[i]->collision(player2);
     }
+    for(i = 0; i < enemy.size(); i++)
+        this->enemy[i]->move();
     this->setCamera();
     this->timer->tick();
 }
@@ -121,6 +134,8 @@ void Map::render(void)
 
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
+    for(i = 0; i < enemy.size(); i++)
+        this->enemy[i]->render(camera);
     this->player->render(camera);
     this->player2->render(camera);
 }
