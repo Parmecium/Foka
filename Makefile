@@ -10,6 +10,7 @@ SRC =  \
 	splash.cpp \
 	player.cpp \
 	tile.cpp \
+	enemy.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

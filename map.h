@@ -12,6 +12,7 @@ class Map
         Player *player;
         Player *player2;
         std::vector<Tile *> tile;
+        std::vector<Enemy *> enemy;
         Timer *timer;
         SDL_Rect camera;
         SDL_Rect bgCoords;

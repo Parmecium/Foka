@@ -35,7 +35,7 @@ typedef struct sPlayerTexture
 
 class Player
 {
-    private:
+    protected:
         SDL_Rect coords;
         //SDL_Rect collCoords;
         float speed;
