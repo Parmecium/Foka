@@ -4,6 +4,7 @@
 #include "splash.h"
 #include "player.h"
 #include "tile.h"
+#include "enemy.h"
 #include "map.h"
 #include "game.h"
 
