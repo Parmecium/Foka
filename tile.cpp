@@ -24,8 +24,8 @@ Tile::Tile(float x, float y, int type)
             this->coords.h = 250;
             break;
         case TILE_TREE_FALL:
-            this->coords.w = 160;
-            this->coords.h = 100;
+            this->coords.w = 90;
+            this->coords.h = 140;
             break;
         /*case TILE_LEAF:
             this->coords.w = 140;
@@ -59,9 +59,9 @@ void Tile::loadTexture(void)
             this->texture = loadModel("data/stocic.png");
             break;
         case TILE_TREE_FALL:
-            this->texture = loadModel("data/panj.png");
+            this->texture = loadModel("data/stvari/polica2.png");
             break;
-        /*case TILE_LEAF:
+        /*ocase TILE_LEAF:
             this->texture = loadModel("data/list.png");
             break; */
     }
