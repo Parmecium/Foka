@@ -10,10 +10,10 @@
 
 Game::Game(void)
 {
-    this->width = 860;
-    this->height = 630;
-    //this->width = 1200;
-    //this->height = 900;
+    //this->width = 860;
+    //this->height = 630;
+    this->width = 1200;
+    this->height = 900;
     this->caption = "Zhu the Pig";
     this->isRunning = true;
     this->fps = 10;

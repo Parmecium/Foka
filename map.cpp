@@ -27,7 +27,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
     for(i = 0; i <= width - 100; i += 100)*/
     {
-    this->tile.push_back(new Tile(600, 300, TILE_TREE_FALL));
+    this->tile.push_back(new Tile(845, 405, TILE_TREE_FALL));
     }
     for(i = 0; i <= width - 100; i += 100)
     {
@@ -60,11 +60,8 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
-<<<<<<< HEAD
     player2->loadTexture("grim/grim");
-=======
     player2->loadTexture("creep/creep");
->>>>>>> de799e4b6e1a90485e8cbe9a6a473393f883c2db
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
