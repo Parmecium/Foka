@@ -60,13 +60,13 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
-    player2->loadTexture("grim/grim");
+    player2->loadTexture("goo/goo");
     player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
-        this->enemy[i]->loadTexture("grim/grim");
-    this->bgImg = loadModel("data/testBg.png");
+        this->enemy[i]->loadTexture("goo/goo");
+    this->bgImg = loadModel("data/testBg5.png");
 }
 
 void Map::setCamera(void)
