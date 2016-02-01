@@ -10,7 +10,7 @@ Splash::Splash(float wWidth, float wHeight)
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
     this->y = wHeight / 2 - this->height / 2;
-    this->time = 4000;
+    this->time = 5000;
     this->music = NULL;
     loadTexture();
 }
@@ -27,7 +27,7 @@ void Splash::loadTexture(void)
 void Splash::show(void)
 {
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("data/muzika/opening.mp3");
+    music = Mix_LoadMUS("data/muzika/opening2.mp3");
     Mix_PlayMusic(music, -1);
 
     glClear(GL_COLOR_BUFFER_BIT);
