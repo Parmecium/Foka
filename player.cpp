@@ -52,6 +52,7 @@ void Player::move(void)
     {
         this->textureState = 1;
         this->textureIncrement = 0;
+        this->angle = PLAYER_ANGLE_DOWN;
     } else
     {
         if(this->textureIncrement == 0)
