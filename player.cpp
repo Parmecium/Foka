@@ -24,8 +24,8 @@ Player::Player(float x, float y, Timer *timer)
 {
     this->coords.x = x;
     this->coords.y = y;
-    this->coords.w = 53.0;
-    this->coords.h = 70.0;
+    this->coords.w = 60.0;
+    this->coords.h = 77.0;
     this->speed = 5.0;
     this->helth = 3.0;
     this->moveState.down = false;
