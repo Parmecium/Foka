@@ -17,7 +17,6 @@ Game::Game(void)
     this->caption = "Zhu the Pig";
     this->isRunning = true;
     this->fps = 10;
-    this->music = NULL;
     this->map = new Map(5000, 5000, this->width, this->height);
 }
 
@@ -48,6 +47,9 @@ void Game::init(void)
 
     // Size of window
     SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
+
+    // Set icon
+    SDL_WM_SetIcon(SDL_LoadBMP("data/icon.png"), NULL);
 
     // Specific the clear color
     glClearColor(0, 0, 0, 1);   // Black color
@@ -87,6 +89,16 @@ void Game::splash(void)
     delete splash;
 }
 
+void Game::resize(float width, float height)
+{
+    this->width = width;
+    this->height = height;
+    this->map->setSWidth(this->width);
+    this->map->setSHeight(this->height);
+    SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
+    glViewport(0, 0, this->width, this->height);
+}
+
 void Game::events(SDL_Event event)
 {
     while(SDL_PollEvent(&event))
@@ -98,6 +110,8 @@ void Game::events(SDL_Event event)
 
         switch(event.type)
         {
+            case SDL_VIDEORESIZE:
+                this->resize(event.resize.w, event.resize.h);
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {

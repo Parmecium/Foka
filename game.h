@@ -10,7 +10,6 @@ class Game
         bool isRunning;
         int fps;
         SDL_Event event;
-        Mix_Music *music;
         Timer *timer;
         Map *map;
 
@@ -20,6 +19,7 @@ class Game
         //void loadMap(void);
         //void render(void);
         //void logic(void);
+        void resize(float width, float height);
 
     public:
         Game(void);
