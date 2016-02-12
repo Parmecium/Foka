@@ -1,2 +1,6 @@
 *.o
 foka
+
+*.wo
+*.dll
+*.exe
