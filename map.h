@@ -33,6 +33,8 @@ class Map
         float getHeight(void) { return this->height; }
         Player *getPlayer(void) { return this->player; }
         Player *getPlayer2(void) { return this->player2; }
+        void setSWidth(float value) { this->sWidth = value; this->camera.w = this->sWidth; }
+        void setSHeight(float value) { this->sHeight = value; this->camera.h = this->sHeight; }
 };
 
 #endif  // MAP_H
