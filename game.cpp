@@ -45,11 +45,11 @@ void Game::init(void)
     // Caption of the window
     SDL_WM_SetCaption(this->caption.c_str(), NULL);
 
+    // Set icon
+    SDL_WM_SetIcon(IMG_Load("data/icon_tb.png"), NULL);
+
     // Size of window
     SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
-
-    // Set icon
-    SDL_WM_SetIcon(SDL_LoadBMP("data/icon.png"), NULL);
 
     // Specific the clear color
     glClearColor(0, 0, 0, 1);   // Black color
