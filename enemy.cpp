@@ -28,6 +28,8 @@ Enemy::Enemy(float x, float y, Timer *timer) : Player(x, y, NULL)
     this->maxX = x + 500;
     this->speed = 3.0;
 
+    this->textureIncrement = 1;
+
     timer->add(90, new EnemyAnimator(this));
 }
 
