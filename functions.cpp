@@ -23,3 +23,9 @@ unsigned int loadModel(std::string path)
 
     return object;
 }
+
+int randnum(int max)
+{
+    //srand(time(NULL));
+    return rand() % max + 1;
+}

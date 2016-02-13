@@ -80,6 +80,8 @@ void Game::init(void)
     std::cout << "Map is loaded" << std::endl;
 
     // Initialize texture
+    
+    srand(time(NULL));  // For random numbers
 }
 
 void Game::splash(void)

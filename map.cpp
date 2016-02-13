@@ -25,9 +25,9 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     // Test
     /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
-    for(i = 0; i <= width - 100; i += 100)*/
+    for(i = 0; i <= width - 100; i += 100)
     {
-    this->tile.push_back(new Tile(845, 405, TILE_TREE_FALL));
+        this->tile.push_back(new Tile(845, 405, TILE_TREE_FALL));
     }
     for(i = 0; i <= width - 100; i += 100)
     {
@@ -39,8 +39,19 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
         this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
     }
+    */
 
-    enemy.push_back(new Enemy(300, 410, timer));
+    //this->tile.push_back(new Tile(730, 240, TILE_WALL_LEFT));
+    //this->tile.push_back(new Tile(745, 240, TILE_WALL_RIGHT));
+    for(i = 0; i < 6; i++)
+    {
+        int n = randnum(800);
+        int m = randnum(800);
+        this->tile.push_back(new Tile(n, m, TILE_WALL_LEFT));
+        this->tile.push_back(new Tile(n + 15, m, TILE_WALL_RIGHT));
+    }
+
+    this->enemy.push_back(new Enemy(300, 410, timer));
 }
 
 Map::~Map(void)
