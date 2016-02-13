@@ -8,7 +8,7 @@ class Enemy : public Player
         float maxX;
 
     public:
-        Enemy(int x, int y, Timer *timer);
+        Enemy(float x, float y, Timer *timer);
         ~Enemy(void);
         void move(void);
 };

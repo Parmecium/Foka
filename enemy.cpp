@@ -4,12 +4,31 @@
 #include "player.h"
 #include "enemy.h"
 
-Enemy::Enemy(int x, int y, Timer *timer) : Player(x, y, timer)
+class EnemyAnimator : public Ticker
+{
+    private:
+        Enemy *enemy;
+
+    public:
+        EnemyAnimator(Enemy *enemy)
+        {
+            this->enemy = enemy;
+        }
+
+        virtual void tick(void)
+        {
+            this->enemy->changeTexture();
+        }
+};
+
+Enemy::Enemy(float x, float y, Timer *timer) : Player(x, y, NULL)
 {
     this->moveState.right = true;
     this->minX = x;
     this->maxX = x + 500;
     this->speed = 3.0;
+
+    timer->add(90, new EnemyAnimator(this));
 }
 
 Enemy::~Enemy(void)
