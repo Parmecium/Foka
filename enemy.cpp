@@ -56,11 +56,3 @@ void Enemy::move(void)
         this->moveState.left = true;
     }
 }
-
-void Enemy::changeTexture(void)
-{
-    this->textureState += this->textureIncrement;
-    if(this->textureState != 1)
-        this->textureIncrement = -this->textureIncrement;
-    std::cout << "test" << std::endl;
-}

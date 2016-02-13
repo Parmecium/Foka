@@ -11,7 +11,6 @@ class Enemy : public Player
         Enemy(float x, float y, Timer *timer);
         ~Enemy(void);
         void move(void);
-        void changeTexture(void);
 };
 
 #endif  // ENEMY_H
