@@ -36,7 +36,8 @@ Player::Player(float x, float y, Timer *timer)
     this->textureState = 1;
     this->textureIncrement = 0;
 
-    timer->add(90, new PlayerAnimator(this));  //Speed of sprites replacing each other.
+    if(timer != NULL)
+        timer->add(90, new PlayerAnimator(this));  //Speed of sprites replacing each other.
 }
 
 Player::~Player(void)
