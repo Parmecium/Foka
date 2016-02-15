@@ -153,6 +153,18 @@ void Player::changeTexture(void)
         this->textureIncrement = -this->textureIncrement;
 }
 
+void Player::collision(float width, float height)
+{
+    if(this->coords.x < 0)
+        this->coords.x = 0;
+    else if(this->coords.x + this->coords.w > width)
+        this->coords.x = width - this->coords.x + this->coords.w;
+    if(this->coords.y < 0)
+        this->coords.y = 0;
+    else if(this->coords.y + this->coords.h > height)
+        this->coords.y = height - this->coords.y + this->coords.h;
+}
+
 // Render player
 void Player::render(SDL_Rect camera)
 {
