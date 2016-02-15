@@ -25,15 +25,36 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
+
     for(i = 0; i <= width - 150; i += 150)
+
+    for(i = 50; i < width - 100; i += 150)
+
     {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
         this->tile.push_back(new Tile(i, this->width - 50, TILE_WALL_DOWN));
     }
+
     for(i = 0; i <= height - 150; i+= 150)
     {
         this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
         this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
+
+    for(i = 50; i < height - 100; i+= 150)
+    {
+        this->tile.push_back(new Tile(50, i, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->height - 100, i, TILE_WALL_LEFT));
+    }
+    for(i = 0; i <= width - 50; i += 50)
+    {
+        this->tile.push_back(new Tile(i, 0, TILE_NOTHING));
+        this->tile.push_back(new Tile(i, this->width - 50, TILE_NOTHING));
+    }
+    for(i = 0; i <= height - 50; i += 50)
+    {
+        this->tile.push_back(new Tile(0, i, TILE_NOTHING));
+        this->tile.push_back(new Tile(this->height - 50, i, TILE_NOTHING));
+
     }
 
     //this->tile.push_back(new Tile(730, 240, TILE_WALL_LEFT));
