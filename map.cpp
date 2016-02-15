@@ -77,7 +77,7 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("bloody/bloody");
+    player2->loadTexture("crv/crv");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
