@@ -18,8 +18,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->camera = {0, 0, this->sWidth, this->sHeight };
 
     timer = new Timer();
-    player = new Player(55, 55, timer);
-    player2 = new Player(120, 55, timer);
+    player = new Player(80, 80, timer);
+    player2 = new Player(120, 85, timer);
 
     this->bgCoords = {0, 0, 98, 98};
 
@@ -67,7 +67,7 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("goo/goo");
+    player2->loadTexture("creep/creep");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
