@@ -68,6 +68,7 @@ void Tile::loadTexture(void)
         /*case TILE_LEAF:
             this->texture = loadModel("data/list.png");
             break; */
+        case TILE_NOTHING:
             this->texture = 0;
             break;
     }
