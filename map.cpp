@@ -4,6 +4,7 @@
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"
+#include "inventory.h"
 #include "map.h"
 
 Map::Map(float width, float height, float sWidth, float sHeight)
@@ -20,6 +21,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     timer = new Timer();
     player = new Player(100, 95, timer);
     player2 = new Player(130, 95, timer);
+    inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
     this->bgCoords = {0, 0, 98, 98};
 
@@ -65,6 +67,7 @@ Map::~Map(void)
 
     delete this->player;
     delete this->player2;
+    delete this->inventory;
     for(i = 0; i < this->tile.size(); i++)
         delete this->tile[i];
     for(i = 0; i < this->enemy.size(); i++)
@@ -78,6 +81,7 @@ void Map::loadTexture(void)
     player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("bloody/bloody");
+    inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
@@ -155,4 +159,5 @@ void Map::render(void)
         this->enemy[i]->render(camera);
     this->player->render(camera);
     this->player2->render(camera);
+    this->inventory->render();
 }

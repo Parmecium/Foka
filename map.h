@@ -11,6 +11,7 @@ class Map
 
         Player *player;
         Player *player2;
+        Inventory *inventory;
         std::vector<Tile *> tile;
         std::vector<Enemy *> enemy;
         Timer *timer;

@@ -15,7 +15,8 @@ SRC =  \
 	splash.cpp \
 	player.cpp \
 	tile.cpp \
-	enemy.cpp
+	enemy.cpp \
+	inventory.cpp
 
 OBJS = $(SRC:.cpp=.o)
 OBJS_W = $(SRC:.cpp=.wo)
