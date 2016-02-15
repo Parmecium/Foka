@@ -23,12 +23,12 @@ class InventoryAnimator : public Ticker
 Inventory::Inventory(float width, float height, Timer *timer)
 {
     this->screen = { 0, 0, width, height };
-    this->heart = { 0, 0, 25, 25 };
+    this->heart = { 0, 0, 100, 100 };
     this->textureState = 0;
     this->textureIncrement = 1;
 
     if(timer != NULL)
-        timer->add(90, new InventoryAnimator(this));
+        timer->add(260, new InventoryAnimator(this));
 }
 
 Inventory::~Inventory(void)
@@ -44,7 +44,7 @@ void Inventory::loadTexture(void)
 void Inventory::changeTexture(void)
 {
     this->textureState += this->textureIncrement;
-    if(this->textureState <= 0 || this->textureState >= ANIMATION_FRAMES)
+    if(this->textureState <= 1 || this->textureState >= ANIMATION_FRAMES)
         this->textureIncrement *= -1;
 }
 
