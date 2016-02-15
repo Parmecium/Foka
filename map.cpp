@@ -72,7 +72,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture("grim/grim");
-    this->bgImg = loadModel("data/testBg3.png");
+    //this->bgImg = loadModel("data/testBg3.png");
 }
 
 void Map::setCamera(void)
@@ -113,6 +113,7 @@ void Map::render(void)
 {
     int i, j;
 
+    /*
     for(i = 0; i < this->width - this->bgCoords.w; i += this->bgCoords.w)
         for(j = 0; j < this->height - this->bgCoords.h; j += this->bgCoords.h)
         {
@@ -136,6 +137,7 @@ void Map::render(void)
                 glDisable(GL_TEXTURE_2D);
             }
         }
+    */
 
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
