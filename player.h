@@ -54,6 +54,7 @@ class Player
         void loadTexture(std::string file);
         void render(SDL_Rect camera);
         void changeTexture(void);
+        void collision(float width, float height);
 
         float getX(void) { return this->coords.x; };
         float getY(void) { return this->coords.y; };
