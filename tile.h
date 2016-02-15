@@ -8,6 +8,7 @@
 #define TILE_WALL_LEFT          4
 #define TILE_DESK               5
 #define TILE_TREE_FALL          6
+#define TILE_NOTHING            7
 
 class Tile
 {

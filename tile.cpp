@@ -31,6 +31,10 @@ Tile::Tile(float x, float y, int type)
             this->coords.w = 140;
             this->coords.h = 80;
             break;*/
+        case TILE_NOTHING:
+            this->coords.w = 50;
+            this->coords.h = 50;
+            break;
     }
     this->collCoords = this->coords;
 }
@@ -64,6 +68,8 @@ void Tile::loadTexture(void)
         /*case TILE_LEAF:
             this->texture = loadModel("data/list.png");
             break; */
+            this->texture = 0;
+            break;
     }
 }
 
@@ -100,6 +106,8 @@ void Tile::render(SDL_Rect camera)
             this->coords.y < camera.y + camera.h)
     {
         glColor4ub(255, 255, 255, 255); // White color
+        if(this->type == TILE_NOTHING)  // OVO OBAVEZNO PROMENITI !!!
+            glColor4ub(0, 0, 0, 255);
         glEnable(GL_TEXTURE_2D);
 
         glBindTexture(GL_TEXTURE_2D, this->texture);
