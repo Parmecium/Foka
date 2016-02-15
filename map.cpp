@@ -27,8 +27,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
     for(i = 50; i < width - 100; i += 150)
     {
-        this->tile.push_back(new Tile(i, 50, TILE_WALL_UP));
-        this->tile.push_back(new Tile(i, this->width - 100, TILE_WALL_DOWN));
+        this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
+        this->tile.push_back(new Tile(i, this->width - 50, TILE_WALL_DOWN));
     }
     for(i = 50; i < height - 100; i+= 150)
     {
@@ -48,7 +48,6 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     //this->tile.push_back(new Tile(730, 240, TILE_WALL_LEFT));
     //this->tile.push_back(new Tile(745, 240, TILE_WALL_RIGHT));
-    /*
     for(i = 0; i < 6; i++)
     {
         int n = randnum(800);
@@ -56,7 +55,6 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(n, m, TILE_WALL_LEFT));
         this->tile.push_back(new Tile(n + 15, m, TILE_WALL_RIGHT));
     }
-    */
 
     this->enemy.push_back(new Enemy(300, 410, timer));
 }
@@ -78,6 +76,7 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
+    //player2->loadTexture("grim/grim");
     player2->loadTexture("bloody/bloody");
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
