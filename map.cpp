@@ -24,11 +24,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->bgCoords = {0, 0, 98, 98};
 
     // Test
-    /*this->tile.push_back(new Tile(600, 300, TILE_LEAF));
-    for(i = 0; i <= width - 100; i += 100)
-    {
-        this->tile.push_back(new Tile(845, 405, TILE_TREE_FALL));
-    }
+    //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
     for(i = 0; i <= width - 100; i += 100)
     {
         this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
@@ -39,7 +35,6 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
         this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
     }
-    */
 
     //this->tile.push_back(new Tile(730, 240, TILE_WALL_LEFT));
     //this->tile.push_back(new Tile(745, 240, TILE_WALL_RIGHT));
@@ -101,6 +96,8 @@ void Map::logic(void)
     int i;
     player->move();
     player2->move();
+    player->collision(width, height);
+    player2->collision(width, height);
     for(i = 0; i < tile.size(); i++)
     {
         this->tile[i]->collision(player);
