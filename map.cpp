@@ -25,19 +25,20 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
-    for(i = 0; i <= width - 150; i += 150)
+    for(i = 50; i <= width - 200; i += 150)
     {
-        this->tile.push_back(new Tile(i, 0, TILE_WALL_UP));
-        this->tile.push_back(new Tile(i, this->width - 50, TILE_WALL_DOWN));
+        this->tile.push_back(new Tile(i, 50, TILE_WALL_UP));
+        this->tile.push_back(new Tile(i, this->width - 100, TILE_WALL_DOWN));
     }
-    for(i = 0; i <= height - 150; i+= 150)
+    for(i = 50; i <= height - 200; i+= 150)
     {
-        this->tile.push_back(new Tile(0, i, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(50, i, TILE_WALL_RIGHT));
         this->tile.push_back(new Tile(this->height - 50, i, TILE_WALL_LEFT));
     }
 
     //this->tile.push_back(new Tile(730, 240, TILE_WALL_LEFT));
     //this->tile.push_back(new Tile(745, 240, TILE_WALL_RIGHT));
+    /*
     for(i = 0; i < 6; i++)
     {
         int n = randnum(800);
@@ -45,6 +46,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(n, m, TILE_WALL_LEFT));
         this->tile.push_back(new Tile(n + 15, m, TILE_WALL_RIGHT));
     }
+    */
 
     this->enemy.push_back(new Enemy(300, 410, timer));
 }
@@ -66,8 +68,12 @@ void Map::loadTexture(void)
 {
     int i;
     player->loadTexture("pig/pig");
+<<<<<<< HEAD
     //player2->loadTexture("grim/grim");
     player2->loadTexture("bloody/bloody");
+=======
+    player2->loadTexture("grim/grim");
+>>>>>>> e7003f0bbc6783852ab57a0b763df862387da677
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
@@ -138,6 +144,31 @@ void Map::render(void)
             }
         }
     */
+
+    /*
+     * TEMPORARLY
+     * JUST FOR TESTING
+     * !!!!!
+     */
+    glColor4ub(0, 0, 0, 255);
+    glBegin(GL_QUADS);
+        glVertex2f(0, 0);
+        glVertex2f(this->width, 0);
+        glVertex2f(this->width, 50);
+        glVertex2f(0, 50);
+        glVertex2f(0, 0);
+        glVertex2f(50, 0);
+        glVertex2f(50, this->height);
+        glVertex2f(0, this->height);
+        glVertex2f(0, this->height - 50);
+        glVertex2f(this->width, this->height - 50);
+        glVertex2f(this->width, this->height);
+        glVertex2f(0, this->height);
+        glVertex2f(this->height - 50, 0);
+        glVertex2f(this->height - 50, 0);
+        glVertex2f(this->height, this->height);
+        glVertex2f(this->height, this->height);
+    glEnd();
 
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
