@@ -15,7 +15,7 @@ Game::Game(void)
     this->height = 630;
     //this->width = 1200;
     //this->height = 900;
-    this->caption = "Zhu the Pig";
+    this->caption = "Merso the Pig";
     this->isRunning = true;
     this->fps = 10;
     this->map = new Map(5000, 5000, this->width, this->height);
