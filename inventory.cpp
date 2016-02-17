@@ -44,7 +44,7 @@ void Inventory::loadTexture(void)
 void Inventory::changeTexture(void)
 {
     this->textureState += this->textureIncrement;
-    if(this->textureState <= 0 || this->textureState >= ANIMATION_FRAMES)
+    if(this->textureState <= 0 || this->textureState >= ANIMATION_FRAMES - 1)
         this->textureIncrement *= -1;
 }
 
