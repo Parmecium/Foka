@@ -21,9 +21,16 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
+<<<<<<< HEAD
     this->texture[0] = loadModel("data/heart/heart_tile1.png");
     this->texture[1] = loadModel("data/heart/heart_tile2.png");
     this->texture[2] = loadModel("data/splash.png");
+=======
+    this->texture[0] = loadModel("data/splash/splash1.png");
+    this->texture[1] = loadModel("data/splash/splash2.png");
+    this->texture[2] = loadModel("data/splash/splash3.png");
+    this->texture[3] = loadModel("data/splash/splash4.png");
+>>>>>>> 50e5074961a35da43728650d23cd567cb3e8d1d3
 }
 
 void Splash::show(void)
@@ -40,7 +47,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 16; i++)
+    for(i = 0; i < 4; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -54,7 +61,7 @@ void Splash::show(void)
 
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, this->texture[i % 2]);
+        glBindTexture(GL_TEXTURE_2D, this->texture[i]);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
             glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
