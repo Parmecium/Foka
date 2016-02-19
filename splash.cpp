@@ -21,16 +21,10 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-<<<<<<< HEAD
-    this->texture[0] = loadModel("data/heart/heart_tile1.png");
-    this->texture[1] = loadModel("data/heart/heart_tile2.png");
-    this->texture[2] = loadModel("data/splash.png");
-=======
     this->texture[0] = loadModel("data/splash/splash1.png");
     this->texture[1] = loadModel("data/splash/splash2.png");
     this->texture[2] = loadModel("data/splash/splash3.png");
     this->texture[3] = loadModel("data/splash/splash4.png");
->>>>>>> 50e5074961a35da43728650d23cd567cb3e8d1d3
 }
 
 void Splash::show(void)
