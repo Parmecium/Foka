@@ -23,7 +23,7 @@ class InventoryAnimator : public Ticker
 Inventory::Inventory(float width, float height, Timer *timer)
 {
     this->screen = { 0, 0, width, height };
-    this->heart = { 0, height - 100, 100, 100 };
+    this->heart = { 35, height - 100, 100, 100 };
     this->textureState = 0;
     this->textureIncrement = 1;
 
