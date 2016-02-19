@@ -31,8 +31,8 @@ void Splash::show(void)
     int i;
     float x1 = this->x + this->width / 4;
     float y1 = this->y + this->height / 4;
-    float w1 = this->width / 4;
-    float h1 = this->height / 4;
+    float w1 = this->width - this->width / 4;
+    float h1 = this->height - this->height / 4;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/opening_splash.mp3");
@@ -71,7 +71,7 @@ void Splash::show(void)
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(3 / 4);
+        SDL_Delay(3000 / 4);
     }
 
     glClear(GL_COLOR_BUFFER_BIT);
