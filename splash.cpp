@@ -23,7 +23,7 @@ void Splash::loadTexture(void)
 {
     this->texture[0] = loadModel("data/heart/heart_tile1.png");
     this->texture[1] = loadModel("data/heart/heart_tile2.png");
-    this->texture[2] = loadModel("data/splash2.png");
+    this->texture[2] = loadModel("data/splash.png");
 }
 
 void Splash::show(void)
