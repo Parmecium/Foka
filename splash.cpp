@@ -25,7 +25,6 @@ void Splash::loadTexture(void)
     this->texture[1] = loadModel("data/splash/splash2.png");
     this->texture[2] = loadModel("data/splash/splash3.png");
     this->texture[3] = loadModel("data/splash/splash4.png");
-
 }
 
 void Splash::show(void)
@@ -37,14 +36,16 @@ void Splash::show(void)
     Mix_PlayMusic(music, -1);
 
     //glClear(GL_COLOR_BUFFER_BIT);
-    glPushMatrix();
-    glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
+    //glPushMatrix();
+    //glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
     // Begin render
 
     for(i = 0; i < 4; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
+        glPushMatrix();
+        glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
         glColor4ub(0, 0, 0, 255);
         glBegin(GL_QUADS);
@@ -64,36 +65,13 @@ void Splash::show(void)
             glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
         glEnd();
         glDisable(GL_TEXTURE_2D);
-        SDL_Delay(10);
+
+        glPopMatrix();
+        SDL_GL_SwapBuffers();
+        SDL_Delay(time / 4);
     }
-
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    //glColor4ub(30, 30, 30, 255);       // Gray color
-    glColor4ub(0, 0, 0, 255);
-    glBegin(GL_QUADS);
-        glVertex2f(0, 0);
-        glVertex2f(this->wWidth, 0);
-        glVertex2f(this->wWidth, this->wHeight);
-        glVertex2f(0, wHeight);
-    glEnd();
-
-
-    glColor4ub(255, 255, 255, 255); // White color
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, this->texture[2]);
-    glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
-        glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
-        glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
-        glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
-    glEnd();
-    glDisable(GL_TEXTURE_2D);
 
     // End render
 
-    glPopMatrix();
-    SDL_GL_SwapBuffers();
-    SDL_Delay(time);
     Mix_FreeMusic(music);
 }
