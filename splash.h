@@ -1,6 +1,8 @@
 #ifndef SPLASH_H
 #define SPLASH_H
 
+#define SPLASH_SPRITES_COUNT            3
+
 class Splash
 {
     private:
@@ -12,7 +14,7 @@ class Splash
         float wHeight;
         int time;
         Mix_Music *music;
-        unsigned int texture[3];
+        unsigned int texture[SPLASH_SPRITES_COUNT];
         void loadTexture(void);
 
     public:

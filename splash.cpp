@@ -40,7 +40,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 3; i++)
+    for(i = 0; i < 4; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
@@ -56,7 +56,7 @@ void Splash::show(void)
 
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, this->texture[i]);
+        glBindTexture(GL_TEXTURE_2D, this->texture[i % 2]);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
             glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
@@ -67,8 +67,34 @@ void Splash::show(void)
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(time / 3);
+        SDL_Delay(time / SPLASH_SPRITES_COUNT);
     }
+
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+    glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
+
+    glColor4ub(0, 0, 0, 255);
+    glBegin(GL_QUADS);
+        glVertex2f(0, 0);
+        glVertex2f(this->wWidth, 0);
+        glVertex2f(this->wWidth, wHeight);
+        glVertex2f(0, wHeight);
+    glEnd();
+
+    glColor4ub(255, 255, 255, 255);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, this->texture[3]);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
+        glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
+        glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
+        glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+
+    glPopMatrix();
+    SDL_GL_SwapBuffers();
 
     // End render
 
