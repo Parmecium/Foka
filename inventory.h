@@ -19,6 +19,8 @@ class Inventory
         void render(void);
         void loadTexture(void);
         void changeTexture(void);
+
+        void setScreenSize(float width, float height);
 };
 
 #endif  // INVENTORY_H

@@ -36,7 +36,7 @@ void Splash::show(void)
 
     // Begin render
 
-     //glColor4ub( 30, 30, 30, 255);       // Gray color
+    //glColor4ub( 30, 30, 30, 255);       // Gray color
     glColor4ub( 0, 0, 0, 255);
     glBegin(GL_QUADS);
         glVertex2f(0, 0);
@@ -46,7 +46,7 @@ void Splash::show(void)
     glEnd();
 
 
-     glColor4ub(255, 255, 255, 255); // White color
+    glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, this->texture);
     glBegin(GL_QUADS);

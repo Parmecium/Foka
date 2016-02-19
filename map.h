@@ -27,6 +27,7 @@ class Map
         void setCamera(void);
         void loadTexture(void);
         void renderBackground(void);
+        void resized(void);
         void logic(void);
         void render(void);
 

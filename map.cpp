@@ -124,6 +124,11 @@ void Map::logic(void)
     this->timer->tick();
 }
 
+void Map::resized(void)
+{
+    this->inventory->setScreenSize(this->sWidth, this->sHeight);
+}
+
 void Map::render(void)
 {
     int i, j;
