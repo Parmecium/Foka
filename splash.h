@@ -12,7 +12,7 @@ class Splash
         float wHeight;
         int time;
         Mix_Music *music;
-        unsigned int texture;
+        unsigned int texture[3];
         void loadTexture(void);
 
     public:
