@@ -44,7 +44,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < 16; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
@@ -71,7 +71,7 @@ void Splash::show(void)
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(time / SPLASH_SPRITES_COUNT / 2);
+        SDL_Delay(time / SPLASH_SPRITES_COUNT / 4);
     }
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -99,6 +99,8 @@ void Splash::show(void)
 
     glPopMatrix();
     SDL_GL_SwapBuffers();
+
+    SDL_Delay(200);
 
     // End render
 
