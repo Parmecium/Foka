@@ -44,7 +44,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 16; i++)
+    for(i = 0; i < 4; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
@@ -62,16 +62,16 @@ void Splash::show(void)
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, this->texture[i % 2]);
         glBegin(GL_QUADS);
-            glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
-            glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
-            glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
-            glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
+            glTexCoord2d(0, 1); glVertex2f(x1, y1);
+            glTexCoord2d(1, 1); glVertex2f(x1 + w1, y1);
+            glTexCoord2d(1, 0); glVertex2f(x1 + w1, y1 + h1);
+            glTexCoord2d(0, 0); glVertex2f(x1, y1 + h1);
         glEnd();
         glDisable(GL_TEXTURE_2D);
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(time / SPLASH_SPRITES_COUNT / 4);
+        SDL_Delay(3 / 4);
     }
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -100,7 +100,7 @@ void Splash::show(void)
     glPopMatrix();
     SDL_GL_SwapBuffers();
 
-    SDL_Delay(200);
+    SDL_Delay(time - 3);
 
     // End render
 
