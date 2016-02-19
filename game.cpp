@@ -81,7 +81,7 @@ void Game::init(void)
     std::cout << "Map is loaded" << std::endl;
 
     // Initialize texture
-    
+
     srand(time(NULL));  // For random numbers
 }
 
@@ -98,6 +98,7 @@ void Game::resize(float width, float height)
     this->height = height;
     this->map->setSWidth(this->width);
     this->map->setSHeight(this->height);
+    this->map->resized();
     SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
     glViewport(0, 0, this->width, this->height);
 }
