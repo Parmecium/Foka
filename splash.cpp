@@ -24,7 +24,6 @@ void Splash::loadTexture(void)
     this->texture[0] = loadModel("data/splash/splash1.png");
     this->texture[1] = loadModel("data/splash/splash2.png");
     this->texture[2] = loadModel("data/splash/splash3.png");
-    this->texture[3] = loadModel("data/splash/splash4.png");
 }
 
 void Splash::show(void)
@@ -41,7 +40,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < 3; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
@@ -68,7 +67,7 @@ void Splash::show(void)
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(time / 4);
+        SDL_Delay(time / 3);
     }
 
     // End render
