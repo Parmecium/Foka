@@ -80,13 +80,13 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("crv/crv");
-    player2->loadTexture("meda/meda");
+    player2->loadTexture("duh/duh");
+    player2->loadTexture("vitez/vitez");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
-        this->enemy[i]->loadTexture("crv/crv");
+        this->enemy[i]->loadTexture("duh/duh");
     //this->bgImg = loadModel("data/testBg3.png");
 }
 
