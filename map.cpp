@@ -35,7 +35,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     for(i = 50; i < height - 100; i += 150)
     {
         this->tile.push_back(new Tile(50, i, TILE_WALL_RIGHT));
-        this->tile.push_back(new Tile(this->height - 1000, i, TILE_WALL_LEFT));
+        this->tile.push_back(new Tile(this->height - 100, i, TILE_WALL_LEFT));
     }
     for(i = 0; i <= width - 50; i += 50)
     {
