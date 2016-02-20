@@ -29,8 +29,8 @@ void Splash::loadTexture(void)
 void Splash::show(void)
 {
     int i;
-    float x1 = this->x + this->width / 4;
-    float y1 = this->y + this->height / 4;
+    float x1 = this->x + (this->width - this->x) / 4;
+    float y1 = this->y + (this->height - this->y) / 4;
     float w1 = this->width - this->width / 4;
     float h1 = this->height - this->height / 4;
 
@@ -100,7 +100,7 @@ void Splash::show(void)
     glPopMatrix();
     SDL_GL_SwapBuffers();
 
-    SDL_Delay(time - 3);
+    SDL_Delay(time - 3000);
 
     // End render
 
