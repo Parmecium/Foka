@@ -29,10 +29,10 @@ void Splash::loadTexture(void)
 void Splash::show(void)
 {
     int i;
-    float x1 = this->x + (this->width - this->x) / 4;
-    float y1 = this->y + (this->height - this->y) / 4;
-    float w1 = this->width - this->width / 4;
-    float h1 = this->height - this->height / 4;
+    float x1 = this->x + (this->width - this->x) / 8;
+    float y1 = this->y + (this->height - this->y) / 8;
+    float w1 = this->width - this->width / 8;
+    float h1 = this->height - this->height / 8;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/opening_splash.mp3");
@@ -44,7 +44,7 @@ void Splash::show(void)
 
     // Begin render
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < 8; i++)
     {
         glClear(GL_COLOR_BUFFER_BIT);
         glPushMatrix();
@@ -71,7 +71,7 @@ void Splash::show(void)
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
-        SDL_Delay(3000 / 4);
+        SDL_Delay(3000 / 8);
     }
 
     glClear(GL_COLOR_BUFFER_BIT);
