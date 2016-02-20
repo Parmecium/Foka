@@ -6,7 +6,7 @@
 class Menu
 {
     private:
-        char *option[4];
+        char *option[MENU_COUNT_OPTIONS];
         int state;
 
     public:
