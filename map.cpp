@@ -81,7 +81,7 @@ void Map::loadTexture(void)
     player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("crv/crv");
-    player2->loadTexture("vitez/vitez");
+    player2->loadTexture("meda/meda");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
