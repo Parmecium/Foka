@@ -29,10 +29,14 @@ void Splash::loadTexture(void)
 void Splash::show(void)
 {
     int i;
-    float x1 = this->x + (this->width - this->x) / 2;
-    float y1 = this->y + (this->height - this->y) / 2;
-    float w1 = this->width - this->width / 2;
-    float h1 = this->height - this->height / 2;
+    //float x1 = this->x + this->width / 3.0f;
+    //float y1 = this->y + this->height / 3.0f;
+    //float w1 = this->width - this->width / 3.0f;
+    //float h1 = this->height - this->height / 3.0f;
+    float w1 = this->width / 2;
+    float h1 = this->height / 2;
+    float x1 = this->wWidth / 2 - w1 / 2;
+    float y1 = this->wHeight / 2 - h1 / 2;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/opening_splash.mp3");
