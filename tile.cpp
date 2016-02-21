@@ -48,16 +48,16 @@ void Tile::loadTexture(void)
     switch(this->type)
     {
         case TILE_WALL_DOWN:
-            this->texture = loadModel("data/zid/zid_red_d.png");
+            this->texture = loadModel("data/zid/zid_purple_d.png");
             break;
         case TILE_WALL_RIGHT:
-            this->texture = loadModel("data/zid/zid_red_r.png");
+            this->texture = loadModel("data/zid/zid_purple_r.png");
             break;
         case TILE_WALL_UP:
-            this->texture = loadModel("data/zid/zid_red_u.png");
+            this->texture = loadModel("data/zid/zid_purple_u.png");
             break;
         case TILE_WALL_LEFT:
-            this->texture = loadModel("data/zid/zid_red_l.png");
+            this->texture = loadModel("data/zid/zid_purple_l.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic_bloody.png");
