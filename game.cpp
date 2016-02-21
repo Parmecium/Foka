@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "timer.h"
 #include "splash.h"
-#include "menu.h"
+//#include "menu.h"
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"
