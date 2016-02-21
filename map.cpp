@@ -23,7 +23,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player2 = new Player(130, 95, timer);
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
-    this->bgCoords = {0, 0, 98, 98};
+    this->bgCoords = {0, 0, 500, 500};
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
@@ -86,7 +86,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture("duh/duh");
-    //this->bgImg = loadModel("data/testBg3.png");
+    this->bgImg = loadModel("data/crven_pod.png");
 }
 
 void Map::setCamera(void)
@@ -132,7 +132,6 @@ void Map::render(void)
 {
     int i, j;
 
-    /*
     for(i = 0; i < this->width - this->bgCoords.w; i += this->bgCoords.w)
         for(j = 0; j < this->height - this->bgCoords.h; j += this->bgCoords.h)
         {
@@ -156,7 +155,6 @@ void Map::render(void)
                 glDisable(GL_TEXTURE_2D);
             }
         }
-    */
 
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
