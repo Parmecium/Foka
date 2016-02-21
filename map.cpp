@@ -86,7 +86,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture("duh/duh");
-    this->bgImg = loadModel("data/crven_pod.png");
+    this->bgImg = loadModel("data/poz.png");
 }
 
 void Map::setCamera(void)
