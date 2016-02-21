@@ -23,7 +23,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player2 = new Player(130, 95, timer);
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
-    this->bgCoords = {0, 0, 350, 350};
+    this->bgCoords = {0, 0, 300, 300};
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
@@ -78,7 +78,7 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("pig/pig");
+    player->loadTexture("vitez/vitez");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("skelet/skelet");
     inventory->loadTexture();
@@ -86,7 +86,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture("duh/duh");
-    this->bgImg = loadModel("data/poz.png");
+    this->bgImg = loadModel("data/poz2.png");
 }
 
 void Map::setCamera(void)
