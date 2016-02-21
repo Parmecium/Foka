@@ -11,8 +11,8 @@
 
 Game::Game(void)
 {
-    this->width = 880;
-    this->height = 650;
+    this->width = 1024;
+    this->height = 768;
     //this->width = 1200;
     //this->height = 900;
     this->caption = "Merso the Pig";
