@@ -132,8 +132,8 @@ void Map::render(void)
 {
     int i, j;
 
-    for(i = 0; i < this->width - this->bgCoords.w; i += this->bgCoords.w)
-        for(j = 0; j < this->height - this->bgCoords.h; j += this->bgCoords.h)
+    for(i = 0; i <= this->width - this->bgCoords.w; i += this->bgCoords.w)
+        for(j = 0; j <= this->height - this->bgCoords.h; j += this->bgCoords.h)
         {
             this->bgCoords.x = i;
             this->bgCoords.y = j;
