@@ -23,7 +23,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player2 = new Player(130, 95, timer);
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
-    this->bgCoords = {0, 0, 500, 500};
+    this->bgCoords = {0, 0, 1000, 1000};
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
