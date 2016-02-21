@@ -78,15 +78,15 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("vitez/vitez");
+    player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("skelet/skelet");
+    player2->loadTexture("vitez/vitez");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture("duh/duh");
-    this->bgImg = loadModel("data/poz2.png");
+    this->bgImg = loadModel("data/poz.png");
 }
 
 void Map::setCamera(void)
