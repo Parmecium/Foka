@@ -78,9 +78,9 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("boza/boza");
+    player->loadTexture("bomba/bomba");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("duh/duh");
+    player2->loadTexture("fool/fool");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
