@@ -43,6 +43,7 @@ class Player
         int angle;
         PlayerMove moveState;
         PlayerTexture texture;
+        unsigned int shadowTexture;
         int textureState;
         int textureIncrement;
 
