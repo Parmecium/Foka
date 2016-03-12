@@ -48,7 +48,8 @@ class Player
         int textureIncrement;
 
     public:
-        Player(float x, float y, Timer *timer);
+        Player(float x, float y, Timer *timer,
+                float w = 90.0f, float h = 107.0f, int interval = 90);
         ~Player(void);
         void move(void);
         void changeMoveState(int type, int size);
