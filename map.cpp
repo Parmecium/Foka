@@ -19,8 +19,12 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->camera = {0, 0, this->sWidth, this->sHeight };
 
     timer = new Timer();
+
+    /******************* Velicina igraca, i interval *******************/
     player = new Player(100, 95, timer);
     player2 = new Player(130, 95, timer, 80.0, 97.0, 200);
+    /*******************************************************************/
+
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
     this->bgCoords = {0, 0, 300, 300};
@@ -58,7 +62,9 @@ Map::Map(float width, float height, float sWidth, float sHeight)
         this->tile.push_back(new Tile(n + 15, m, TILE_WALL_RIGHT));
     }
 
+    /***************** Neprijatelji za testiranje *******************/
     this->enemy.push_back(new Enemy(300, 410, timer));
+    /****************************************************************/
 }
 
 Map::~Map(void)

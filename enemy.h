@@ -8,7 +8,8 @@ class Enemy : public Player
         float maxX;
 
     public:
-        Enemy(float x, float y, Timer *timer);
+        Enemy(float x, float y, Timer *timer,
+                float w = 90.0f, float h = 107.0f, int interval = 90);
         ~Enemy(void);
         void move(void);
 };

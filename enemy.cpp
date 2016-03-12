@@ -21,7 +21,8 @@ class EnemyAnimator : public Ticker
         }
 };
 
-Enemy::Enemy(float x, float y, Timer *timer) : Player(x, y, NULL)
+Enemy::Enemy(float x, float y, Timer *timer, float w, float h, int interval)
+    : Player(x, y, NULL, w, h, interval)
 {
     this->moveState.right = true;
     this->minX = x;
@@ -30,7 +31,7 @@ Enemy::Enemy(float x, float y, Timer *timer) : Player(x, y, NULL)
 
     this->textureIncrement = 1;
 
-    timer->add(90, new EnemyAnimator(this));
+    timer->add(interval, new EnemyAnimator(this));
 }
 
 Enemy::~Enemy(void)
