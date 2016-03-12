@@ -156,6 +156,10 @@ void Map::render(void)
             }
         }
 
+    this->player->renderShadow(camera);
+    this->player2->renderShadow(camera);
+    for(i = 0; i < enemy.size(); i++)
+        this->enemy[i]->renderShadow(camera);
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
     for(i = 0; i < enemy.size(); i++)

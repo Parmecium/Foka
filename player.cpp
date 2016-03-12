@@ -177,22 +177,6 @@ void Player::render(SDL_Rect camera)
     float w = this->coords.w;
     float h = this->coords.h;
 
-    y -= 25;
-    h -= 50;
-
-    glBindTexture(GL_TEXTURE_2D, this->shadowTexture);
-    glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(x, y);
-        glTexCoord2d(1, 1); glVertex2f(x + w, y);
-        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
-        glTexCoord2d(0, 0); glVertex2f(x, y + h);
-    glEnd();
-
-    x = this->coords.x - camera.x;
-    y = this->coords.y - camera.y;
-    w = this->coords.w;
-    h = this->coords.h;
-
     switch(this->angle)
     {
         case PLAYER_ANGLE_DOWN:
@@ -209,6 +193,30 @@ void Player::render(SDL_Rect camera)
             break;
     }
 
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
+
+    glDisable(GL_TEXTURE_2D);
+}
+
+void Player::renderShadow(SDL_Rect camera)
+{
+    glColor4ub(255, 255, 255, 255); // White color
+    glEnable(GL_TEXTURE_2D);
+
+    float x = this->coords.x - camera.x;
+    float y = this->coords.y - camera.y;
+    float w = this->coords.w;
+    float h = this->coords.h;
+
+    y -= 25;
+    h -= 50;
+
+    glBindTexture(GL_TEXTURE_2D, this->shadowTexture);
     glBegin(GL_QUADS);
         glTexCoord2d(0, 1); glVertex2f(x, y);
         glTexCoord2d(1, 1); glVertex2f(x + w, y);
