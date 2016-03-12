@@ -136,6 +136,7 @@ void Player::loadTexture(std::string file)
     this->texture.right[2] = loadModel("data/" + file + "_r3.png");
     this->texture.left[2] = loadModel("data/" + file + "_l3.png");
     this->texture.up[2] = loadModel("data/" + file + "_u3.png");
+    this->shadowTexture = loadModel("data/shadow2.png");
     std::cout << "Player texture initialized" << std::endl;
 }
 
@@ -171,6 +172,27 @@ void Player::render(SDL_Rect camera)
     glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
 
+    float x = this->coords.x - camera.x;
+    float y = this->coords.y - camera.y;
+    float w = this->coords.w;
+    float h = this->coords.h;
+
+    y -= 25;
+    h -= 50;
+
+    glBindTexture(GL_TEXTURE_2D, this->shadowTexture);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
+
+    x = this->coords.x - camera.x;
+    y = this->coords.y - camera.y;
+    w = this->coords.w;
+    h = this->coords.h;
+
     switch(this->angle)
     {
         case PLAYER_ANGLE_DOWN:
@@ -188,10 +210,10 @@ void Player::render(SDL_Rect camera)
     }
 
     glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(this->coords.x - camera.x, this->coords.y - camera.y);
-        glTexCoord2d(1, 1); glVertex2f(this->coords.x - camera.x + this->coords.w, this->coords.y - camera.y);
-        glTexCoord2d(1, 0); glVertex2f(this->coords.x - camera.x + this->coords.w, this->coords.y + this->coords.h - camera.y);
-        glTexCoord2d(0, 0); glVertex2f(this->coords.x - camera.x, this->coords.y + this->coords.h - camera.y);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);
