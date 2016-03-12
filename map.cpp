@@ -22,7 +22,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     /******************* Velicina igraca, i interval *******************/
     player = new Player(100, 95, timer);
-    player2 = new Player(130, 95, timer, 80.0, 97.0, 200);
+    player2 = new Player(130, 95, timer, 90.0, 107.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
