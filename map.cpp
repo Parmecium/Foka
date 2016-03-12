@@ -86,7 +86,10 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("boza/boza");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("duh/duh");
+    //player2->loadTexture("duh/duh");
+    player2->loadTexture(PLAYER_ANGLE_DOWN, 0, "data/voodoo/voodoo_green1.png");
+    player2->loadTexture(PLAYER_ANGLE_DOWN, 1, "data/voodoo/voodoo_green2.png");
+    player2->loadTexture(PLAYER_ANGLE_DOWN, 2, "data/voodoo/voodoo_green2.png");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();

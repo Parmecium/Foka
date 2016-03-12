@@ -54,6 +54,7 @@ class Player
         void move(void);
         void changeMoveState(int type, int size);
         void loadTexture(std::string file);
+        void loadTexture(int side, int num, std::string file);
         void render(SDL_Rect camera);
         void renderShadow(SDL_Rect camera);
         void changeTexture(void);
