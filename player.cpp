@@ -20,12 +20,12 @@ class PlayerAnimator : public Ticker
         }
 };
 
-Player::Player(float x, float y, Timer *timer)
+Player::Player(float x, float y, Timer *timer, float w, float h, int interval)
 {
     this->coords.x = x;
     this->coords.y = y;
-    this->coords.w = 90.0;
-    this->coords.h = 107.0;
+    this->coords.w = w;
+    this->coords.h = h;
     this->speed = 4.0;
     this->helth = 3.0;
     this->moveState.down = false;
@@ -37,7 +37,7 @@ Player::Player(float x, float y, Timer *timer)
     this->textureIncrement = 0;
 
     if(timer != NULL)
-        timer->add(90, new PlayerAnimator(this));  //Speed of sprites replacing each other.
+        timer->add(interval, new PlayerAnimator(this));  //Speed of sprites replacing each other.
 }
 
 Player::~Player(void)
