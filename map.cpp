@@ -20,7 +20,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     timer = new Timer();
     player = new Player(100, 95, timer);
-    player2 = new Player(130, 95, timer);
+    player2 = new Player(130, 95, timer, 90.0, 107.0, 90);
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
 
     this->bgCoords = {0, 0, 300, 300};
