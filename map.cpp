@@ -78,14 +78,14 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("lil_green/lil_green");
+    player->loadTexture("boza/boza");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("duh/duh");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
-        this->enemy[i]->loadTexture("skelet/skelet");
+        this->enemy[i]->loadTexture("vitez/vitez");
     this->bgImg = loadModel("data/poz2.png");
 }
 
