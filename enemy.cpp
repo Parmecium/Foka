@@ -28,15 +28,14 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
     this->moveState.right = true;
     this->minX = x;
     this->maxX = x + 500;
-    this->speedX = 3.0f;
+    this->speedX = 0;
     this->speedY = 0;
     this->type = type;
 
-    this->seeArea = { x, y, w, h };
-    this->seeArea.x -= 150;
-    this->seeArea.y -= 150;
-    this->seeArea.w += 150;
-    this->seeArea.h += 150;
+    this->seeArea.x = this->coords.x - 150;
+    this->seeArea.y = this->coords.y - 150;
+    this->seeArea.w = this->coords.w + 2 * 150;
+    this->seeArea.h = this->coords.h + 2 * 150;
 
     this->textureIncrement = 1;
 
@@ -59,6 +58,8 @@ void Enemy::move(void)
         this->angle = PLAYER_ANGLE_RIGHT;
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
+    this->seeArea.x += this->speedX;
+    this->seeArea.y += this->speedY;
 }
 
 void Enemy::loadTexture()
@@ -95,14 +96,18 @@ void Enemy::seeLogic(Player *player)
        player->getY() + player->getHeight() > this->seeArea.y &&
        player->getY() < this->seeArea.y + this->seeArea.h)
     {
-        if(xe > xp)
+        if(xe > xp + 3)
             this->speedX = -3.0f;
-        else if(xe < xp)
+        else if(xe < xp - 3)
             this->speedX = 3.0f;
-        if(ye > yp)
+        else
+            this->speedX = 0;
+        if(ye > yp + 3)
             this->speedY = -3.0f;
-        else if(ye < yp)
+        else if(ye < yp - 3)
             this->speedY = 3.0f;
+        else
+            this->speedY = 0;
     } else
     {
         this->speedX = 0;
