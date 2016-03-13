@@ -63,7 +63,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     }
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(300, 410, timer));
+    this->enemy.push_back(new Enemy(300, 410, timer, ENEMY_TYPE_VOODOO));
     /****************************************************************/
 }
 
@@ -86,15 +86,12 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("boza/boza");
     //player2->loadTexture("grim/grim");
-    //player2->loadTexture("duh/duh");
-    player2->loadTexture(PLAYER_ANGLE_DOWN, 0, "data/voodoo/voodoo_green1.png");
-    player2->loadTexture(PLAYER_ANGLE_DOWN, 1, "data/voodoo/voodoo_green2.png");
-    player2->loadTexture(PLAYER_ANGLE_DOWN, 2, "data/voodoo/voodoo_green2.png");
+    player2->loadTexture("duh/duh");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
-        this->enemy[i]->loadTexture("vitez/vitez");
+        this->enemy[i]->loadTexture();
     this->bgImg = loadModel("data/poz2.png");
 }
 
