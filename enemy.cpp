@@ -69,9 +69,9 @@ void Enemy::loadTexture()
     switch(type)
     {
         case ENEMY_TYPE_VOODOO:
-            this->texture.down[0] = loadModel("data/voodoo/voodoo_green1.png");
-            this->texture.down[1] = loadModel("data/voodoo/voodoo_green2.png");
-            this->texture.down[2] = loadModel("data/voodoo/voodoo_green3.png");
+            this->texture.down[0] = loadModel("data/voodoo/voodoo_purple1.png");
+            this->texture.down[1] = loadModel("data/voodoo/voodoo_purple2.png");
+            this->texture.down[2] = loadModel("data/voodoo/voodoo_purple3.png");
             for(i = 0; i < 3; i++)
             {
                 this->texture.up[i] = texture.down[i];
