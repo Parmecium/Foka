@@ -65,6 +65,7 @@ void Enemy::move(void)
 void Enemy::loadTexture()
 {
     int i;
+
     switch(type)
     {
         case ENEMY_TYPE_VOODOO:
@@ -79,4 +80,6 @@ void Enemy::loadTexture()
             }
             break;
     }
+
+    this->shadowTexture = loadModel("data/shadow2.png");
 }
