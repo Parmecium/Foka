@@ -122,8 +122,8 @@ void Map::logic(void)
     {
         this->enemy[i]->seeLogic(player);
         this->enemy[i]->move();
-        this->player->collision(this->enemy[i]);
-        //this->enemy[i]->collision(player);
+        //this->player->collision(this->enemy[i]);
+        this->enemy[i]->collision(player);
     }
     for(i = 0; i < tile.size(); i++)
     {
