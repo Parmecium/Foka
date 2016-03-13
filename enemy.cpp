@@ -28,8 +28,15 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
     this->moveState.right = true;
     this->minX = x;
     this->maxX = x + 500;
-    this->speed = 3.0;
+    this->speedX = 3.0f;
+    this->speedY = 0;
     this->type = type;
+
+    this->seeArea = { x, y, w, h };
+    this->seeArea.x -= 150;
+    this->seeArea.y -= 150;
+    this->seeArea.w += 150;
+    this->seeArea.h += 150;
 
     this->textureIncrement = 1;
 
@@ -42,24 +49,16 @@ Enemy::~Enemy(void)
 
 void Enemy::move(void)
 {
-    if(this->moveState.right == true)
-    {
-        this->coords.x += this->speed;
+    if(this->speedY > 0)
+        this->angle = PLAYER_ANGLE_UP;
+    else if(this->speedY < 0)
+        this->angle = PLAYER_ANGLE_DOWN;
+    if(this->speedX > 0)
         this->angle = PLAYER_ANGLE_RIGHT;
-    } else if(this->moveState.left == true)
-    {
-        this->coords.x -= this->speed;
-        this->angle = PLAYER_ANGLE_LEFT;
-    }
-    if(this->coords.x <= this->minX)
-    {
-        this->moveState.left = false;
-        this->moveState.right = true;
-    } else if(this->coords.x >= this->maxX)
-    {
-        this->moveState.right = false;
-        this->moveState.left = true;
-    }
+    else if(this->speedX < 0)
+        this->angle = PLAYER_ANGLE_RIGHT;
+    this->coords.x += this->speedX;
+    this->coords.y += this->speedY;
 }
 
 void Enemy::loadTexture()
@@ -82,4 +81,31 @@ void Enemy::loadTexture()
     }
 
     this->shadowTexture = loadModel("data/shadow2.png");
+}
+
+void Enemy::seeLogic(Player *player)
+{
+    float xe = this->coords.x + this->coords.w / 2;
+    float ye = this->coords.y + this->coords.h / 2;
+    float xp = player->getX() + player->getWidth() / 2;
+    float yp = player->getY() + player->getHeight() / 2;
+
+    if(player->getX() + player->getWidth() > this->seeArea.x &&
+       player->getX() < this->seeArea.x + this->seeArea.w &&
+       player->getY() + player->getHeight() > this->seeArea.y &&
+       player->getY() < this->seeArea.y + this->seeArea.h)
+    {
+        if(xe > xp)
+            this->speedX = -3.0f;
+        else if(xe < xp)
+            this->speedX = 3.0f;
+        if(ye > yp)
+            this->speedY = -3.0f;
+        else if(ye < yp)
+            this->speedY = 3.0f;
+    } else
+    {
+        this->speedX = 0;
+        this->speedY = 0;
+    }
 }

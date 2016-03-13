@@ -124,7 +124,10 @@ void Map::logic(void)
         this->tile[i]->collision(player2);
     }
     for(i = 0; i < enemy.size(); i++)
+    {
+        this->enemy[i]->seeLogic(player);
         this->enemy[i]->move();
+    }
     this->setCamera();
     this->timer->tick();
 }
