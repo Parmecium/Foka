@@ -9,6 +9,9 @@ class Enemy : public Player
         int type;
         float minX;
         float maxX;
+        float speedX;
+        float speedY;
+        SDL_Rect seeArea;
 
     public:
         Enemy(float x, float y, Timer *timer, int type,
@@ -16,6 +19,7 @@ class Enemy : public Player
         ~Enemy(void);
         void move(void);
         void loadTexture();
+        void seeLogic(Player *player);
 };
 
 #endif  // ENEMY_H
