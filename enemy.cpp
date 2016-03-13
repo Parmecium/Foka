@@ -97,15 +97,15 @@ void Enemy::seeLogic(Player *player)
        player->getY() < this->seeArea.y + this->seeArea.h)
     {
         if(xe > xp + 3)
-            this->speedX = -3.0f;
+            this->speedX = -2.0f;
         else if(xe < xp - 3)
-            this->speedX = 3.0f;
+            this->speedX = 2.0f;
         else
             this->speedX = 0;
         if(ye > yp + 3)
-            this->speedY = -3.0f;
+            this->speedY = -2.0f;
         else if(ye < yp - 3)
-            this->speedY = 3.0f;
+            this->speedY = 2.0f;
         else
             this->speedY = 0;
     } else
