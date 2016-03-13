@@ -59,6 +59,7 @@ class Player
         void renderShadow(SDL_Rect camera);
         void changeTexture(void);
         void collision(float width, float height);
+        void collision(Player *player);
 
         float getX(void) { return this->coords.x; };
         float getY(void) { return this->coords.y; };

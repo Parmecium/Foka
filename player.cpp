@@ -185,6 +185,30 @@ void Player::collision(float width, float height)
         this->coords.y = height - this->coords.y + this->coords.h;
 }
 
+void Player::collision(Player *player)
+{
+    SDL_Rect tmpCoords = this->coords;
+    tmpCoords.x += 8;
+    tmpCoords.y += 8;
+    tmpCoords.w -= 8 * 2;
+    tmpCoords.h -= 8 * 2;
+
+    if(player->getX() + player->getWidth() > this->coords.x &&
+       player->getX() < this->coords.x + this->coords.w &&
+       player->getY() + player->getHeight() > this->coords.y &&
+       player->getY() < this->coords.y + this->coords.h)
+    {
+        if(player->getX() + player->getWidth() <= tmpCoords.x)
+            this->coords.x = player->getX() + player->getWidth() + 16;
+        else if(player->getX() >= tmpCoords.x + tmpCoords.w)
+            this->coords.x = player->getX() - this->coords.w - 16;
+        if(player->getY() + player->getHeight() <= tmpCoords.y)
+            this->coords.y = player->getY() + player->getHeight() + 16;
+        else if(player->getY() >= tmpCoords.y + tmpCoords.h)
+            this->coords.y = player->getY() - this->coords.h - 16;
+    }
+}
+
 // Render player
 void Player::render(SDL_Rect camera)
 {
