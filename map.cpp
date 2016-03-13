@@ -113,20 +113,22 @@ void Map::setCamera(void)
 
 void Map::logic(void)
 {
-    int i;
+    int i, j;
     player->move();
     player2->move();
     player->collision(width, height);
     player2->collision(width, height);
-    for(i = 0; i < tile.size(); i++)
-    {
-        this->tile[i]->collision(player);
-        this->tile[i]->collision(player2);
-    }
     for(i = 0; i < enemy.size(); i++)
     {
         this->enemy[i]->seeLogic(player);
         this->enemy[i]->move();
+    }
+    for(i = 0; i < tile.size(); i++)
+    {
+        this->tile[i]->collision(player);
+        this->tile[i]->collision(player2);
+        for(j = 0; j < enemy.size(); j++)
+            this->tile[i]->collision(enemy[j]);
     }
     this->setCamera();
     this->timer->tick();
