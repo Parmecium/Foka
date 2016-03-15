@@ -20,9 +20,9 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     timer = new Timer();
 
-    /******************* Velicina igraca, i interval *******************/
-    player = new Player(100, 95, timer);
-    player2 = new Player(130, 95, timer, 90.0, 107.0, 90);
+    /******************* Velicina igraca, i interval *****130**************/
+    player = new Player(100, 95, timer, 90.0, 107.0, 90);
+    player2 = new Player(130, 95, timer, 90.0, 135.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
@@ -86,13 +86,13 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("boza/boza");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("duh/duh");
+    player2->loadTexture("stone_guy/stone_guy");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/poz2.png");
+    this->bgImg = loadModel("data/poz18.png");
 }
 
 void Map::setCamera(void)
