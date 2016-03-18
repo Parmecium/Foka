@@ -20,9 +20,9 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     timer = new Timer();
 
-    /******************* Velicina igraca, i interval *****130**************/
-    player = new Player(100, 95, timer, 90.0, 107.0, 90);
-    player2 = new Player(130, 95, timer, 90.0, 135.0, 90);
+    /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
+    player = new Player(100, 95, timer, 90.0, 135.0, 90);
+    player2 = new Player(130, 95, timer, 90.0, 120.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
@@ -84,9 +84,9 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("boza/boza");
+    player->loadTexture("stone_guy/stone_guy");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("stone_guy/stone_guy");
+    player2->loadTexture("who/who");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
