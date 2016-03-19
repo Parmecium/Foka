@@ -52,7 +52,7 @@ void Enemy::move(void)
     if(this->speedX > 0)
         this->angle = PLAYER_ANGLE_RIGHT;
     else if(this->speedX < 0)
-        this->angle = PLAYER_ANGLE_RIGHT;
+        this->angle = PLAYER_ANGLE_LEFT;
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
 }
