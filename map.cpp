@@ -64,6 +64,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     /***************** Neprijatelji za testiranje *******************/
     this->enemy.push_back(new Enemy(300, 410, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    this->enemy.push_back(new Enemy(400, 510, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
 
