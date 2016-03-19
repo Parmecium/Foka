@@ -31,10 +31,18 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
     this->speedX = 0;
     this->speedY = 0;
     this->type = type;
+    this->textureIncrement = 0;
 
-    this->seeRadius = 250;
-
-    this->textureIncrement = 1;
+    switch(this->type)
+    {
+        case ENEMY_TYPE_VOODOO:
+            this->seeRadius = 250;
+            this->textureIncrement = 1;
+            break;
+        case ENEMY_TYPE_BOZA:
+            this->seeRadius = 250;
+            break;
+    }
 
     timer->add(interval, new EnemyAnimator(this));
 }
@@ -105,9 +113,16 @@ void Enemy::seeLogic(Player *player)
         else if(ye < yp - 3)
             this->speedY = 2.0f;
         else this->speedY = 0;
+        if(this->textureIncrement == 0)
+            this->textureIncrement = 1;
     } else
     {
         this->speedX = 0;
         this->speedY = 0;
+        if(this->type == ENEMY_TYPE_BOZA)
+        {
+            this->textureIncrement = 0;
+            this->textureState = 1;
+        }
     }
 }
