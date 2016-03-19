@@ -64,15 +64,18 @@ void Enemy::loadTexture()
     switch(type)
     {
         case ENEMY_TYPE_VOODOO:
-            this->texture.down[0] = loadModel("data/angel/angel1.png");
-            this->texture.down[1] = loadModel("data/angel/angel2.png");
-            this->texture.down[2] = loadModel("data/angel/angel3.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/angel/angel1.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/angel/angel2.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/angel/angel3.png");
             for(i = 0; i < 3; i++)
             {
                 this->texture.up[i] = texture.down[i];
                 this->texture.left[i] = texture.down[i];
                 this->texture.right[i] = texture.down[i];
             }
+            break;
+        case ENEMY_TYPE_BOZA:
+            Player::loadTexture("boza/boza");
             break;
     }
 

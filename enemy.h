@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #define ENEMY_TYPE_VOODOO           0
+#define ENEMY_TYPE_BOZA             1
 
 class Enemy : public Player
 {
