@@ -32,7 +32,7 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
     this->speedY = 0;
     this->type = type;
 
-    this->seeRadius = 150;
+    this->seeRadius = 250;
 
     this->textureIncrement = 1;
 
