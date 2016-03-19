@@ -11,7 +11,7 @@ class Enemy : public Player
         float maxX;
         float speedX;
         float speedY;
-        SDL_Rect seeArea;
+        float seeRadius;
 
     public:
         Enemy(float x, float y, Timer *timer, int type,

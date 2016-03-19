@@ -32,10 +32,7 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
     this->speedY = 0;
     this->type = type;
 
-    this->seeArea.x = this->coords.x - 150;
-    this->seeArea.y = this->coords.y - 150;
-    this->seeArea.w = this->coords.w + 2 * 150;
-    this->seeArea.h = this->coords.h + 2 * 150;
+    this->seeRadius = 150;
 
     this->textureIncrement = 1;
 
@@ -58,8 +55,6 @@ void Enemy::move(void)
         this->angle = PLAYER_ANGLE_RIGHT;
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
-    this->seeArea.x += this->speedX;
-    this->seeArea.y += this->speedY;
 }
 
 void Enemy::loadTexture()
@@ -91,10 +86,10 @@ void Enemy::seeLogic(Player *player)
     float xp = player->getX() + player->getWidth() / 2;
     float yp = player->getY() + player->getHeight() / 2;
 
-    if(player->getX() + player->getWidth() > this->seeArea.x &&
-       player->getX() < this->seeArea.x + this->seeArea.w &&
-       player->getY() + player->getHeight() > this->seeArea.y &&
-       player->getY() < this->seeArea.y + this->seeArea.h)
+    if(pow(player->getX() - xe, 2) +
+            pow(player->getY() - ye, 2) < pow(this->seeRadius, 2) ||
+            pow(player->getX() + player->getWidth() - xe, 2) +
+            pow(player->getY() + player->getHeight() - ye, 2) < pow(this->seeRadius, 2))
     {
         if(xe > xp + 3)
             this->speedX = -2.0f;
@@ -106,8 +101,7 @@ void Enemy::seeLogic(Player *player)
             this->speedY = -2.0f;
         else if(ye < yp - 3)
             this->speedY = 2.0f;
-        else
-            this->speedY = 0;
+        else this->speedY = 0;
     } else
     {
         this->speedX = 0;

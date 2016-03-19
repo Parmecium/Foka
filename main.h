@@ -9,5 +9,6 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <cmath>
 
 #endif  // MAIN_H
