@@ -11,7 +11,7 @@ Tile::Tile(float x, float y, int type)
     this->type = type;
     switch(type)
     {
-        case TILE_WALL_LEFT: case TILE_WALL_RIGHT:
+        case TILE_WALL_LEFT: case TILE_WALL_RIGHT:  /*130 najbolje*/
             this->coords.w = 150;
             this->coords.h = 150;
             break;
