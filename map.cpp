@@ -21,8 +21,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     timer = new Timer();
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
-    player = new Player(160, 145, timer, 90.0, 135.0, 90);
-    player2 = new Player(190, 145, timer, 90.0, 120.0, 90);
+    player = new Player(190, 195, timer, 90.0, 135.0, 90);
+    player2 = new Player(220, 195, timer, 90.0, 120.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
@@ -31,20 +31,20 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     // Test
     //this->tile.push_back(new Tile(600, 300, TILE_LEAF));
-    for(i = 50; i < width - 100; i += 100)
+    for(i = 50; i < width - 100; i += 150)
     {
         this->tile.push_back(new Tile(i, 50, TILE_WALL_DOWN));
-        this->tile.push_back(new Tile(i, this->height - 150, TILE_WALL_UP));
+        this->tile.push_back(new Tile(i, this->height - 200, TILE_WALL_UP));
     }
-    for(i = 50; i < height - 100; i += 100)
+    for(i = 50; i < height - 100; i += 150)
     {
         this->tile.push_back(new Tile(50, i, TILE_WALL_LEFT));
-        this->tile.push_back(new Tile(this->width - 150, i, TILE_WALL_RIGHT));
+        this->tile.push_back(new Tile(this->width - 200, i, TILE_WALL_RIGHT));
     }
     this->tile.push_back(new Tile(50, 50, TILE_WALL_DL));
-    this->tile.push_back(new Tile(50, this->height - 150, TILE_WALL_UL));
-    this->tile.push_back(new Tile(this->height - 150, this->width - 150, TILE_WALL_UR));
-    this->tile.push_back(new Tile(this->width - 150, 50, TILE_WALL_DR));
+    this->tile.push_back(new Tile(50, this->height - 200, TILE_WALL_UL));
+    this->tile.push_back(new Tile(this->height - 200, this->width - 200, TILE_WALL_UR));
+    this->tile.push_back(new Tile(this->width - 200, 50, TILE_WALL_DR));
     for(i = 0; i <= width - 50; i += 50)
     {
         this->tile.push_back(new Tile(i, 0, TILE_NOTHING));
@@ -69,8 +69,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     */
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(360, 460, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
-    this->enemy.push_back(new Enemy(460, 560, timer, ENEMY_TYPE_BOZA));
+    this->enemy.push_back(new Enemy(390, 510, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    this->enemy.push_back(new Enemy(490, 610, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
 
