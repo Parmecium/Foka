@@ -6,9 +6,13 @@
 #define TILE_WALL_RIGHT         2
 #define TILE_WALL_UP            3
 #define TILE_WALL_LEFT          4
-#define TILE_DESK               5
-#define TILE_TREE_FALL          6
-#define TILE_NOTHING            7
+#define TILE_WALL_DL            5
+#define TILE_WALL_DR            6
+#define TILE_WALL_UR            7
+#define TILE_WALL_UL            8
+#define TILE_DESK               9
+#define TILE_TREE_FALL          10
+#define TILE_NOTHING            11
 
 class Tile
 {

@@ -12,12 +12,17 @@ Tile::Tile(float x, float y, int type)
     switch(type)
     {
         case TILE_WALL_LEFT: case TILE_WALL_RIGHT:
-            this->coords.w = 50;
-            this->coords.h = 150;
+            this->coords.w = 100;
+            this->coords.h = 100;
             break;
         case TILE_WALL_UP: case TILE_WALL_DOWN:
-            this->coords.w = 150;
-            this->coords.h = 50;
+            this->coords.w = 100;
+            this->coords.h = 100;
+            break;
+        case TILE_WALL_DL: case TILE_WALL_DR:
+        case TILE_WALL_UR: case TILE_WALL_UL:
+            this->coords.w = 100;
+            this->coords.h = 100;
             break;
         case TILE_DESK:
             this->coords.w = 50;
@@ -48,16 +53,28 @@ void Tile::loadTexture(void)
     switch(this->type)
     {
         case TILE_WALL_DOWN:
-            this->texture = loadModel("data/zid/zid_purple_d.png");
+            this->texture = loadModel("data/zid/zid1_d.png");
             break;
         case TILE_WALL_RIGHT:
-            this->texture = loadModel("data/zid/zid_purple_r.png");
+            this->texture = loadModel("data/zid/zid1_r.png");
             break;
         case TILE_WALL_UP:
-            this->texture = loadModel("data/zid/zid_purple_u.png");
+            this->texture = loadModel("data/zid/zid1_u.png");
             break;
         case TILE_WALL_LEFT:
-            this->texture = loadModel("data/zid/zid_purple_l.png");
+            this->texture = loadModel("data/zid/zid1_l.png");
+            break;
+        case TILE_WALL_DL:
+            this->texture = loadModel("data/zid/zid1_dl.png");
+            break;
+        case TILE_WALL_DR:
+            this->texture = loadModel("data/zid/zid1_dr.png");
+            break;
+        case TILE_WALL_UR:
+            this->texture = loadModel("data/zid/zid1_ur.png");
+            break;
+        case TILE_WALL_UL:
+            this->texture = loadModel("data/zid/zid1_ul.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic_bloody.png");
