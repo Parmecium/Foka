@@ -83,7 +83,7 @@ void Enemy::loadTexture()
             }
             break;
         case ENEMY_TYPE_BOZA:
-            Player::loadTexture("red/red");
+            Player::loadTexture("boza/boza");
             break;
     }
 
