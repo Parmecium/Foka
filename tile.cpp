@@ -12,17 +12,17 @@ Tile::Tile(float x, float y, int type)
     switch(type)
     {
         case TILE_WALL_LEFT: case TILE_WALL_RIGHT:
-            this->coords.w = 100;
-            this->coords.h = 100;
+            this->coords.w = 150;
+            this->coords.h = 150;
             break;
         case TILE_WALL_UP: case TILE_WALL_DOWN:
-            this->coords.w = 100;
-            this->coords.h = 100;
+            this->coords.w = 150;
+            this->coords.h = 150;
             break;
         case TILE_WALL_DL: case TILE_WALL_DR:
         case TILE_WALL_UR: case TILE_WALL_UL:
-            this->coords.w = 100;
-            this->coords.h = 100;
+            this->coords.w = 150;
+            this->coords.h = 150;
             break;
         case TILE_DESK:
             this->coords.w = 50;
@@ -53,28 +53,28 @@ void Tile::loadTexture(void)
     switch(this->type)
     {
         case TILE_WALL_DOWN:
-            this->texture = loadModel("data/zid/zid1_d.png");
+            this->texture = loadModel("data/zid/zid2_d.png");
             break;
         case TILE_WALL_RIGHT:
-            this->texture = loadModel("data/zid/zid1_r.png");
+            this->texture = loadModel("data/zid/zid2_r.png");
             break;
         case TILE_WALL_UP:
-            this->texture = loadModel("data/zid/zid1_u.png");
+            this->texture = loadModel("data/zid/zid2_u.png");
             break;
         case TILE_WALL_LEFT:
-            this->texture = loadModel("data/zid/zid1_l.png");
+            this->texture = loadModel("data/zid/zid2_l.png");
             break;
         case TILE_WALL_DL:
-            this->texture = loadModel("data/zid/zid1_dl.png");
+            this->texture = loadModel("data/zid/zid2_dl.png");
             break;
         case TILE_WALL_DR:
-            this->texture = loadModel("data/zid/zid1_dr.png");
+            this->texture = loadModel("data/zid/zid2_dr.png");
             break;
         case TILE_WALL_UR:
-            this->texture = loadModel("data/zid/zid1_ur.png");
+            this->texture = loadModel("data/zid/zid2_ur.png");
             break;
         case TILE_WALL_UL:
-            this->texture = loadModel("data/zid/zid1_ul.png");
+            this->texture = loadModel("data/zid/zid2_ul.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic_bloody.png");
