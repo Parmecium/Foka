@@ -99,7 +99,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 1,15,18,22,24
+    this->bgImg = loadModel("data/pozadine/poz18.png"); //dobre pozadine su 1,15,18,22,24
 }
 
 void Map::setCamera(void)
