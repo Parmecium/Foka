@@ -86,6 +86,7 @@ Map::~Map(void)
     for(i = 0; i < this->enemy.size(); i++)
         delete this->enemy[i];
     delete timer;
+    delete music;
 }
 
 void Map::loadTexture(void)
@@ -100,6 +101,13 @@ void Map::loadTexture(void)
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
     this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 1,15,18,22,24
+}
+
+void Map::loadMusic(void)
+{
+    Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
+    music = Mix_LoadMUS("data/muzika/theme_u_mapi_5.mp3");
+    Mix_PlayMusic(music, -1);
 }
 
 void Map::setCamera(void)

@@ -18,6 +18,7 @@ class Map
         SDL_Rect camera;
         SDL_Rect bgCoords;
         unsigned int bgImg;
+        Mix_Music *music;
 
     public:
         Map(float width, float height, float sWidth, float sHeight);
@@ -26,6 +27,7 @@ class Map
 
         void setCamera(void);
         void loadTexture(void);
+        void loadMusic(void);
         void renderBackground(void);
         void resized(void);
         void logic(void);
