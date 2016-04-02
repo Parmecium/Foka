@@ -30,7 +30,7 @@ class Map
         void loadMusic(void);
         void renderBackground(void);
         void resized(void);
-        void logic(void);
+        bool logic(void);
         void render(void);
 
         float getWidth(void) { return this->width; }
