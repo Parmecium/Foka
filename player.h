@@ -70,6 +70,8 @@ class Player
         SDL_Rect getCollCoords(void);
         int getTextureIncrement(void) { return this->textureIncrement; };
         void setTextureIncrement(int value) { this->textureIncrement = value; };
+
+        bool isAlive(void) { return (this->helth > 0 ? true : false); }
 };
 
 #endif  // PLAYER_H
