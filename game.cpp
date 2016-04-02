@@ -194,6 +194,7 @@ void Game::mainLoop(void)
 
     // Initialize texture
     this->map->loadTexture();
+    this->map->loadMusic();
 
     // Main loop
     std::cout << "Main loop is started\n";
