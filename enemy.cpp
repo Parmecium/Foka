@@ -72,9 +72,9 @@ void Enemy::loadTexture()
     switch(type)
     {
         case ENEMY_TYPE_VOODOO:
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/indi/indi_red1.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/indi/indi_red2.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/indi/indi_red3.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/ja/ja1.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/ja/ja2.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/ja/ja3.png");
             for(i = 0; i < 3; i++)
             {
                 this->texture.up[i] = texture.down[i];
@@ -83,7 +83,7 @@ void Enemy::loadTexture()
             }
             break;
         case ENEMY_TYPE_BOZA:
-            Player::loadTexture("red/red");
+            Player::loadTexture("skelet/skelet");
             break;
     }
 
