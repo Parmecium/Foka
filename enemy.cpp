@@ -72,9 +72,9 @@ void Enemy::loadTexture()
     switch(type)
     {
         case ENEMY_TYPE_VOODOO:
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/ja/ja1.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/ja/ja2.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/ja/ja3.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/guts/guts1.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/guts/guts2.png");
+            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/guts/guts3.png");
             for(i = 0; i < 3; i++)
             {
                 this->texture.up[i] = texture.down[i];
