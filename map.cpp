@@ -22,7 +22,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
     player = new Player(190, 195, timer, 90.0, 135.0, 90);
-    player2 = new Player(220, 195, timer, 90.0, 120.0, 90);
+    player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer);
@@ -92,15 +92,15 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("stone_guy/stone_guy");
+    player->loadTexture("smudge/smudge");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("who/who");
+    player2->loadTexture("vila/vila");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 1,15,18,22,24
+    this->bgImg = loadModel("data/pozadine/poz18.png"); //dobre pozadine su 1,15,18,22,24
 }
 
 void Map::loadMusic(void)
