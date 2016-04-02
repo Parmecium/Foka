@@ -206,6 +206,7 @@ void Player::collision(Player *player)
             this->coords.y = player->getY() + player->getHeight();
         else if(player->getY() >= tmpCoords.y + tmpCoords.h)
             this->coords.y = player->getY() - this->coords.h;
+        this->helth--;
     }
 }
 

@@ -204,7 +204,10 @@ void Game::mainLoop(void)
         this->events(event);
 
         // Logic
-        this->map->logic();
+        if(isRunning)
+            this->isRunning = this->map->logic();
+        else
+            this->map->logic();
 
         // Render
         glClear(GL_COLOR_BUFFER_BIT);

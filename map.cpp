@@ -127,7 +127,7 @@ void Map::setCamera(void)
         this->camera.y = this->width - this->camera.h;
 }
 
-void Map::logic(void)
+bool Map::logic(void)
 {
     int i, j;
     player->move();
@@ -138,8 +138,8 @@ void Map::logic(void)
     {
         this->enemy[i]->seeLogic(player);
         this->enemy[i]->move();
-        //this->player->collision(this->enemy[i]);
-        this->enemy[i]->collision(player);
+        this->player->collision(this->enemy[i]);
+        //this->enemy[i]->collision(player);
     }
     for(i = 0; i < tile.size(); i++)
     {
@@ -150,6 +150,8 @@ void Map::logic(void)
     }
     this->setCamera();
     this->timer->tick();
+
+    return this->player->isAlive();
 }
 
 void Map::resized(void)
