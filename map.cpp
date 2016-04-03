@@ -69,8 +69,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     */
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(390, 510, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
-    this->enemy.push_back(new Enemy(490, 610, timer, ENEMY_TYPE_BOZA));
+    this->enemy.push_back(new Enemy(490, 610, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
 
@@ -92,7 +92,7 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("smudge/smudge");
+    player->loadTexture("stone_guy/stone_guy");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("vila/vila");
     inventory->loadTexture();
