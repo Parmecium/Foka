@@ -13,11 +13,16 @@ class FString
         std::vector<unsigned int> textures;
 
     public:
-        FString(char *str);
+        FString(char *str, int x = 0, int y = 0, int w = 0, int h = 0);
         ~FString(void);
 
         void render(void);
         void loadTexture(void);
+
+        FString &operator = (const FString &rhs);
+
+        char *c_str(void) { return this->str; }
+        int leanght(void) { return this->strLen; }
 };
 
 #endif  // FSTRING_H
