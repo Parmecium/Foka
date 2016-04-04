@@ -8,10 +8,6 @@ class Menu
     private:
         char *option[MENU_COUNT_OPTIONS];
         int state;
-        FTSimpleLayout = 0;
-        FTLayout layoutak = { &simpleLayout, NULL };
-        FTFont *font;
-        FTPixmapFont *infoFont;
 
     public:
         Menu(void);
