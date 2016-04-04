@@ -24,7 +24,7 @@ void FString::loadTexture(void)
 
     while(*(tmp++) != '\0')
     {
-        this->textures.push_back(loadModel("/slova/slova/" + (char)tmp + ".png"));
+        //this->textures.push_back(loadModel("/slova/slova/" + (char)tmp + ".png"));
     }
 }
 

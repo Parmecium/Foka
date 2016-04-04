@@ -17,7 +17,8 @@ SRC =  \
 	tile.cpp \
 	enemy.cpp \
 	inventory.cpp \
-	fstring.cpp
+	fstring.cpp \
+	menu.cpp
 
 OBJS = $(SRC:.cpp=.o)
 OBJS_W = $(SRC:.cpp=.wo)
