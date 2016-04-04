@@ -1,23 +1,31 @@
 #include "main.h"
 #include "functions.h"
 #include "timer.h"
+#include "fstring.h"
 #include "menu.h"
 
 Menu::Menu(void)
 {
+    int i;
+
     this->state = 0;
-    this->option[0] = "Signle Player";
-    this->option[1] = "Multi Player";
-    this->option[2] = "Options";
-    this->option[3] = "Exit";
+    this->option.push_back(FString("Signle Player"));
+    this->option.push_back(FString("Multi Player"));
+    this->option.push_back(FString("Options"));
+    this->option.push_back(FString("Exit"));
+
+    for(i = 0; i < option.size(); i++)
+        option[i].loadTexture();
 }
 
 Menu::~Menu(void)
 {
-    delete font;
-    delete infoFont;
 }
 
-void render(void)
+void Menu::render(void)
 {
+    int i;
+
+    for(i = 0; i < this->option.size(); i++)
+        this->option[i].render();
 }

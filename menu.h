@@ -1,12 +1,10 @@
 #ifndef MENU_H
 #define MENU_H
 
-#define MENU_COUNT_OPTIONS          4
-
 class Menu
 {
     private:
-        char *option[MENU_COUNT_OPTIONS];
+        std::vector<FString> option;
         int state;
 
     public:
