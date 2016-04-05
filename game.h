@@ -12,6 +12,7 @@ class Game
         SDL_Event event;
         Timer *timer;
         Map *map;
+        Menu *mainMenu;
 
         void events(SDL_Event event);
         void init(void);

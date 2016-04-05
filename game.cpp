@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "timer.h"
 #include "splash.h"
-//#include "menu.h"
+#include "fstring.h"
+#include "menu.h"
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"
@@ -19,6 +20,7 @@ Game::Game(void)
     this->caption = "Merso the Pig";
     this->isRunning = true;
     this->fps = 10;
+    this->mainMenu = new Menu();
     this->map = new Map(5000, 5000, this->width, this->height);
 }
 
@@ -191,6 +193,8 @@ void Game::mainLoop(void)
 
     // Splash screen
     this->splash();
+
+    this->mainMenu->menuLoop();
 
     // Initialize texture
     this->map->loadTexture();
