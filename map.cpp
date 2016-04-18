@@ -94,7 +94,7 @@ void Map::loadTexture(void)
     int i;
     player->loadTexture("stone_guy/stone_guy");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("vila/vila");
+    player2->loadTexture("who/who");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
