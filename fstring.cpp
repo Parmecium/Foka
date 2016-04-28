@@ -4,8 +4,8 @@
 
 FString::FString(char *str, int x, int y, int w, int h)
 {
-    this->str = str;
-    for(this->strLen = 0; *str != '\0'; this->strLen++, str++);
+    this->strLen = strlen(str);
+    this->str = (char *)malloc(this->strLen + 1);
 
     this->coords.x = x;
     this->coords.y = y;
@@ -19,12 +19,17 @@ FString::~FString(void)
 
 void FString::loadTexture(void)
 {
-    char *tmp;
-    tmp = this->str;
+    std::string tmp;
+    char *str;
 
-    while(*(tmp++) != '\0')
+    for(str = this->str; str != '\0'; str++)
     {
-        //this->textures.push_back(loadModel("/slova/slova/" + (char)tmp + ".png"));
+        tmp = std::string("data/font/");
+        tmp.append(1, (char)(*str));
+        tmp += std::string(".png");
+        if(tmp == ' ')
+            continue;
+        this->textures.push_back(loadModel(tmp));
     }
 }
 
