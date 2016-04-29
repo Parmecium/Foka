@@ -51,9 +51,11 @@ void FString::render(void)
     int y = this->coords.y;
     //int w = FSTRING_CHAR_WIDTH;
     //int h = FSTRING_CHAR_HEIGHT;
-    int w = this->strLen / FSTRING_CHAR_WIDTH;
-    int h = this->strLen / FSTRING_CHAR_HEIGHT;
+    //int w = this->coords.w / FSTRING_CHAR_WIDTH;
+    int w = this->coords.w / (this->strLen + 1);
+    int h = this->coords.h;
 
+    glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     for(i = 0; i < textures.size(); i++)
     {
@@ -64,8 +66,8 @@ void FString::render(void)
             glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
             glTexCoord2d(0, 0); glVertex2f(x, y + h);
         glEnd();
-        x += w;
-        y += h;
+        x += w + 5;
+        //y += h;
     }
 
     glDisable(GL_TEXTURE_2D);
