@@ -3,9 +3,9 @@
 
 #define MENU_NUM_OF_CHOICES     3
 
-#define MENU_SINGLEPLAYER       1
-#define MENU_MULTIPLAYER        2
-#define MENU_EXIT               3
+#define MENU_SINGLEPLAYER       0
+#define MENU_MULTIPLAYER        1
+#define MENU_EXIT               2
 
 class Menu
 {
