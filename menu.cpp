@@ -4,11 +4,14 @@
 #include "fstring.h"
 #include "menu.h"
 
-Menu::Menu(void)
+Menu::Menu(int width, int height)
 {
     int i;
 
-    this->state = 1;
+    this->width = width;
+    this->height = height;
+
+    this->state = 0;
     this->option[MENU_SINGLEPLAYER] = new FString("SINGLE PLAYER");
     this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER");
     this->option[MENU_EXIT] = new FString("EXIT");
@@ -82,6 +85,11 @@ void Menu::render(void)
 {
     int i;
 
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+    glOrtho(0, this->width, 0, this->height, -1, 1);
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         this->option[i]->render();
+    glPopMatrix();
+    SDL_GL_SwapBuffers();
 }

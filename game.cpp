@@ -20,7 +20,7 @@ Game::Game(void)
     this->caption = "Merso the Pig";
     this->isRunning = true;
     this->fps = 10;
-    this->mainMenu = new Menu();
+    this->mainMenu = new Menu(width, height);
     this->map = new Map(5000, 5000, this->width, this->height);
 }
 
