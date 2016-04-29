@@ -1,39 +1,95 @@
 #include "main.h"
 #include "functions.h"
 #include "timer.h"
+#include "fstring.h"
 #include "menu.h"
 
-Menu::Menu(void)
+Menu::Menu(int width, int height)
 {
-    this->state = 0;
-    this->option[0] = "Signle Player";
-    this->option[1] = "Multi Player";
-    this->option[2] = "Options";
-    this->option[3] = "Exit";
+    int i;
 
-    font = new FTPixmapFont("data/SDS_6x6.ttf");
-    infoFont = new FTPixmapfont("data/SDS_6x6.ttf");
-    infoFont->FaceSize(18);
+    this->width = width;
+    this->height = height;
+
+    this->state = 0;
+    this->option[MENU_SINGLEPLAYER] = new FString("SINGLE PLAYER", 10, this->height - 100, 500, 100);
+    this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER", 10, this->height - 250, 500, 100);
+    this->option[MENU_EXIT] = new FString("EXIT", 10, this->height - 400, 500, 100);
+
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+        option[i]->loadTexture();
 }
 
 Menu::~Menu(void)
 {
-    delete font;
-    delete infoFont;
+    int i;
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+        delete option[i];
 }
 
-void render(void)
+int Menu::events(SDL_Event event)
 {
-    FTBBox bbox = font->BBox("TEST");
-    float x1 = bbox.Lower().Xf();
-    float x2 = bbox.Upper().Xf();
-    float y1 = bbox.Lower().Yf();
-    float y2 = bbox.Upper().Yf();
+    while(SDL_PollEvent(&event))
+    {
+        if(event.type == SDL_QUIT)
+            return MENU_EXIT;
 
-    glBegin(GL_LINE_LOOP);
-        glVertex2f(x1, y1);
-        glVertex2f(x1, y2);
-        glVertex2f(x2, y2);
-        glVertex2f(x2, y1);
-    glEnd();
+        switch(event.type)
+        {
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym)
+                {
+                    case SDLK_DOWN:
+                        if(++this->state > MENU_NUM_OF_CHOICES - 1)
+                            this->state = 0;
+                        break;
+                    case SDLK_UP:
+                        if(--this->state < 0)
+                            this->state = MENU_NUM_OF_CHOICES - 1;
+                        break;
+                    case SDLK_RETURN:
+                        return state + 1;
+                        break;
+                }
+                break;
+        }
+    }
+
+    return 0;
+}
+
+int Menu::mainLoop(void)
+{
+    SDL_Event event;
+    int result = 0;
+
+    while(result == 0)
+    {
+        /*
+         * Events
+         */
+        result = this->events(event);
+
+        /*
+         * Render
+         */
+        this->render();
+
+        SDL_Delay(1000 / 30);
+    }
+
+    return result;
+}
+
+void Menu::render(void)
+{
+    int i;
+
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+    glOrtho(0, this->width, 0, this->height, -1, 1);
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+        this->option[i]->render();
+    glPopMatrix();
+    SDL_GL_SwapBuffers();
 }
