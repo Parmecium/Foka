@@ -55,7 +55,7 @@ void FString::render(void)
     int w = this->coords.w / (this->strLen + 1);
     int h = this->coords.h;
 
-    glColor4ub(255, 255, 255, 255);
+    //glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     for(i = 0; i < textures.size(); i++)
     {

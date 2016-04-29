@@ -93,7 +93,13 @@ void Menu::render(void)
     glPushMatrix();
     glOrtho(0, this->width, 0, this->height, -1, 1);
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+    {
+        if(i == this->state)
+            glColor4ub(255, 0, 0, 255);
+        else
+            glColor4ub(255, 255, 255, 255);
         this->option[i]->render();
+    }
     glPopMatrix();
     SDL_GL_SwapBuffers();
 }
