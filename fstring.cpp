@@ -6,6 +6,7 @@ FString::FString(char *str, int x, int y, int w, int h)
 {
     this->strLen = strlen(str);
     this->str = (char *)malloc(this->strLen + 1);
+    strcpy(this->str, str);
 
     this->coords.x = x;
     this->coords.y = y;
@@ -22,9 +23,9 @@ void FString::loadTexture(void)
     std::string tmp;
     char *str;
 
-    for(str = this->str; str != '\0'; str++)
+    for(str = this->str; *str != '\0'; str++)
     {
-        if((char)(*str) == ' ')
+        if(((char)(*str)) == ' ')
             continue;
         tmp = std::string("data/font/");
         tmp.append(1, (char)(*str));

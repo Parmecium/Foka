@@ -37,15 +37,15 @@ int Menu::events(SDL_Event event)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_DOWN:
-                        if(++this->state > MENU_NUM_OF_CHOICES)
-                            this->state = 1;
+                        if(++this->state > MENU_NUM_OF_CHOICES - 1)
+                            this->state = 0;
                         break;
                     case SDLK_UP:
-                        if(--this->state <= 0)
-                            this->state = MENU_NUM_OF_CHOICES;
+                        if(--this->state < 0)
+                            this->state = MENU_NUM_OF_CHOICES - 1;
                         break;
                     case SDLK_RETURN:
-                        return state;
+                        return state + 1;
                         break;
                 }
                 break;
@@ -58,7 +58,7 @@ int Menu::events(SDL_Event event)
 int Menu::mainLoop(void)
 {
     SDL_Event event;
-    int result;
+    int result = 0;
 
     while(result == 0)
     {
