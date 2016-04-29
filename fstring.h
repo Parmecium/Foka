@@ -22,7 +22,7 @@ class FString
         FString &operator = (const FString &rhs);
 
         char *c_str(void) { return this->str; }
-        int leanght(void) { return this->strLen; }
+        int length(void) { return this->strLen; }
 };
 
 #endif  // FSTRING_H

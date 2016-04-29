@@ -24,11 +24,11 @@ void FString::loadTexture(void)
 
     for(str = this->str; str != '\0'; str++)
     {
+        if((char)(*str) == ' ')
+            continue;
         tmp = std::string("data/font/");
         tmp.append(1, (char)(*str));
         tmp += std::string(".png");
-        if(tmp == ' ')
-            continue;
         this->textures.push_back(loadModel(tmp));
     }
 }

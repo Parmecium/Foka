@@ -8,8 +8,8 @@ Menu::Menu(void)
 {
     int i;
 
-    this->state = 0;
-    this->option[MENU_SIGNLEPLAYER] = new FString("SINGLE PLAYER");
+    this->state = 1;
+    this->option[MENU_SINGLEPLAYER] = new FString("SINGLE PLAYER");
     this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER");
     this->option[MENU_EXIT] = new FString("EXIT");
 
@@ -19,7 +19,8 @@ Menu::Menu(void)
 
 Menu::~Menu(void)
 {
-    for(i = 0; i < MENU_NUM_OF_CHOIVES; i++)
+    int i;
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         delete option[i];
 }
 
@@ -35,43 +36,52 @@ int Menu::events(SDL_Event event)
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {
-                    case SDL_DOWN:
-                        if(++this->state >= MENU_NUM_OF_CHOICES)
-                            this->state = 0;
+                    case SDLK_DOWN:
+                        if(++this->state > MENU_NUM_OF_CHOICES)
+                            this->state = 1;
                         break;
-                    case SDL_UP:
-                        if(--this->state < 0)
-                            this->state = MENU_NUM_OF_CHOICES - 1;
+                    case SDLK_UP:
+                        if(--this->state <= 0)
+                            this->state = MENU_NUM_OF_CHOICES;
                         break;
-                    case SDL_RETURN:
+                    case SDLK_RETURN:
                         return state;
                         break;
                 }
                 break;
         }
     }
+
+    return 0;
 }
 
 int Menu::mainLoop(void)
 {
-    while(1)
+    SDL_Event event;
+    int result;
+
+    while(result == 0)
     {
         /*
          * Events
          */
-        this->events(event);
+        result = this->events(event);
 
         /*
          * Render
          */
         this->render();
+
+        SDL_Delay(1000 / 30);
     }
+
+    return result;
 }
 
 void Menu::render(void)
 {
     int i;
 
-    for(i = 0; i < this->option->length(); i++)
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         this->option[i]->render();
 }
