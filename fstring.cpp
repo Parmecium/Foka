@@ -16,6 +16,7 @@ FString::FString(char *str, int x, int y, int w, int h)
 
 FString::~FString(void)
 {
+    free(str);
 }
 
 void FString::loadTexture(void)
