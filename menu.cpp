@@ -12,9 +12,9 @@ Menu::Menu(int width, int height)
     this->height = height;
 
     this->state = 0;
-    this->option[MENU_SINGLEPLAYER] = new FString("SINGLE PLAYER");
-    this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER");
-    this->option[MENU_EXIT] = new FString("EXIT");
+    this->option[MENU_SINGLEPLAYER] = new FString("SINGLE PLAYER", 10, this->height - 100, 500, 100);
+    this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER", 10, this->height - 250, 500, 100);
+    this->option[MENU_EXIT] = new FString("EXIT", 10, this->height - 400, 500, 100);
 
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         option[i]->loadTexture();

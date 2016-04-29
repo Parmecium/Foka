@@ -1,8 +1,8 @@
 #ifndef FSTRING_H
 #define FSTRING_H
 
-#define FSTRING_CHAR_WIDTH      10
-#define FSTRING_CHAR_HEIGHT     10
+#define FSTRING_CHAR_WIDTH      50
+#define FSTRING_CHAR_HEIGHT     50
 
 class FString
 {
