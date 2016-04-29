@@ -48,7 +48,7 @@ int Menu::events(SDL_Event event)
                             this->state = MENU_NUM_OF_CHOICES - 1;
                         break;
                     case SDLK_RETURN:
-                        return state + 1;
+                        return state;
                         break;
                 }
                 break;

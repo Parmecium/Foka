@@ -194,9 +194,12 @@ void Game::mainLoop(void)
     // Splash screen
     this->splash();
 
-    this->mainMenu->mainLoop();
+    if(this->mainMenu->mainLoop() == MENU_EXIT)
+        isRunning = false;
 
     // Initialize texture
+    if(!isRunning)
+        return;
     this->map->loadTexture();
     this->map->loadMusic();
 
