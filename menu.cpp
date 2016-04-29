@@ -16,8 +16,8 @@ Menu::Menu(int width, int height)
     this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER", 10, this->height - 250, 500, 100);
     this->option[MENU_EXIT] = new FString("EXIT", 10, this->height - 400, 500, 100);
 
-    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
-        option[i]->loadTexture();
+    //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+    //    option[i]->loadTexture();
 }
 
 Menu::~Menu(void)
@@ -62,6 +62,10 @@ int Menu::mainLoop(void)
 {
     SDL_Event event;
     int result = 0;
+    int i;
+
+    for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
+        this->option[i]->loadTexture();
 
     while(result == 0)
     {
