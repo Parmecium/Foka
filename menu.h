@@ -10,10 +10,10 @@
 class Menu
 {
     private:
-        FString option[NUM_OF_CHOICES];
+        FString *option[NUM_OF_CHOICES];
         int state;
 
-        int Menu::events(SDL_PollEvent event);
+        int events(SDL_Event event);
 
     public:
         Menu(void);

@@ -9,16 +9,18 @@ Menu::Menu(void)
     int i;
 
     this->state = 0;
-    this->option[MENU_SIGNLEPLAYER] = FString("SINGLE PLAYER");
-    this->option[MENU_MULTIPLAYER] = FString("MULTI PLAYER");
-    this->option[MENU_EXIT] = FString("EXIT");
+    this->option[MENU_SIGNLEPLAYER] = new FString("SINGLE PLAYER");
+    this->option[MENU_MULTIPLAYER] = new FString("MULTI PLAYER");
+    this->option[MENU_EXIT] = new FString("EXIT");
 
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
-        option[i].loadTexture();
+        option[i]->loadTexture();
 }
 
 Menu::~Menu(void)
 {
+    for(i = 0; i < MENU_NUM_OF_CHOIVES; i++)
+        delete option[i];
 }
 
 int Menu::events(SDL_Event event)
@@ -34,12 +36,12 @@ int Menu::events(SDL_Event event)
                 switch(event.key.keysym.sym)
                 {
                     case SDL_DOWN:
-                        if(++this->state >= MENU_NUM_OF_OPTIONS)
+                        if(++this->state >= MENU_NUM_OF_CHOICES)
                             this->state = 0;
                         break;
                     case SDL_UP:
                         if(--this->state < 0)
-                            this->state = MENU_NUM_OF_OPTIONS - 1;
+                            this->state = MENU_NUM_OF_CHOICES - 1;
                         break;
                     case SDL_RETURN:
                         return state;
@@ -70,6 +72,6 @@ void Menu::render(void)
 {
     int i;
 
-    for(i = 0; i < this->option.size(); i++)
-        this->option[i].render();
+    for(i = 0; i < this->option->length(); i++)
+        this->option[i]->render();
 }
