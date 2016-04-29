@@ -1,24 +1,29 @@
 #ifndef MENU_H
 #define MENU_H
 
-#define MENU_COUNT_OPTIONS          4
+#define MENU_NUM_OF_CHOICES     3
+
+#define MENU_SINGLEPLAYER       0
+#define MENU_MULTIPLAYER        1
+#define MENU_EXIT               2
 
 class Menu
 {
     private:
-        char *option[MENU_COUNT_OPTIONS];
+        FString *option[MENU_NUM_OF_CHOICES];
         int state;
-        FTSimpleLayout = 0;
-        FTLayout layoutak = { &simpleLayout, NULL };
-        FTFont *font;
-        FTPixmapFont *infoFont;
+        int width;
+        int height;
+
+        int events(SDL_Event event);
 
     public:
-        Menu(void);
+        Menu(int width, int height);
         ~Menu(void);
 
         void loadTexture(void);
         void logic(void);
+        int mainLoop(void);
         void render(void);
 };
 
