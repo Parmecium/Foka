@@ -194,7 +194,7 @@ void Game::mainLoop(void)
     // Splash screen
     this->splash();
 
-    this->mainMenu->menuLoop();
+    this->mainMenu->mainLoop();
 
     // Initialize texture
     this->map->loadTexture();

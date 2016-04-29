@@ -3,14 +3,14 @@
 
 #define MENU_NUM_OF_CHOICES     3
 
-#define MENU_SINGLEPLAYER       0
-#define MENU_MULTIPLAYER        1
-#define MENU_EXIT               2
+#define MENU_SINGLEPLAYER       1
+#define MENU_MULTIPLAYER        2
+#define MENU_EXIT               3
 
 class Menu
 {
     private:
-        FString *option[NUM_OF_CHOICES];
+        FString *option[MENU_NUM_OF_CHOICES];
         int state;
 
         int events(SDL_Event event);
@@ -21,7 +21,7 @@ class Menu
 
         void loadTexture(void);
         void logic(void);
-        void mainLoop(void);
+        int mainLoop(void);
         void render(void);
 };
 
