@@ -1,11 +1,11 @@
 #ifndef MENU_H
 #define MENU_H
 
-#define MENU_NUM_OF_CHOICES     3
+#define MENU_NUM_OF_CHOICES     2
 
 #define MENU_SINGLEPLAYER       0
-#define MENU_MULTIPLAYER        1
-#define MENU_EXIT               2
+//#define MENU_MULTIPLAYER        1
+#define MENU_EXIT               1
 
 class Menu
 {
