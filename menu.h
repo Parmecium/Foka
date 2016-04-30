@@ -14,6 +14,7 @@ class Menu
         int state;
         int width;
         int height;
+        unsigned int background;
 
         int events(SDL_Event event);
 
