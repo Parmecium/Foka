@@ -41,6 +41,11 @@ int Menu::events(SDL_Event event)
             case SDL_VIDEORESIZE:
                 this->width = event.resize.w;
                 this->height = event.resize.h;
+                /* samo privremeno, treba promeniti */
+                this->option[0]->setX(this->width / 2 - 250);
+                this->option[0]->setY(this->height / 2 + 25);
+                this->option[1]->setX(this->width / 2 - 200);
+                this->option[1]->setY(this->height / 2 - 125);
                 break;
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -72,7 +77,7 @@ int Menu::mainLoop(void)
 
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         this->option[i]->loadTexture();
-    this->background = loadModel("data/cover/cover_blur_plus_plus.png");
+    //this->background = loadModel("data/cover/cover_blur_plus_plus.png");
 
     while(result < 0)
     {
@@ -103,6 +108,7 @@ void Menu::render(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
     glOrtho(0, this->width, 0, this->height, -1, 1);
+    /*
     glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, this->background);
@@ -113,6 +119,7 @@ void Menu::render(void)
         glTexCoord2d(0, 0); glVertex2f(x, h);
     glEnd();
     glDisable(GL_TEXTURE_2D);
+    */
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     {
         if(i == this->state)
