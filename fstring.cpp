@@ -23,8 +23,6 @@ void FString::loadTexture(void)
 {
     std::string tmp;
     char *str;
-    int iunit = 0;
-    unsigned int texture;
 
     for(str = this->str; *str != '\0'; str++)
     {
@@ -33,9 +31,7 @@ void FString::loadTexture(void)
         tmp = std::string("data/font/");
         tmp.append(1, (char)(*str));
         tmp += std::string(".png");
-        texture = loadModel(tmp);
-        this->textures.push_back(texture);
-        std::cout << tmp << "\t" << texture << std::endl;
+        this->textures.push_back(loadModel(tmp));
     }
 }
 
@@ -59,7 +55,7 @@ void FString::render(void)
     int w = this->coords.w / (this->strLen + 1);
     int h = this->coords.h;
 
-    glColor4ub(255, 255, 255, 255);
+    //glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     for(i = 0; i < textures.size(); i++)
     {
