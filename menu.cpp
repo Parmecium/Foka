@@ -72,7 +72,7 @@ int Menu::mainLoop(void)
 
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         this->option[i]->loadTexture();
-    this->background = loadModel("data/cover/cover_blur_plus_plus.png");
+    //this->background = loadModel("data/cover/cover_blur_plus_plus.png");
 
     while(result < 0)
     {
@@ -103,6 +103,7 @@ void Menu::render(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
     glOrtho(0, this->width, 0, this->height, -1, 1);
+    /*
     glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, this->background);
@@ -113,6 +114,7 @@ void Menu::render(void)
         glTexCoord2d(0, 0); glVertex2f(x, h);
     glEnd();
     glDisable(GL_TEXTURE_2D);
+    */
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     {
         if(i == this->state)
