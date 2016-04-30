@@ -121,6 +121,7 @@ void Game::events(SDL_Event event)
         {
             case SDL_VIDEORESIZE:
                 this->resize(event.resize.w, event.resize.h);
+                break;
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {
