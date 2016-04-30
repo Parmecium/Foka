@@ -56,9 +56,9 @@ void Game::init(void)
     SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
 
     // Specific the clear color
-    //glClearColor(0, 0, 0, 1);   // Black color
+    glClearColor(0, 0, 0, 1);   // Black color
     //glClearColor(0.2, 0.06, 0.06, 1);  // Braon color
-    glClearColor(0.2, 0.06, 0.1, 1); // Bordo
+    //glClearColor(0.2, 0.06, 0.1, 1); // Bordo
     //glClearColor(0.2, 0.1, 0.1, 1); // Braon izbledela
 
 
