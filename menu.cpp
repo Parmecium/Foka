@@ -41,6 +41,11 @@ int Menu::events(SDL_Event event)
             case SDL_VIDEORESIZE:
                 this->width = event.resize.w;
                 this->height = event.resize.h;
+                /* samo privremeno, treba promeniti */
+                this->option[0]->setX(this->width / 2 - 250);
+                this->option[0]->setY(this->height / 2 + 25);
+                this->option[1]->setX(this->width / 2 - 200);
+                this->option[1]->setY(this->height / 2 - 125);
                 break;
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
