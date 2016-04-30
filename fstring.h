@@ -23,6 +23,8 @@ class FString
 
         char *c_str(void) { return this->str; }
         int length(void) { return this->strLen; }
+        void setX(int value) { this->coords.x = value; }
+        void setY(int value) { this->coords.y = value; }
 };
 
 #endif  // FSTRING_H
