@@ -15,8 +15,8 @@ Menu::Menu(int width, int height)
     this->state = 0;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[MENU_SINGLEPLAYER] = new FString("START", tmpW - 250, tmpH + 25, 500, 100);
-    this->option[MENU_EXIT] = new FString("EXIT", tmpW - 200, tmpH - 125, 400, 100);
+    this->option[MENU_SINGLEPLAYER] = new FString("START", tmpW - 187.5, tmpH + 100, 375, 75);
+    this->option[MENU_EXIT] = new FString("EXIT", tmpW - 150, tmpH - 25, 300, 75);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -44,10 +44,10 @@ int Menu::events(SDL_Event event)
                 SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
                 glViewport(0, 0, this->width, this->height);
                 /* samo privremeno, treba promeniti */
-                this->option[0]->setX(this->width / 2 - 250);
-                this->option[0]->setY(this->height / 2 + 25);
-                this->option[1]->setX(this->width / 2 - 200);
-                this->option[1]->setY(this->height / 2 - 125);
+                this->option[0]->setX(this->width / 2 - 187.5);
+                this->option[0]->setY(this->height / 2 + 100);
+                this->option[1]->setX(this->width / 2 - 150);
+                this->option[1]->setY(this->height / 2 - 25);
                 break;
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
