@@ -107,7 +107,7 @@ void Map::loadMusic(void)
 {
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     music = Mix_LoadMUS("data/muzika/menu_theme.mp3");
-    Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+    Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
     Mix_PlayMusic(music, -1);
 }
 
