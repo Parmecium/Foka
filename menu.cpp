@@ -81,8 +81,8 @@ int Menu::mainLoop(void)
         this->option[i]->loadTexture();
     //this->background = loadModel("data/cover/cover_blur_plus_plus.png");
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
-    music = Mix_LoadMUS("data/muzika/full_menu_theme.mp3");
-    Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+    music = Mix_LoadMUS("data/muzika/menu.mp3");
+    Mix_VolumeMusic(MIX_MAX_VOLUME);
     Mix_PlayMusic(music, -1);
 
     while(result < 0)
