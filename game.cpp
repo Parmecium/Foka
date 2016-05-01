@@ -17,7 +17,7 @@ Game::Game(void)
     this->height = 768;
     //this->width = 1200;
     //this->height = 900;
-    this->caption = "Merso the Pig";
+    this->caption = "Mersu the Pig";
     this->isRunning = true;
     this->fps = 10;
     this->mainMenu = new Menu(width, height);
