@@ -20,7 +20,7 @@ Game::Game(void)
     this->caption = "Mersu the Pig";
     this->isRunning = true;
     this->fps = 10;
-    this->mainMenu = new Menu(width, height);
+    this->mainMenu = new Menu(this->width, this->height);
     this->map = new Map(5000, 5000, this->width, this->height);
 }
 
@@ -97,13 +97,14 @@ void Game::splash(void)
     delete splash;
 }
 
-void Game::resize(float width, float height)
+void Game::resize(int width, int height)
 {
     this->width = width;
     this->height = height;
     this->map->setSWidth(this->width);
     this->map->setSHeight(this->height);
     this->map->resized();
+    this->mainMenu->resize(this->width, this->height);
     SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
     glViewport(0, 0, this->width, this->height);
 }
@@ -195,14 +196,16 @@ void Game::mainLoop(void)
     // Splash screen
     this->splash();
 
-    if(this->mainMenu->mainLoop() == MENU_EXIT)
+    if(this->mainMenu->mainLoop(&this->width, &this->height) == MENU_EXIT)
+    {
         isRunning = false;
+        return;
+    }
 
     // Initialize texture
-    if(!isRunning)
-        return;
     this->map->loadTexture();
     this->map->loadMusic();
+    this->resize(this->width, this->height);
 
     // Main loop
     std::cout << "Main loop is started\n";

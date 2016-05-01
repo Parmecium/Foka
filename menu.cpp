@@ -39,15 +39,9 @@ int Menu::events(SDL_Event event)
         switch(event.type)
         {
             case SDL_VIDEORESIZE:
-                this->width = event.resize.w;
-                this->height = event.resize.h;
+                this->resize(event.resize.w, event.resize.h);
                 SDL_SetVideoMode(this->width, this->height, 32, SDL_OPENGL | SDL_RESIZABLE);
                 glViewport(0, 0, this->width, this->height);
-                /* samo privremeno, treba promeniti */
-                this->option[0]->setX(this->width / 2 - 187.5);
-                this->option[0]->setY(this->height / 2 + 100);
-                this->option[1]->setX(this->width / 2 - 150);
-                this->option[1]->setY(this->height / 2 - 25);
                 break;
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -71,7 +65,17 @@ int Menu::events(SDL_Event event)
     return -1;
 }
 
-int Menu::mainLoop(void)
+void Menu::resize(int width, int height)
+{
+    this->width = width;
+    this->height = height;
+    this->option[0]->setX(this->width / 2 - 187.5);
+    this->option[0]->setY(this->height / 2 + 100);
+    this->option[1]->setX(this->width / 2 - 150);
+    this->option[1]->setY(this->height / 2 - 25);
+}
+
+int Menu::mainLoop(int *width, int *height)
 {
     SDL_Event event;
     int result = -1;
@@ -99,6 +103,9 @@ int Menu::mainLoop(void)
 
         SDL_Delay(1000 / 30);
     }
+
+    *width = this->width;
+    *height = this->height;
 
     return result;
 }
