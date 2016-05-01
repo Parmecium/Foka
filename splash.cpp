@@ -137,7 +137,7 @@ void Splash::show(int *width, int *height)
         //j += 30.0f / 1000.0f;
         SDL_Delay(10);
         j += 10;
-        if(j > time - 3000)
+        if(j > time - 4500)
             break;
     }
 
