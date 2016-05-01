@@ -6,21 +6,22 @@
 class Splash
 {
     private:
-        float x;
-        float y;
-        float width;
-        float height;
-        float wWidth;
-        float wHeight;
+        int x;
+        int y;
+        int width;
+        int height;
+        int wWidth;
+        int wHeight;
         int time;
         Mix_Music *music;
         unsigned int texture[SPLASH_SPRITES_COUNT];
         void loadTexture(void);
+        void event(SDL_Event event);
 
     public:
-        Splash(float wWidth, float wHeight);
+        Splash(int wWidth, int wHeight);
         ~Splash(void);
-        void show(void);
+        void show(int *width, int *height);
 };
 
 #endif  // SPLASH_H
