@@ -4,8 +4,8 @@
 class Game
 {
     private:
-        float width;
-        float height;
+        int width;
+        int height;
         std::string caption;
         bool isRunning;
         int fps;
@@ -20,7 +20,7 @@ class Game
         //void loadMap(void);
         //void render(void);
         //void logic(void);
-        void resize(float width, float height);
+        void resize(int width, int height);
 
     public:
         Game(void);

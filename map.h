@@ -4,10 +4,10 @@
 class Map
 {
     private:
-        float width;
-        float height;
-        float sWidth;
-        float sHeight;
+        int width;
+        int height;
+        int sWidth;
+        int sHeight;
 
         Player *player;
         Player *player2;

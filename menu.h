@@ -24,7 +24,8 @@ class Menu
         ~Menu(void);
 
         void logic(void);
-        int mainLoop(void);
+        void resize(int width, int height);
+        int mainLoop(int *width, int *height);
         void render(void);
 };
 
