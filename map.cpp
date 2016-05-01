@@ -157,6 +157,8 @@ bool Map::logic(void)
 void Map::resized(void)
 {
     this->inventory->setScreenSize(this->sWidth, this->sHeight);
+    SDL_SetVideoMode(this->sWidth, this->sHeight, 32, SDL_OPENGL | SDL_RESIZABLE);
+    glViewport(0, 0, this->sWidth, this->sHeight);
 }
 
 void Map::render(void)
