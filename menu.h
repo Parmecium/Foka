@@ -15,6 +15,7 @@ class Menu
         int width;
         int height;
         unsigned int background;
+        Mix_Music *music;
 
         int events(SDL_Event event);
 
@@ -22,7 +23,6 @@ class Menu
         Menu(int width, int height);
         ~Menu(void);
 
-        void loadTexture(void);
         void logic(void);
         int mainLoop(void);
         void render(void);
