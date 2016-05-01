@@ -93,7 +93,7 @@ void Game::init(void)
 void Game::splash(void)
 {
     Splash *splash = new Splash(this->width, this->height);
-    splash->show();
+    splash->show(&this->width, &this->height);
     delete splash;
 }
 
@@ -195,7 +195,7 @@ void Game::mainLoop(void)
 
     // Splash screen
     this->splash();
-
+    this->mainMenu->resize(this->width, this->height);
     if(this->mainMenu->mainLoop(&this->width, &this->height) == MENU_EXIT)
     {
         isRunning = false;
