@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "splash.h"
 #include "fstring.h"
+#include "menuoption.h"
 #include "menu.h"
 #include "player.h"
 #include "tile.h"
