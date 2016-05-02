@@ -1,16 +1,16 @@
 #ifndef MENU_H
 #define MENU_H
 
-#define MENU_NUM_OF_CHOICES     2
+#define MENU_NUM_OF_CHOICES     3
 
-#define MENU_SINGLEPLAYER       0
-//#define MENU_MULTIPLAYER        1
-#define MENU_EXIT               1
+#define MENU_SINGLEPLAYER       1
+#define MENU_OPTIONS            0
+#define MENU_EXIT               2
 
 class Menu
 {
     private:
-        FString *option[MENU_NUM_OF_CHOICES];
+        MenuOption *option[MENU_NUM_OF_CHOICES];
         int state;
         int width;
         int height;
