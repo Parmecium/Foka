@@ -95,7 +95,7 @@ void Splash::show(int *width, int *height)
             SDL_GL_SwapBuffers();
             //SDL_Delay(3000 / 8);
             //SDL_Delay(30 / 1000);
-            SDL_Delay(10);
+            SDL_Delay(5);
         }
     }
 
