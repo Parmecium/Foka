@@ -28,6 +28,14 @@ void MenuOption::render(void)
     int w = this->coords.w;
     int h = this->coords.h;
 
+    if(this->selected)
+    {
+        x -= 10;
+        y -= 10;
+        w += 10;
+        h += 10;
+    }
+
     glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     if(this->selected)
