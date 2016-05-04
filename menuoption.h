@@ -16,6 +16,8 @@ class MenuOption
         void render(void);
 
         void setSelected(bool value) { this->selected = value; }
+        void setX(int value) { this->coords.x = value; }
+        void setY(int value) { this->coords.y = value; }
 };
 
 #endif  // MENU_OPTION_H
