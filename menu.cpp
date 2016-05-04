@@ -16,9 +16,9 @@ Menu::Menu(int width, int height)
     this->state = 1;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 100, 200, 200, 200);
-    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 300, 150, 150, 150);
-    this->option[MENU_EXIT] = new MenuOption(tmpW + 150, 150, 150, 150);
+    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 100, 250, 200, 200);
+    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 300, 50, 150, 150);
+    this->option[MENU_EXIT] = new MenuOption(tmpW + 150, 50, 150, 150);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -74,11 +74,11 @@ void Menu::resize(int width, int height)
     this->width = width;
     this->height = height;
     this->option[MENU_SINGLEPLAYER]->setX(w - 100);
-    this->option[MENU_SINGLEPLAYER]->setY(200);
+    this->option[MENU_SINGLEPLAYER]->setY(250);
     this->option[MENU_OPTIONS]->setX(w - 300);
-    this->option[MENU_OPTIONS]->setY(150);
+    this->option[MENU_OPTIONS]->setY(50);
     this->option[MENU_EXIT]->setX(w + 150);
-    this->option[MENU_EXIT]->setY(150);
+    this->option[MENU_EXIT]->setY(50);
 }
 
 int Menu::mainLoop(int *width, int *height)
