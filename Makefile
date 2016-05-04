@@ -19,7 +19,8 @@ SRC =  \
 	inventory.cpp \
 	fstring.cpp \
 	menu.cpp \
-	menuoption.cpp
+	menuoption.cpp \
+	menu_language.cpp
 
 OBJS = $(SRC:.cpp=.o)
 OBJS_W = $(SRC:.cpp=.wo)
