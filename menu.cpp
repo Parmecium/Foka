@@ -16,9 +16,9 @@ Menu::Menu(int width, int height)
     this->state = 1;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 50, 200, 200, 200);
-    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 250, 150, 150, 150);
-    this->option[MENU_EXIT] = new MenuOption(tmpW + 200, 150, 150, 150);
+    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 100, 200, 200, 200);
+    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 300, 150, 150, 150);
+    this->option[MENU_EXIT] = new MenuOption(tmpW + 150, 150, 150, 150);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -69,12 +69,16 @@ int Menu::events(SDL_Event event)
 
 void Menu::resize(int width, int height)
 {
+    int w = width / 2;
+
     this->width = width;
     this->height = height;
-    //this->option[0]->setX(this->width / 2 - 187.5);
-    //this->option[0]->setY(this->height / 2 + 100);
-    //this->option[1]->setX(this->width / 2 - 150);
-    //this->option[1]->setY(this->height / 2 - 25);
+    this->option[MENU_SINGLEPLAYER]->setX(w - 100);
+    this->option[MENU_SINGLEPLAYER]->setY(200);
+    this->option[MENU_OPTIONS]->setX(w - 300);
+    this->option[MENU_OPTIONS]->setY(150);
+    this->option[MENU_EXIT]->setX(w + 150);
+    this->option[MENU_EXIT]->setY(150);
 }
 
 int Menu::mainLoop(int *width, int *height)
@@ -85,7 +89,7 @@ int Menu::mainLoop(int *width, int *height)
     this->option[MENU_SINGLEPLAYER]->loadTexture("start");
     this->option[MENU_OPTIONS]->loadTexture("options");
     this->option[MENU_EXIT]->loadTexture("exit");
-    //this->background = loadModel("data/cover/cover_blur_plus_plus.png");
+    this->background = loadModel("data/menu/poz_menu_providna.png");
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     music = Mix_LoadMUS("data/muzika/menu_theme.mp3");
     Mix_VolumeMusic(MIX_MAX_VOLUME);
@@ -115,10 +119,24 @@ int Menu::mainLoop(int *width, int *height)
 void Menu::render(void)
 {
     int i;
+    int w = 600;
+    int h = 700;
+    int x = this->width / 2 - w / 2;
+    int y = this->height / 2 - h / 2;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
     glOrtho(0, this->width, 0, this->height, -1, 1);
+    glEnable(GL_TEXTURE_2D);
+    glColor4ub(255, 255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, this->background);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     {
         if(i == this->state)

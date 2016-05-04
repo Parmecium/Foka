@@ -25,6 +25,7 @@ class Menu
 
         void logic(void);
         void resize(int width, int height);
+        void loadTexture(void);
         int mainLoop(int *width, int *height);
         void render(void);
 };
