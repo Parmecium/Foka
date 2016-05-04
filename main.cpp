@@ -5,6 +5,7 @@
 #include "fstring.h"
 #include "menuoption.h"
 #include "menu.h"
+#include "menu_language.h"
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"

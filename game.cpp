@@ -5,6 +5,7 @@
 #include "fstring.h"
 #include "menuoption.h"
 #include "menu.h"
+#include "menu_language.h"
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"
@@ -196,6 +197,9 @@ void Game::mainLoop(void)
 
     // Splash screen
     this->splash();
+    MenuLanguage *langMenu = new MenuLanguage(this->width, this->height);
+    langMenu->mainLoop(&this->width, &this->height);
+    delete langMenu;
     this->mainMenu->resize(this->width, this->height);
     if(this->mainMenu->mainLoop(&this->width, &this->height) == MENU_EXIT)
     {
