@@ -16,9 +16,9 @@ Menu::Menu(int width, int height)
     this->state = 1;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 100, 250, 200, 200);
-    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 300, 50, 150, 150);
-    this->option[MENU_EXIT] = new MenuOption(tmpW + 150, 50, 150, 150);
+    this->option[MENU_SINGLEPLAYER] = new MenuOption(tmpW - 100, 250, 220, 220);
+    this->option[MENU_OPTIONS] = new MenuOption(tmpW - 300, 50, 180, 180);
+    this->option[MENU_EXIT] = new MenuOption(tmpW + 150, 50, 180, 180);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
