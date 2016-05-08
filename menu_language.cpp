@@ -81,7 +81,7 @@ void MenuLanguage::resize(int width, int height)
 
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
-        this->option[i]->setX(this->width - option[i]->getWidth() - 10);
+        this->option[i]->setX(this->width - option[i]->getWidth() - 50);
         this->option[MENU_NUM_OF_LANGUAGES - i - 1]->setY(
                 this->height / 2 - 150 + i * 75);
     }
@@ -125,10 +125,10 @@ int MenuLanguage::mainLoop(int *width, int *height)
 void MenuLanguage::render(void)
 {
     int i;
-    int x = 0;
-    int w = this->width;
-    int y = 0;
-    int h = this->height;
+    int x = this->width / 2 - 1024 / 2;
+    int w = this->width / 2 + 1024 / 2;
+    int y = this->height / 2 - 768 / 2;
+    int h = this->height / 2 + 768 / 2;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
