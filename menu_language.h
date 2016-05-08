@@ -16,6 +16,7 @@ class MenuLanguage
         int width;
         int height;
         unsigned int background;
+        Mix_Music *music;
 
         int events(SDL_Event event);
 

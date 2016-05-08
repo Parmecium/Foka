@@ -96,10 +96,10 @@ int MenuLanguage::mainLoop(int *width, int *height)
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
         this->option[i]->loadTexture();
     this->background = loadModel("data/cover/menu_cover.png");
-    //Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
-    //music = Mix_LoadMUS("data/muzika/menu.mp3");
-    //Mix_VolumeMusic(MIX_MAX_VOLUME);
-    //Mix_PlayMusic(music, -1);
+    Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
+    music = Mix_LoadMUS("data/muzika/beat_menu.mp3");
+    Mix_VolumeMusic(MIX_MAX_VOLUME);
+    Mix_PlayMusic(music, -1);
 
     while(result < 0)
     {
