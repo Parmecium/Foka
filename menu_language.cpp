@@ -15,8 +15,10 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->state = 0;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 500, 100);
-    this->option[LANGUAGE_SERBIAN] = new FString("SRPKI", 0, 0, 400, 100);
+    this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 250, 50);
+    this->option[LANGUAGE_RUSSIAN] = new FString("RUSSIAN", 0, 0, 250, 50);
+    this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 200, 50);
+    this->option[LANGUAGE_FRENCH] = new FString("FRENCH", 0, 0, 200, 50);
     this->resize(this->width, this->height);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
@@ -80,7 +82,8 @@ void MenuLanguage::resize(int width, int height)
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
         this->option[i]->setX(this->width - option[i]->getWidth() - 10);
-        //this->option[i]->setY();
+        this->option[MENU_NUM_OF_LANGUAGES - i - 1]->setY(
+                this->height / 2 - 150 + i * 75);
     }
 }
 

@@ -1,10 +1,12 @@
 #ifndef MENU_LANGUAGE_H
 #define MENU_LANGUAGE_H
 
-#define MENU_NUM_OF_LANGUAGES   2
+#define MENU_NUM_OF_LANGUAGES   4
 
 #define LANGUAGE_ENGLISH        0
-#define LANGUAGE_SERBIAN        1
+#define LANGUAGE_RUSSIAN        1
+#define LANGUAGE_SERBIAN        2
+#define LANGUAGE_FRENCH         3
 
 class MenuLanguage
 {
