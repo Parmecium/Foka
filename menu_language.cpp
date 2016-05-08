@@ -15,8 +15,9 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->state = 0;
     tmpW = this->width / 2;
     tmpH = this->height / 2;
-    this->option[LANGUAGE_ENGLISH] = new FString("START", tmpW - 187.5, tmpH + 100, 375, 75);
-    this->option[LANGUAGE_SERBIAN] = new FString("EXIT", tmpW - 150, tmpH - 25, 300, 75);
+    this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 500, 100);
+    this->option[LANGUAGE_SERBIAN] = new FString("SRPKI", 0, 0, 400, 100);
+    this->resize(this->width, this->height);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -67,12 +68,20 @@ int MenuLanguage::events(SDL_Event event)
 
 void MenuLanguage::resize(int width, int height)
 {
+    int i;
+
     this->width = width;
     this->height = height;
     this->option[0]->setX(this->width / 2 - 187.5);
     this->option[0]->setY(this->height / 2 + 100);
     this->option[1]->setX(this->width / 2 - 150);
     this->option[1]->setY(this->height / 2 - 25);
+
+    for(i = 0; i < NUM_OF_LANGUAGES; i++)
+    {
+        this->option[i]->setX(this->width - option[i]->getWidth() - 10);
+        //this->option[i]->setY();
+    }
 }
 
 int MenuLanguage::mainLoop(int *width, int *height)
