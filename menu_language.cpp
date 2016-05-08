@@ -77,7 +77,7 @@ void MenuLanguage::resize(int width, int height)
     this->option[1]->setX(this->width / 2 - 150);
     this->option[1]->setY(this->height / 2 - 25);
 
-    for(i = 0; i < NUM_OF_LANGUAGES; i++)
+    for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
         this->option[i]->setX(this->width - option[i]->getWidth() - 10);
         //this->option[i]->setY();
