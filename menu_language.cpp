@@ -95,7 +95,7 @@ int MenuLanguage::mainLoop(int *width, int *height)
 
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
         this->option[i]->loadTexture();
-    //this->background = loadModel("data/cover/cover_blur_plus_plus.png");
+    this->background = loadModel("data/cover/menu_cover.png");
     //Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     //music = Mix_LoadMUS("data/muzika/menu.mp3");
     //Mix_VolumeMusic(MIX_MAX_VOLUME);
@@ -125,15 +125,14 @@ int MenuLanguage::mainLoop(int *width, int *height)
 void MenuLanguage::render(void)
 {
     int i;
-    int x = this->width / 2 - 284;      // 768
-    int w = this->width / 2 + 284;
-    int y = this->height / 2 - 312;     // 1024
-    int h = this->height / 2 + 312;
+    int x = 0;
+    int w = this->width;
+    int y = 0;
+    int h = this->height;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
     glOrtho(0, this->width, 0, this->height, -1, 1);
-    /*
     glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, this->background);
@@ -144,7 +143,6 @@ void MenuLanguage::render(void)
         glTexCoord2d(0, 0); glVertex2f(x, h);
     glEnd();
     glDisable(GL_TEXTURE_2D);
-    */
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
         if(i == this->state)
