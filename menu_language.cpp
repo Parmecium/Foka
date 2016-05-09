@@ -16,9 +16,9 @@ MenuLanguage::MenuLanguage(int width, int height)
     tmpW = this->width / 2;
     tmpH = this->height / 2;
     this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 250, 50);
-    this->option[LANGUAGE_RUSSIAN] = new FString("RUSSIAN", 0, 0, 250, 50);
-    this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 200, 50);
-    this->option[LANGUAGE_FRENCH] = new FString("FRENCH", 0, 0, 200, 50);
+    this->option[LANGUAGE_RUSSIAN] = new FString("RUSSKI", 0, 0, 250, 50);
+    this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 250, 50);
+    this->option[LANGUAGE_FRENCH] = new FString("FRANCIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
@@ -125,10 +125,10 @@ int MenuLanguage::mainLoop(int *width, int *height)
 void MenuLanguage::render(void)
 {
     int i;
-    int x = this->width / 2 - 399 / 2;
-    int w = this->width / 2 + 399 / 2;
-    int y = this->height / 2 - 532 / 2;
-    int h = this->height / 2 + 532 / 2;
+    int x = this->width / 2 - 700 / 2;
+    int w = this->width / 2 + 700 / 2;
+    int y = this->height / 2 - 1000 / 2;
+    int h = this->height / 2 + 1000 / 2;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
