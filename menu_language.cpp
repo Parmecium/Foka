@@ -18,7 +18,7 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 250, 50);
     this->option[LANGUAGE_RUSSIAN] = new FString("RUSSKI", 0, 0, 250, 50);
     this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 250, 50);
-    this->option[LANGUAGE_FRENCH] = new FString("FRANCIS", 0, 0, 250, 50);
+    this->option[LANGUAGE_FRENCH] = new FString("FRANCAIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
@@ -146,7 +146,7 @@ void MenuLanguage::render(void)
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
         if(i == this->state)
-            glColor4ub(255, 0, 0, 255);
+            glColor4ub(185, 0, 0, 155);
         else
             glColor4ub(255, 255, 255, 255);
         this->option[i]->render();

@@ -21,9 +21,9 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/splash/splash1.png");
-    this->texture[1] = loadModel("data/splash/splash2.png");
-    this->texture[2] = loadModel("data/splash/splash3.png");
+    this->texture[0] = loadModel("data/cover/Mersu_the_Pig.png");
+    this->texture[1] = loadModel("data/cover/Mersu_the_Pig.png");
+    this->texture[2] = loadModel("data/cover/Mersu_the_Pig.png");
 }
 
 void Splash::event(SDL_Event event)
