@@ -4,13 +4,13 @@
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 450;
+    this->width = 600;
     this->height = 600;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
     this->y = wHeight / 2 - this->height / 2;
-    this->time = 8000;
+    this->time = 6200;
     this->music = NULL;
     loadTexture();
 }
@@ -21,8 +21,8 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/cover/Mersu_the_Pig.png");
-    this->texture[1] = loadModel("data/cover/Mersu_the_Pig.png");
+    this->texture[0] = loadModel("data/pig/pig_wait1.png");
+    this->texture[1] = loadModel("data/pig/pig_wait2.png");
     this->texture[2] = loadModel("data/cover/Mersu_the_Pig.png");
 }
 
