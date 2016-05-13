@@ -93,6 +93,7 @@ int MenuLanguage::mainLoop(int *width, int *height)
         this->option[i]->loadTexture();
     this->background = loadModel("data/cover/menu_cover.png");
     this->logo = loadModel("data/cover/Mersu_the_Pig.png");
+    this->hand = loadModel("data/pointer/pointer_menu.png");
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     music = Mix_LoadMUS("data/muzika/beat_menu.mp3");
     Mix_VolumeMusic(MIX_MAX_VOLUME);
@@ -126,6 +127,9 @@ void MenuLanguage::render(void)
     int w = this->width / 2 + 700 / 2;
     int y = this->height / 2 - 1000 / 2;
     int h = this->height / 2 + 1000 / 2;
+    int x1, y1;
+    int w1 = 100;
+    int h1 = 100;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
@@ -154,8 +158,21 @@ void MenuLanguage::render(void)
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
         if(i == this->state)
+        {
+            x1 = option[i]->getX() - w1;
+            y1 = option[i]->getY() + option[i]->getHeight() - h1;
+            glColor4ub(255, 255, 255, 255);
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, this->hand);
+            glBegin(GL_QUADS);
+                glTexCoord2d(0, 1), glVertex2f(x1, y1);
+                glTexCoord2d(1, 1); glVertex2f(x1 + w1, y1);
+                glTexCoord2d(1, 0); glVertex2f(x1 + w1, y1 + h1);
+                glTexCoord2d(0, 0); glVertex2f(x1, y1 + h1);
+            glEnd();
+            glDisable(GL_TEXTURE_2D);
             glColor4ub(185, 0, 0, 155);
-        else
+        } else
             glColor4ub(255, 255, 255, 255);
         this->option[i]->render();
     }
