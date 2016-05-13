@@ -128,8 +128,8 @@ void MenuLanguage::render(void)
     int y = this->height / 2 - 1000 / 2;
     int h = this->height / 2 + 1000 / 2;
     int x1, y1;
-    int w1 = 150;
-    int h1 = 150;
+    int w1 = 175;
+    int h1 = 175;
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
