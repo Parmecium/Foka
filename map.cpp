@@ -21,7 +21,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     timer = new Timer();
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
-    player = new Player(190, 195, timer, 100.0, 120.0, 100);
+    player = new Player(190, 195, timer, 103.0, 117.0, 100);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
     player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
     /*******************************************************************/
 
@@ -69,7 +69,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     */
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(490, 610, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    this->enemy.push_back(new Enemy(690, 610, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
     this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
