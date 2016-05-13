@@ -23,7 +23,7 @@ class InventoryAnimator : public Ticker
 Inventory::Inventory(float width, float height, Timer *timer)
 {
     this->screen = { 0, 0, width, height };
-    this->heart = { 35, height - 110, 110, 125 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
+    this->heart = { 35, height - 110, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
     this->textureState = 0;
     this->textureIncrement = 1;
 
@@ -37,8 +37,8 @@ Inventory::~Inventory(void)
 
 void Inventory::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/heart/heart_full3.png");
-    this->texture[1] = loadModel("data/heart/heart_full4.png");
+    this->texture[0] = loadModel("data/life/life1.png");
+    this->texture[1] = loadModel("data/life/life2.png");
 }
 
 void Inventory::changeTexture(void)
