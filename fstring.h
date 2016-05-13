@@ -25,6 +25,8 @@ class FString
         int length(void) { return this->strLen; }
         void setX(int value) { this->coords.x = value; }
         void setY(int value) { this->coords.y = value; }
+        int getX(void) { return this->coords.x; }
+        int getY(void) { return this->coords.y; }
         int getWidth(void) { return this->coords.w; }
         int getHeight(void) { return this->coords.h; }
 };
