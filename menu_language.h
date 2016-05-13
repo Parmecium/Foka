@@ -8,6 +8,11 @@
 #define LANGUAGE_SERBIAN        2
 #define LANGUAGE_FRENCH         3
 
+#define LANGUAGE_LOGO_X         0
+#define LANGUAGE_LOGO_Y         0
+#define LANGUAGE_LOGO_WIDTH     100
+#define LANGUAGE_LOGO_HEIGHT    100
+
 class MenuLanguage
 {
     private:
@@ -16,6 +21,7 @@ class MenuLanguage
         int width;
         int height;
         unsigned int background;
+        unsigned int logo;
         Mix_Music *music;
 
         int events(SDL_Event event);
