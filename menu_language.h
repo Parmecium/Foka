@@ -8,10 +8,10 @@
 #define LANGUAGE_SERBIAN        2
 #define LANGUAGE_FRENCH         3
 
-#define LANGUAGE_LOGO_X         0
-#define LANGUAGE_LOGO_Y         0
-#define LANGUAGE_LOGO_WIDTH     550
-#define LANGUAGE_LOGO_HEIGHT    450
+#define LANGUAGE_LOGO_X         15
+#define LANGUAGE_LOGO_Y         15
+#define LANGUAGE_LOGO_WIDTH     670
+#define LANGUAGE_LOGO_HEIGHT    590
 
 class MenuLanguage
 {
