@@ -21,7 +21,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     timer = new Timer();
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
-    player = new Player(190, 195, timer, 90.0, 135.0, 90);
+    player = new Player(190, 195, timer, 103.0, 117.0, 100);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
     player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
     /*******************************************************************/
 
@@ -69,7 +69,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     */
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(490, 610, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    this->enemy.push_back(new Enemy(690, 610, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
     this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
@@ -92,7 +92,7 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("stone_guy/stone_guy");
+    player->loadTexture("pig/pig");
     //player2->loadTexture("grim/grim");
     player2->loadTexture("vila/vila");
     inventory->loadTexture();
@@ -100,7 +100,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/pozadine/poz18.png"); //dobre pozadine su 1,15,18,22,24
+    this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 1,15,18,22,24
 }
 
 void Map::loadMusic(void)
