@@ -10,8 +10,8 @@
 
 #define LANGUAGE_LOGO_X         0
 #define LANGUAGE_LOGO_Y         0
-#define LANGUAGE_LOGO_WIDTH     100
-#define LANGUAGE_LOGO_HEIGHT    100
+#define LANGUAGE_LOGO_WIDTH     700
+#define LANGUAGE_LOGO_HEIGHT    700
 
 class MenuLanguage
 {
