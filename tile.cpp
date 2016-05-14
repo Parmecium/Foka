@@ -53,28 +53,28 @@ void Tile::loadTexture(void)
     switch(this->type)
     {
         case TILE_WALL_DOWN:
-            this->texture = loadModel("data/zid/zid2_d.png");
+            this->texture = loadModel("data/zid/zid3_d.png");
             break;
         case TILE_WALL_RIGHT:
-            this->texture = loadModel("data/zid/zid2_r.png");
+            this->texture = loadModel("data/zid/zid3_r.png");
             break;
         case TILE_WALL_UP:
-            this->texture = loadModel("data/zid/zid2_u.png");
+            this->texture = loadModel("data/zid/zid3_u.png");
             break;
         case TILE_WALL_LEFT:
-            this->texture = loadModel("data/zid/zid2_l.png");
+            this->texture = loadModel("data/zid/zid3_l.png");
             break;
         case TILE_WALL_DL:
-            this->texture = loadModel("data/zid/zid2_dl.png");
+            this->texture = loadModel("data/zid/zid3_dl.png");
             break;
         case TILE_WALL_DR:
-            this->texture = loadModel("data/zid/zid2_dr.png");
+            this->texture = loadModel("data/zid/zid3_dr.png");
             break;
         case TILE_WALL_UR:
-            this->texture = loadModel("data/zid/zid2_ur.png");
+            this->texture = loadModel("data/zid/zid3_ur.png");
             break;
         case TILE_WALL_UL:
-            this->texture = loadModel("data/zid/zid2_ul.png");
+            this->texture = loadModel("data/zid/zid3_ul.png");
             break;
         case TILE_DESK:
             this->texture = loadModel("data/stocic_bloody.png");
