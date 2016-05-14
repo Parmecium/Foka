@@ -4,6 +4,23 @@
 #include "fstring.h"
 #include "menu_language.h"
 
+class BloodAnimator : public Ticker
+{
+    private:
+        MenuLanguage *menuLanguage;
+
+    public:
+        BloodAnimator(MenuLanguage *menuLanguage)
+        {
+            this->menuLanguage = menuLanguage;
+        }
+
+        virtual void tick(void)
+        {
+            this->menuLanguage->changeBloodState();
+        }
+};
+
 MenuLanguage::MenuLanguage(int width, int height)
 {
     int i;
@@ -23,6 +40,10 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->bloodCoords.y = 0;
     this->bloodCoords.w = 10;
     this->bloodCoords.h = this->height;
+    this->bloodState = 0;
+
+    timer = new Timer();
+    timer->add(500, new BloodAnimator(this));
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -33,6 +54,7 @@ MenuLanguage::~MenuLanguage(void)
     int i;
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
         delete option[i];
+    delete timer;
 }
 
 int MenuLanguage::events(SDL_Event event)
@@ -86,6 +108,13 @@ void MenuLanguage::resize(int width, int height)
     }
 }
 
+void MenuLanguage::changeBloodState(void)
+{
+    this->bloodState++;
+    if(this->bloodState >= 3)
+        this->bloodState = 0;
+}
+
 int MenuLanguage::mainLoop(int *width, int *height)
 {
     SDL_Event event;
@@ -99,8 +128,8 @@ int MenuLanguage::mainLoop(int *width, int *height)
     this->hand = loadModel("data/pointer/pointer_menu.png");
     for(i = 0; i < 3; i++)
     {
-        SDL_Rect imageRect = { i * 128, i * 1024, 128, 1024 };
-        this->blood[i] = loadModel("data/cover/blood1.png", imageRect);
+        SDL_Rect imageRect = { i * 127, 0, 127, 1024 };
+        this->blood[i] = loadModel("data/cover/blood sve3.png", imageRect);
     }
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     music = Mix_LoadMUS("data/muzika/beat_menu.mp3");
@@ -120,6 +149,7 @@ int MenuLanguage::mainLoop(int *width, int *height)
         this->render();
 
         SDL_Delay(1000 / 30);
+        timer->tick();
     }
 
     *width = this->width;
@@ -162,7 +192,7 @@ void MenuLanguage::render(void)
         glTexCoord2d(0, 0); glVertex2f(LANGUAGE_LOGO_X,
                                        LANGUAGE_LOGO_Y + LANGUAGE_LOGO_HEIGHT);
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, this->blood[0]);
+    glBindTexture(GL_TEXTURE_2D, this->blood[this->bloodState]);
     x = this->bloodCoords.x;
     y = this->bloodCoords.y;
     w = this->bloodCoords.w;
