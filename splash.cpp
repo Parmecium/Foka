@@ -21,8 +21,8 @@ Splash::~Splash(void)
 
 void Splash::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/pig/pig_wait1.png");
-    this->texture[1] = loadModel("data/pig/pig_wait2.png");
+    this->texture[0] = loadModel("data/heart/heart_full1.png");
+    this->texture[1] = loadModel("data/heart/heart_full2.png");
     this->texture[2] = loadModel("data/cover/Mersu_the_Pig.png");
 }
 
