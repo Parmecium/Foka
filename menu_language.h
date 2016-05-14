@@ -24,8 +24,10 @@ class MenuLanguage
         unsigned int logo;
         unsigned int hand;
         SDL_Rect bloodCoords;
+        int bloodState;
         unsigned int blood[3];
         Mix_Music *music;
+        Timer *timer;
 
         int events(SDL_Event event);
 
@@ -35,6 +37,7 @@ class MenuLanguage
 
         void logic(void);
         void resize(int width, int height);
+        void changeBloodState(void);
         int mainLoop(int *width, int *height);
         void render(void);
 };
