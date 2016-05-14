@@ -162,6 +162,17 @@ void MenuLanguage::render(void)
         glTexCoord2d(0, 0); glVertex2f(LANGUAGE_LOGO_X,
                                        LANGUAGE_LOGO_Y + LANGUAGE_LOGO_HEIGHT);
     glEnd();
+    glBindTexture(GL_TEXTURE_2D, this->blood[0]);
+    x = this->bloodCoords.x;
+    y = this->bloodCoords.y;
+    w = this->bloodCoords.w;
+    h = this->bloodCoords.h;
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
     glDisable(GL_TEXTURE_2D);
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
     {
