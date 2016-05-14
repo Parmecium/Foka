@@ -36,14 +36,14 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->option[LANGUAGE_FRENCH] = new FString("FRANCAIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
 
-    this->bloodCoords.x = LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH + 10;
+    this->bloodCoords.x = LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH - 100;
     this->bloodCoords.y = 0;
-    this->bloodCoords.w = 10;
+    this->bloodCoords.w = 25;
     this->bloodCoords.h = this->height;
     this->bloodState = 0;
 
     timer = new Timer();
-    timer->add(500, new BloodAnimator(this));
+    timer->add(100, new BloodAnimator(this));
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -181,17 +181,6 @@ void MenuLanguage::render(void)
         glTexCoord2d(1, 0); glVertex2f(w, h);
         glTexCoord2d(0, 0); glVertex2f(x, h);
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, this->logo);
-    glBegin(GL_QUADS);
-        glTexCoord2d(0, 1); glVertex2f(LANGUAGE_LOGO_X,
-                                       LANGUAGE_LOGO_Y);
-        glTexCoord2d(1, 1); glVertex2f(LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH,
-                                       LANGUAGE_LOGO_Y);
-        glTexCoord2d(1, 0); glVertex2f(LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH,
-                                       LANGUAGE_LOGO_X + LANGUAGE_LOGO_HEIGHT);
-        glTexCoord2d(0, 0); glVertex2f(LANGUAGE_LOGO_X,
-                                       LANGUAGE_LOGO_Y + LANGUAGE_LOGO_HEIGHT);
-    glEnd();
     glBindTexture(GL_TEXTURE_2D, this->blood[this->bloodState]);
     x = this->bloodCoords.x;
     y = this->bloodCoords.y;
@@ -202,6 +191,17 @@ void MenuLanguage::render(void)
         glTexCoord2d(1, 1); glVertex2f(x + w, y);
         glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
         glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, this->logo);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(LANGUAGE_LOGO_X,
+                                       LANGUAGE_LOGO_Y);
+        glTexCoord2d(1, 1); glVertex2f(LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH,
+                                       LANGUAGE_LOGO_Y);
+        glTexCoord2d(1, 0); glVertex2f(LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH,
+                                       LANGUAGE_LOGO_X + LANGUAGE_LOGO_HEIGHT);
+        glTexCoord2d(0, 0); glVertex2f(LANGUAGE_LOGO_X,
+                                       LANGUAGE_LOGO_Y + LANGUAGE_LOGO_HEIGHT);
     glEnd();
     glDisable(GL_TEXTURE_2D);
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
