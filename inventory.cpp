@@ -37,8 +37,8 @@ Inventory::~Inventory(void)
 
 void Inventory::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/life/life1.png");
-    this->texture[1] = loadModel("data/life/life2.png");
+    this->texture[0] = loadModel("data/heart/heart_full3.png");
+    this->texture[1] = loadModel("data/heart/heart_full4.png");
 }
 
 void Inventory::changeTexture(void)
