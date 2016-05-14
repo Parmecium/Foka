@@ -13,13 +13,16 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->height = height;
 
     this->state = 0;
-    tmpW = this->width / 2;
-    tmpH = this->height / 2;
     this->option[LANGUAGE_ENGLISH] = new FString("ENGLISH", 0, 0, 250, 50);
     this->option[LANGUAGE_RUSSIAN] = new FString("RUSSKI", 0, 0, 250, 50);
     this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 250, 50);
     this->option[LANGUAGE_FRENCH] = new FString("FRANCAIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
+
+    this->bloodCoords.x = LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH + 10;
+    this->bloodCoords.y = 0;
+    this->bloodCoords.w = 10;
+    this->bloodCoords.h = this->height;
 
     //for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
     //    option[i]->loadTexture();
@@ -94,6 +97,11 @@ int MenuLanguage::mainLoop(int *width, int *height)
     this->background = loadModel("data/cover/menu_cover.png");
     this->logo = loadModel("data/cover/Mersu_the_Pig.png");
     this->hand = loadModel("data/pointer/pointer_menu.png");
+    for(i = 0; i < 3; i++)
+    {
+        SDL_Rect imageRect = { i * 128, i * 1024, 128, 1024 };
+        this->blood[i] = loadModel("data/cover/blood1.png", imageRect);
+    }
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
     music = Mix_LoadMUS("data/muzika/beat_menu.mp3");
     Mix_VolumeMusic(MIX_MAX_VOLUME);

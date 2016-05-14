@@ -23,6 +23,8 @@ class MenuLanguage
         unsigned int background;
         unsigned int logo;
         unsigned int hand;
+        SDL_Rect bloodCoords;
+        unsigned int blood[3];
         Mix_Music *music;
 
         int events(SDL_Event event);
