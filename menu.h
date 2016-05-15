@@ -16,6 +16,7 @@ class Menu
         int height;
         unsigned int background;
         Mix_Music *music;
+        Mix_Chunk *selectedSound;
 
         int events(SDL_Event event);
 
