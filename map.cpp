@@ -100,7 +100,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/pozadine/poz31.png"); //dobre pozadine su 15,18,22,24,28,29
+    this->bgImg = loadModel("data/pozadine/poz32.png"); //dobre pozadine su 15,18,22,24,28,29
 }
 
 void Map::loadMusic(void)
