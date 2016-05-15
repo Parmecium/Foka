@@ -29,6 +29,7 @@ Menu::~Menu(void)
     int i;
     for(i = 0; i < MENU_NUM_OF_CHOICES; i++)
         delete option[i];
+    Mix_FreeChunk(selectedSound);
 }
 
 int Menu::events(SDL_Event event)
@@ -51,10 +52,12 @@ int Menu::events(SDL_Event event)
                     case SDLK_RIGHT:
                         if(++this->state > MENU_NUM_OF_CHOICES - 1)
                             this->state = 0;
+                        Mix_PlayChannel(-1, selectedSound, 0);
                         break;
                     case SDLK_LEFT:
                         if(--this->state < 0)
                             this->state = MENU_NUM_OF_CHOICES - 1;
+                        Mix_PlayChannel(-1, selectedSound, 0);
                         break;
                     case SDLK_RETURN:
                         return state;
@@ -90,10 +93,12 @@ int Menu::mainLoop(int *width, int *height)
     this->option[MENU_OPTIONS]->loadTexture("options");
     this->option[MENU_EXIT]->loadTexture("exit");
     this->background = loadModel("data/menu/poz_menu_providna.png");
-    Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
+    Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/menu_music.mp3");
+    selectedSound = Mix_LoadWAV("data/muzika/menu_select2.wav");
     Mix_VolumeMusic(MIX_MAX_VOLUME);
     Mix_PlayMusic(music, -1);
+    Mix_HaltMusic();
 
     while(result < 0)
     {
