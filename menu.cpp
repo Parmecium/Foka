@@ -97,7 +97,7 @@ int Menu::mainLoop(int *width, int *height)
     music = Mix_LoadMUS("data/muzika/menu_music.mp3");
     selectedSound = Mix_LoadWAV("data/muzika/menu_select2.wav");
     Mix_VolumeMusic(MIX_MAX_VOLUME);
-    Mix_VolumeChunk(selectedSound, MIX_MAX_VOLUME / 2);
+    Mix_VolumeChunk(selectedSound, MIX_MAX_VOLUME / 4);
     Mix_PlayMusic(music, -1);
 
     while(result < 0)
