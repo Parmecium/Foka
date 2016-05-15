@@ -36,7 +36,7 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->option[LANGUAGE_FRENCH] = new FString("FRANCAIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
 
-    this->bloodCoords.x = LANGUAGE_LOGO_X + LANGUAGE_LOGO_WIDTH - 325;
+    this->bloodCoords.x = this->width - 100;
     this->bloodCoords.y = 0;
     this->bloodCoords.w = 50;
     this->bloodCoords.h = this->height;
