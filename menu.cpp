@@ -95,7 +95,7 @@ int Menu::mainLoop(int *width, int *height)
     this->background = loadModel("data/menu/poz_menu_providna.png");
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/menu_music.mp3");
-    selectedSound = Mix_LoadWAV("data/muzika/menu_select2.wav");
+    selectedSound = Mix_LoadWAV("data/muzika/menu_select3.wav");
     Mix_VolumeMusic(MIX_MAX_VOLUME);
     Mix_VolumeChunk(selectedSound, MIX_MAX_VOLUME / 4);
     Mix_PlayMusic(music, -1);
