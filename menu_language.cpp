@@ -128,7 +128,7 @@ int MenuLanguage::mainLoop(int *width, int *height)
     this->hand = loadModel("data/pointer/pointer_menu.png");
     for(i = 0; i < 3; i++)
     {
-        SDL_Rect imageRect = { i * 127, 0, 127, 1024 };
+        SDL_Rect imageRect = { i * 127, 0, 126, 1024 };
         this->blood[i] = loadModel("data/cover/blood sve3.png", imageRect);
     }
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 2096);
