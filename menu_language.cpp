@@ -35,11 +35,6 @@ MenuLanguage::MenuLanguage(int width, int height)
     this->option[LANGUAGE_SERBIAN] = new FString("SRPSKI", 0, 0, 250, 50);
     this->option[LANGUAGE_FRENCH] = new FString("FRANCAIS", 0, 0, 250, 50);
     this->resize(this->width, this->height);
-
-    this->bloodCoords.x = this->width - 100;
-    this->bloodCoords.y = 0;
-    this->bloodCoords.w = 50;
-    this->bloodCoords.h = this->height;
     this->bloodState = 0;
 
     timer = new Timer();
@@ -106,6 +101,10 @@ void MenuLanguage::resize(int width, int height)
         this->option[MENU_NUM_OF_LANGUAGES - i - 1]->setY(
                 this->height / 2 - 150 + i * 75);
     }
+    this->bloodCoords.x = this->width - 100;
+    this->bloodCoords.y = 0;
+    this->bloodCoords.w = 50;
+    this->bloodCoords.h = this->height;
 }
 
 void MenuLanguage::changeBloodState(void)
