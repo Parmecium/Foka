@@ -219,7 +219,7 @@ void MenuLanguage::render(void)
                 glTexCoord2d(0, 0); glVertex2f(x1, y1 + h1);
             glEnd();
             glDisable(GL_TEXTURE_2D);
-            glColor4ub(185, 0, 0, 255);
+            glColor4ub(128, 0, 15, 255);
         } else
             glColor4ub(255, 255, 255, 255);
         this->option[i]->render();
