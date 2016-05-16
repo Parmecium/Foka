@@ -77,7 +77,7 @@ void Options::mainLoop(int *width, int *height, int *musicVolume, int *effectVol
     int result;
     int i;
 
-    this->bgImage = loadModel("data/menu/options_box/options_box.png");
+    this->bgImage = loadModel("data/menu/options_box/options_block.png");
     musicString->loadTexture();
 
     do
