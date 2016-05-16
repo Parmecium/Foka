@@ -78,6 +78,7 @@ void Options::mainLoop(int *width, int *height, int *musicVolume, int *effectVol
     int i;
 
     this->bgImage = loadModel("data/menu/options_box/options_block.png");
+    this->indicatorImage = loadModel("data/menu/options_box/crta.png");
     musicString->loadTexture();
 
     do
@@ -137,24 +138,17 @@ void Options::render(int musicVolume, int effectVolume)
         glTexCoord2d(0, 0); glVertex2f(x, y + h);
     glEnd();
     glDisable(GL_TEXTURE_2D);
-    glColor4ub(128, 0, 15, 255);
+    glColor4ub(128, 0, 15, 128);
     musicString->render();
     x = this->musicCoords.x;
     y = this->musicCoords.y;
     w = this->musicCoords.w;
     h = this->musicCoords.h;
+    glEnable(GL_TEXTURE_2D);
+    glColor4ub(255, 255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, this->indicatorImage);
     for(i = 0; i < musicVolume; i++)
     {
-        if(i < musicVolume)
-        {
-            if(i < 4)
-                glColor4ub(0, 255, 0, 255);
-            else if(i < 7)
-                glColor4ub(255, 255, 0, 255);
-            else
-                glColor4ub(255, 0, 0, 255);
-        }
-        h = this->musicCoords.h / (9 - i);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(x, y);
             glTexCoord2d(1, 1); glVertex2f(x + w, y);
@@ -163,6 +157,7 @@ void Options::render(int musicVolume, int effectVolume)
         glEnd();
         x += 2 * w;
     }
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
     SDL_GL_SwapBuffers();
 }
