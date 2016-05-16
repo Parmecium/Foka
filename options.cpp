@@ -31,8 +31,8 @@ void Options::resize(int width, int height)
 
     bgCoords.x = this->width / 2 - 300;
     bgCoords.y = this->height / 2 - 300;
-    musicString->setX(this->width / 2 - musicString->getWidth());
-    musicString->setY(this->height / 2 - musicString->getHeight() - 10);
+    musicString->setX(bgCoords.x + 50);
+    musicString->setY(bgCoords.y + bgCoords.w - musicString->getHeight() - 50);
     musicCoords.x = musicString->getX() + musicString->getWidth() + 10;
     musicCoords.y = musicString->getY();
 }
@@ -154,6 +154,7 @@ void Options::render(int musicVolume, int effectVolume)
             else
                 glColor4ub(255, 0, 0, 255);
         }
+        h = this->musicCoords.h / (9 - i);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(x, y);
             glTexCoord2d(1, 1); glVertex2f(x + w, y);
