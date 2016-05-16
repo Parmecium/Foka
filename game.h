@@ -13,6 +13,8 @@ class Game
         Timer *timer;
         Map *map;
         Menu *mainMenu;
+        int musicVolume;
+        int effectVolume;
 
         void events(SDL_Event event);
         void init(void);

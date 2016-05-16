@@ -6,6 +6,7 @@
 #include "menuoption.h"
 #include "menu.h"
 #include "menu_language.h"
+#include "options.h"
 #include "player.h"
 #include "tile.h"
 #include "enemy.h"
@@ -24,6 +25,9 @@ Game::Game(void)
     this->fps = 10;
     this->mainMenu = new Menu(this->width, this->height);
     this->map = new Map(5000, 5000, this->width, this->height);
+
+    this->musicVolume = 4;
+    this->effectVolume = 4;
 }
 
 Game::~Game(void)
@@ -201,7 +205,8 @@ void Game::mainLoop(void)
     langMenu->mainLoop(&this->width, &this->height);
     delete langMenu;
     this->mainMenu->resize(this->width, this->height);
-    if(this->mainMenu->mainLoop(&this->width, &this->height) == MENU_EXIT)
+    if(this->mainMenu->mainLoop(&this->width, &this->height,
+                &this->musicVolume, &this->effectVolume) == MENU_EXIT)
     {
         isRunning = false;
         return;
@@ -221,9 +226,9 @@ void Game::mainLoop(void)
 
         // Logic
         if(isRunning)
-            this->isRunning = this->map->logic();
+            this->isRunning = this->map->logic(musicVolume, effectVolume);
         else
-            this->map->logic();
+            this->map->logic(musicVolume, effectVolume);
 
         // Render
         glClear(GL_COLOR_BUFFER_BIT);
