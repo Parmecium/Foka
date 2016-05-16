@@ -20,6 +20,9 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     timer = new Timer();
 
+    this->musicVolume = 4;
+    this->effectVolume = 4;
+
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
     player = new Player(190, 195, timer, 103.0, 117.0, 100);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
     player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
@@ -127,7 +130,7 @@ void Map::setCamera(void)
         this->camera.y = this->width - this->camera.h;
 }
 
-bool Map::logic(void)
+bool Map::logic(int musicVolume, int effectVolume)
 {
     int i, j;
     player->move();
@@ -150,6 +153,17 @@ bool Map::logic(void)
     }
     this->setCamera();
     this->timer->tick();
+
+    if(musicVolume != this->musicVolume)
+    {
+        this->musicVolume = musicVolume;
+        Mix_VolumeMusic(MIX_MAX_VOLUME / (9 - musicVolume));
+    }
+    if(effectVolume != this->effectVolume)
+    {
+        this->effectVolume = effectVolume;
+        Mix_VolumeMusic(MIX_MAX_VOLUME / (9 - musicVolume));
+    }
 
     return this->player->isAlive();
 }

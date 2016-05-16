@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "fstring.h"
 #include "menuoption.h"
+#include "options.h"
 #include "menu.h"
 
 Menu::Menu(int width, int height)
@@ -84,7 +85,7 @@ void Menu::resize(int width, int height)
     this->option[MENU_EXIT]->setY(50);
 }
 
-int Menu::mainLoop(int *width, int *height)
+int Menu::mainLoop(int *width, int *height, int *musicVolume, int *effectVolume)
 {
     SDL_Event event;
     int result = -1;
@@ -96,8 +97,8 @@ int Menu::mainLoop(int *width, int *height)
     Mix_OpenAudio(25050, MIX_DEFAULT_FORMAT, 2, 4096);
     music = Mix_LoadMUS("data/muzika/menu_music.mp3");
     selectedSound = Mix_LoadWAV("data/muzika/menu_select.wav");
-    Mix_VolumeMusic(MIX_MAX_VOLUME);
-    Mix_VolumeChunk(selectedSound, MIX_MAX_VOLUME / 4);
+    Mix_VolumeMusic(MIX_MAX_VOLUME / (9 - *musicVolume));
+    Mix_VolumeChunk(selectedSound, MIX_MAX_VOLUME / (9 - *effectVolume));
     Mix_PlayMusic(music, -1);
 
     while(result < 0)
@@ -106,6 +107,20 @@ int Menu::mainLoop(int *width, int *height)
          * Events
          */
         result = this->events(event);
+
+        /*
+         * Logic
+         */
+        switch(result)
+        {
+            case MENU_OPTIONS:
+                Options * menuOption = new Options(this->width, this->height);
+                menuOption->mainLoop(&this->width, &this->height,
+                                    musicVolume, effectVolume);
+                delete menuOption;
+                result = -1;
+                break;
+        }
 
         /*
          * Render

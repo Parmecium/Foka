@@ -19,6 +19,8 @@ class Map
         SDL_Rect bgCoords;
         unsigned int bgImg;
         Mix_Music *music;
+        int musicVolume;
+        int effectVolume;
 
     public:
         Map(float width, float height, float sWidth, float sHeight);
@@ -30,7 +32,7 @@ class Map
         void loadMusic(void);
         void renderBackground(void);
         void resized(void);
-        bool logic(void);
+        bool logic(int musicVolume, int effectVolume);
         void render(void);
 
         float getWidth(void) { return this->width; }

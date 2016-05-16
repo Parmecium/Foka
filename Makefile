@@ -20,7 +20,8 @@ SRC =  \
 	fstring.cpp \
 	menu.cpp \
 	menuoption.cpp \
-	menu_language.cpp
+	menu_language.cpp \
+	options.cpp
 
 OBJS = $(SRC:.cpp=.o)
 OBJS_W = $(SRC:.cpp=.wo)
