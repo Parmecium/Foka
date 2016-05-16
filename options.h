@@ -19,6 +19,7 @@ class Options
         FString *musicString;
         SDL_Rect effectCoords;
         FString *effectString;
+        unsigned int indicatorImage;
 
         int events(SDL_Event event);
 
