@@ -104,6 +104,7 @@ void Map::loadTexture(void)
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
     this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 15,18,22,24,28,29
+    this->shadowImg = loadModel("data/senke/darknes.png");
 }
 
 void Map::loadMusic(void)
@@ -213,5 +214,17 @@ void Map::render(void)
         this->enemy[i]->render(camera);
     this->player->render(camera);
     this->player2->render(camera);
+
+    glColor4ub(255, 255, 255, 255);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, this->shadowImg);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(0, 0);
+        glTexCoord2d(1, 1); glVertex2f(this->width, 0);
+        glTexCoord2d(1, 0); glVertex2f(this->width, this->height);
+        glTexCoord2d(0, 0); glVertex2f(0, this->height);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+
     this->inventory->render();
 }

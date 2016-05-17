@@ -18,6 +18,7 @@ class Map
         SDL_Rect camera;
         SDL_Rect bgCoords;
         unsigned int bgImg;
+        unsigned int shadowImg;
         Mix_Music *music;
         int musicVolume;
         int effectVolume;
