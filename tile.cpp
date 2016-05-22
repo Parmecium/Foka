@@ -41,8 +41,8 @@ Tile::Tile(float x, float y, int type)
             this->coords.h = 50;
             break;
         case TILE_PLANT1:
-            this->coords.w = 100;
-            this->coords.h = 100;
+            this->coords.w = 200;
+            this->coords.h = 200;
             break;
     }
     this->collCoords = this->coords;
