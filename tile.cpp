@@ -107,19 +107,45 @@ void Tile::collision(Player *player)
     tmpCoords.w -= 15;
     tmpCoords.h -= 15;
 
-    if(playerCoords.x + playerCoords.w > this->collCoords.x &&
-            playerCoords.x < this->collCoords.x + this->collCoords.w &&
-            playerCoords.y + playerCoords.h > this->collCoords.y &&
-            playerCoords.y < this->collCoords.y + this->collCoords.h)
+    int x, y, r;
+
+    switch(this->type)
     {
-        if(playerCoords.x + playerCoords.w <= tmpCoords.x)
-            player->setX(this->collCoords.x - playerCoords.w);
-        if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
-            player->setX(this->collCoords.x + this->collCoords.w);
-        if(playerCoords.y + playerCoords.h <= tmpCoords.y)
-            player->setY(this->collCoords.y - playerCoords.h);
-        if(playerCoords.y >= tmpCoords.y + tmpCoords.h)
-            player->setY(this->collCoords.y + this->collCoords.h);
+        case TILE_PLANT1:
+            /*
+            x = (collCoords.x + collCoords.w) / 2;
+            y = (collCoords.y + collCoords.h) / 2;
+            r = collCoords.x + collCoords.w - x;
+            if((pow(playerCoords.x - x, 2) + pow(playerCoords.y - y, 2))
+                        < pow(r, 2))
+            {
+                if(playerCoords.x < x)
+                    player->setX(x - r - player->getWidth());
+                else
+                    player->setX(x + r);
+                if(playerCoords.y < y)
+                    player->setY(y - r - player->getHeight());
+                else
+                    player->setY(y + r);
+            }
+            */
+            break;
+        default:
+            if(playerCoords.x + playerCoords.w > this->collCoords.x &&
+                playerCoords.x < this->collCoords.x + this->collCoords.w &&
+                playerCoords.y + playerCoords.h > this->collCoords.y &&
+                playerCoords.y < this->collCoords.y + this->collCoords.h)
+            {
+                if(playerCoords.x + playerCoords.w <= tmpCoords.x)
+                    player->setX(this->collCoords.x - playerCoords.w);
+                if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
+                    player->setX(this->collCoords.x + this->collCoords.w);
+                if(playerCoords.y + playerCoords.h <= tmpCoords.y)
+                    player->setY(this->collCoords.y - playerCoords.h);
+                if(playerCoords.y >= tmpCoords.y + tmpCoords.h)
+                    player->setY(this->collCoords.y + this->collCoords.h);
+            }
+            break;
     }
 }
 
