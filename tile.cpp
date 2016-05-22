@@ -107,29 +107,29 @@ void Tile::collision(Player *player)
     tmpCoords.w -= 15;
     tmpCoords.h -= 15;
 
-    int x, y, r;
-
     switch(this->type)
     {
         case TILE_PLANT1:
-            /*
-            x = (collCoords.x + collCoords.w) / 2;
-            y = (collCoords.y + collCoords.h) / 2;
-            r = collCoords.x + collCoords.w - x;
-            if((pow(playerCoords.x - x, 2) + pow(playerCoords.y - y, 2))
-                        < pow(r, 2))
             {
-                if(playerCoords.x < x)
-                    player->setX(x - r - player->getWidth());
-                else
-                    player->setX(x + r);
-                if(playerCoords.y < y)
-                    player->setY(y - r - player->getHeight());
-                else
-                    player->setY(y + r);
+                int x = this->collCoords.x + this->collCoords.w / 2;
+                int y = this->collCoords.y + this->collCoords.h / 2;
+                int r = this->collCoords.w / 2;
+
+                if(pow(playerCoords.x - x, 2) + pow(playerCoords.y - y, 2)
+                        < pow(r, 2) ||
+                    pow(playerCoords.x + playerCoords.w - x, 2) +
+                        pow(playerCoords.y + playerCoords.h - x, 2)
+                        < pow(r, 2) ||
+                    pow(playerCoords.x + playerCoords.w - x, 2) +
+                        pow(playerCoords.y - y, 2)
+                        < pow(r, 2) ||
+                    pow(playerCoords.x - x, 2) +
+                        pow(playerCoords.y + playerCoords.h - y, 2)
+                        < pow(r, 2))
+                {
+                }
+                break;
             }
-            */
-            break;
         default:
             if(playerCoords.x + playerCoords.w > this->collCoords.x &&
                 playerCoords.x < this->collCoords.x + this->collCoords.w &&
