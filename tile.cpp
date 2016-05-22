@@ -136,6 +136,8 @@ void Tile::render(SDL_Rect camera)
         glEnable(GL_TEXTURE_2D);
 
         glBindTexture(GL_TEXTURE_2D, this->texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(this->coords.x - camera.x, this->coords.y - camera.y);
             glTexCoord2d(1, 1); glVertex2f(this->coords.x + this->coords.w - camera.x, this->coords.y - camera.y);
