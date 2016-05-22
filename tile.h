@@ -13,6 +13,7 @@
 #define TILE_DESK               9
 #define TILE_TREE_FALL          10
 #define TILE_NOTHING            11
+#define TILE_PLANT1             12
 
 class Tile
 {

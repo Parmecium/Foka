@@ -40,6 +40,10 @@ Tile::Tile(float x, float y, int type)
             this->coords.w = 50;
             this->coords.h = 50;
             break;
+        case TILE_PLANT1:
+            this->coords.w = 100;
+            this->coords.h = 100;
+            break;
     }
     this->collCoords = this->coords;
 }
@@ -87,6 +91,9 @@ void Tile::loadTexture(void)
             break; */
         case TILE_NOTHING:
             this->texture = 0;
+            break;
+        case TILE_PLANT1:
+            this->texture = loadModel("data/heal_plant/plant1.png.png");
             break;
     }
 }
