@@ -127,18 +127,6 @@ void Tile::collision(Player *player)
                         pow(playerCoords.y + playerCoords.h - y, 2)
                         < pow(r, 2))
                 {
-                    tmpCoords.x = x - r + 25;
-                    tmpCoords.y = y - r + 25;
-                    tmpCoords.w = x + r - 20;
-                    tmpCoords.h = y + r - 20;
-                    if(playerCoords.x + playerCoords.w <= tmpCoords.x)
-                        player->setX(x - r - playerCoords.w);
-                    if(playerCoords.x >= tmpCoords.x + tmpCoords.w)
-                        player->setX(x + r);
-                    if(playerCoords.y + playerCoords.h <= tmpCoords.y)
-                        player->setY(y - r - playerCoords.h);
-                    if(playerCoords.y >= tmpCoords.y + tmpCoords.w)
-                        player->setY(y + r);
                 }
                 break;
             }
