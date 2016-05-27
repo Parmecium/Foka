@@ -111,22 +111,48 @@ void Tile::collision(Player *player)
     {
         case TILE_PLANT1:
             {
-                int x = this->collCoords.x + this->collCoords.w / 2;
-                int y = this->collCoords.y + this->collCoords.h / 2;
+                int p = this->collCoords.x + this->collCoords.w / 2;
+                int q = this->collCoords.y + this->collCoords.h / 2;
                 int r = this->collCoords.w / 2;
+                int k;
+                int n;
+                int a, b, c;
+                float x1, x2, y1, y2;
 
-                if(pow(playerCoords.x - x, 2) + pow(playerCoords.y - y, 2)
-                        < pow(r, 2) ||
-                    pow(playerCoords.x + playerCoords.w - x, 2) +
-                        pow(playerCoords.y + playerCoords.h - x, 2)
-                        < pow(r, 2) ||
-                    pow(playerCoords.x + playerCoords.w - x, 2) +
-                        pow(playerCoords.y - y, 2)
-                        < pow(r, 2) ||
-                    pow(playerCoords.x - x, 2) +
-                        pow(playerCoords.y + playerCoords.h - y, 2)
+                if(pow(playerCoords.x - p, 2) + pow(playerCoords.y - q, 2)
                         < pow(r, 2))
                 {
+                    // (x1/2 = -b +- sqrt(b^2 - 4ac)) / 2a
+                    k = (playerCoords.y - q) / (playerCoords.x - p);
+                    n = k * (-p) + q;
+                    a = 1 + pow(k, 2);
+                    b = 2 * p - 2 * k * n + 2 * k * q;
+                    c = pow(r, 2) + pow(n, 2) - 2 * n * q - pow(q, 2) - pow(p, 2);
+                    x1 = (-b + sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
+                    x2 = (-b - sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
+                    y1 = k * x1 + n;
+                    y2 = k * x2 + n;
+
+                    if(x1 == x2)
+                    {
+                        player->setX(x1);
+                        player->setY(x1);
+                    } else
+                    {
+                        float d1 = pow(x1 + playerCoords.x, 2) +
+                            pow(y1 + playerCoords.y, 2);
+                        float d2 = pow(x2 + playerCoords.x, 2) +
+                            pow(y2 + playerCoords.y, 2);
+                        if(d1 > d2)
+                        {
+                            player->setX(x1);
+                            player->setY(y1);
+                        } else
+                        {
+                            player->setX(x2);
+                            player->setY(y2);
+                        }
+                    }
                 }
                 break;
             }
