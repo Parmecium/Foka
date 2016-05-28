@@ -28,7 +28,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
     /*******************************************************************/
 
-    inventory = new Inventory(this->sWidth, this->sHeight, timer);
+    inventory = new Inventory(this->sWidth, this->sHeight, timer, player);
 
     this->bgCoords = {0, 0, 300, 300};
 
