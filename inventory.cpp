@@ -25,7 +25,7 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 {
     this->screen = { 0, 0, width, height };
     this->heart = { 35, height - 110, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
-    this->healthCoords = { 150, height - 160, 50, 50 };
+    this->healthCoords = { 150, height - 160, 75, 75 };
     this->textureState = 0;
     this->textureIncrement = 1;
 
@@ -69,6 +69,9 @@ void Inventory::render(void)
     glColor4ub(255, 255, 255, 255); // White color
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
 
     glBegin(GL_QUADS);
         glTexCoord2d(0, 1); glVertex2f(this->heart.x, this->heart.y);
@@ -79,6 +82,9 @@ void Inventory::render(void)
 
     glColor4ub(255, 255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, this->texHealth);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
     x = this->healthCoords.x;
     y = this->healthCoords.y;
     w = this->healthCoords.w;
