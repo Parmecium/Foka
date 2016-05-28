@@ -27,7 +27,7 @@ Player::Player(float x, float y, Timer *timer, float w, float h, int interval)
     this->coords.w = w;
     this->coords.h = h;
     this->speed = 3.0;
-    this->helth = 3.0;
+    this->health = 3.0;
     this->moveState.down = false;
     this->moveState.right = false;
     this->moveState.up = false;
@@ -206,7 +206,7 @@ void Player::collision(Player *player)
             this->coords.y = player->getY() + player->getHeight();
         else if(player->getY() >= tmpCoords.y + tmpCoords.h)
             this->coords.y = player->getY() - this->coords.h;
-        this->helth--;
+        this->health--;
     }
 }
 

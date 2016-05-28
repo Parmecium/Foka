@@ -3,17 +3,22 @@
 
 #define ANIMATION_FRAMES        2
 
+#define HEALTH_HART_DISTANCE    25
+
 class Inventory
 {
     private:
         SDL_Rect screen;
         SDL_Rect heart;
+        SDL_Rect healthCoords;
         unsigned int texture[ANIMATION_FRAMES];
+        unsigned int texHealth;
         int textureState;
         int textureIncrement;
+        Player *player;
 
     public:
-        Inventory(float width, float height, Timer *timer);
+        Inventory(float width, float height, Timer *timer, Player *player);
         ~Inventory(void);
 
         void render(void);
