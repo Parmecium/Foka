@@ -42,20 +42,20 @@ clean:
 	echo Clean done
 
 linux: $(OBJS)
-	$(CXX) $(CXXFLAGS) -o foka $^ $(LIBS)
+	$(CXX) $(CXXFLAGS) -o mersuthepig $^ $(LIBS)
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 
 windows: $(OBJS_W)
-	$(CXX_W) $(CXXFLAGS_W) -o foka.exe $^ $(LIBS_W)
+	$(CXX_W) $(CXXFLAGS_W) -o mersuthepig.exe $^ $(LIBS_W)
 
 %.wo : %.cpp
 	$(CXX_W) $(CXXFLAGS_W) -o $@ -c $<
 
 windows64: $(OBJS_W64)
-	$(CXX_W64) $(CXXFLAGS_W64) -o foka64.exe $^ $(LIBS_W64)
+	$(CXX_W64) $(CXXFLAGS_W64) -o mersuthepig.exe $^ $(LIBS_W64)
 
 %.wo64 : %.cpp
 	$(CXX_W64) $(CXXFLAGS_W64) -o $@ -c $<
