@@ -4,12 +4,12 @@ if [ "$1" == "debug" ]
 then
     make clean
     make debug
-    gdb foka
+    gdb mersuthepig
 elif [ "$1" == "run" ]
 then
     make clean
     make linux
-    ./foka
+    ./mersuthepig
 elif [ "$1" == "clean" ]
 then
     make clean
