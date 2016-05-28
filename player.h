@@ -39,7 +39,7 @@ class Player
         SDL_Rect coords;
         //SDL_Rect collCoords;
         float speed;
-        float helth;
+        float health;
         int angle;
         PlayerMove moveState;
         PlayerTexture texture;
@@ -65,13 +65,14 @@ class Player
         float getY(void) { return this->coords.y; };
         float getWidth(void) { return this->coords.w; };
         float getHeight(void) { return this->coords.h; };
+        float getHealth(void) { return this->health; };
         void setX(float value) { this->coords.x = value; };
         void setY(float value) { this->coords.y = value; };
         SDL_Rect getCollCoords(void);
         int getTextureIncrement(void) { return this->textureIncrement; };
         void setTextureIncrement(int value) { this->textureIncrement = value; };
 
-        bool isAlive(void) { return (this->helth > 0 ? true : false); }
+        bool isAlive(void) { return (this->health > 0 ? true : false); }
 };
 
 #endif  // PLAYER_H
