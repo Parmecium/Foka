@@ -11,8 +11,10 @@ class Inventory
         SDL_Rect screen;
         SDL_Rect heart;
         SDL_Rect healthCoords;
+        SDL_Rect healthBgCoords;
         unsigned int texture[ANIMATION_FRAMES];
         unsigned int texHealth;
+        unsigned int texHealthBg;
         int textureState;
         int textureIncrement;
         Player *player;

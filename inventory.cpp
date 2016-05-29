@@ -24,13 +24,10 @@ class InventoryAnimator : public Ticker
 Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 {
     this->screen = { 0, 0, width, height };
-<<<<<<< HEAD
-    this->heart = { 35, height - 110, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
-    this->healthCoords = { 170, height - 100, 55, 55 };
-=======
     this->heart = { 35, 0, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
-    this->healthCoords = { 150, 0, 55, 55 };
->>>>>>> 59d76faf1fd6134c6c0b19e8b25ee06e1d2144b3
+    this->healthCoords = { 170, 0, 55, 55 };
+    this->healthBgCoords = { healthCoords.x - 10, 0,
+                             healthCoords.w + 10, healthCoords.h + 10 };
     this->textureState = 0;
     this->textureIncrement = 1;
 
@@ -51,6 +48,7 @@ void Inventory::loadTexture(void)
     this->texture[0] = loadModel("data/heart/heart_full3.png");
     this->texture[1] = loadModel("data/heart/heart_full4.png");
     this->texHealth = loadModel("data/life/life1.png");
+    this->texHealthBg = loadModel("data/life/life_box");
 }
 
 void Inventory::changeTexture(void)
@@ -66,6 +64,7 @@ void Inventory::setScreenSize(float width, float height)
     this->screen.h = height;
     this->heart.y = height - this->heart.h - 110;
     this->healthCoords.y = height - this->healthCoords.h - 100;
+    this->healthBgCoords.y = this->healthCoords.y - 10;
 }
 
 void Inventory::render(void)
@@ -85,6 +84,21 @@ void Inventory::render(void)
         glTexCoord2d(1, 1); glVertex2f(this->heart.x + this->heart.w, this->heart.y);
         glTexCoord2d(1, 0); glVertex2f(this->heart.x + this->heart.w, this->heart.y + this->heart.h);
         glTexCoord2d(0, 0); glVertex2f(this->heart.x, this->heart.y + this->heart.h);
+    glEnd();
+
+    x = this->healthBgCoords.x;
+    y = this->healthBgCoords.y;
+    w = this->healthBgCoords.w;
+    h = this->healthBgCoords.h;
+    glColor4ub(255, 255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, this->texHealthBg);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
     glEnd();
 
     glColor4ub(255, 255, 255, 255);
