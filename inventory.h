@@ -3,7 +3,7 @@
 
 #define ANIMATION_FRAMES        2
 
-#define HEALTH_HART_DISTANCE    25
+#define HEALTH_HART_DISTANCE    10
 
 class Inventory
 {
