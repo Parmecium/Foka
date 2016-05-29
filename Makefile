@@ -38,7 +38,7 @@ all: linux
 	echo All done
 
 clean:
-	rm -f $(OBJS) foka $(OBJS_W) foka.exe $(OBJS_W64) foka64.exe
+	rm -f $(OBJS) mersuthepig $(OBJS_W) mersuthepig.exe $(OBJS_W64) mersuthepig.exe
 	echo Clean done
 
 linux: $(OBJS)
