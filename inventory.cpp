@@ -26,8 +26,10 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
     this->screen = { 0, 0, width, height };
     this->heart = { 35, 0, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
     this->healthCoords = { 170, 0, 55, 55 };
-    this->healthBgCoords = { healthCoords.x - 10, 0,
-                             healthCoords.w + 10, healthCoords.h + 10 };
+    this->healthBgCoords = { healthCoords.x - 25,
+                             0,
+                             healthCoords.w * player->getHealth() + 100,
+                             healthCoords.h + 100 };
     this->textureState = 0;
     this->textureIncrement = 1;
 
@@ -46,7 +48,7 @@ void Inventory::loadTexture(void)
     this->texture[0] = loadModel("data/heart/heart_full3.png");
     this->texture[1] = loadModel("data/heart/heart_full4.png");
     this->texHealth = loadModel("data/life/life1.png");
-    this->texHealthBg = loadModel("data/life/life_box");
+    this->texHealthBg = loadModel("data/life/life_box.png");
 }
 
 void Inventory::changeTexture(void)
@@ -60,14 +62,9 @@ void Inventory::setScreenSize(float width, float height)
 {
     this->screen.w = width;
     this->screen.h = height;
-<<<<<<< HEAD
-    this->heart.y = height - this->heart.h - 110;
-    this->healthCoords.y = height - this->healthCoords.h - 100;
-    this->healthBgCoords.y = this->healthCoords.y - 10;
-=======
     this->heart.y = height - this->heart.h - 35;
     this->healthCoords.y = height - this->healthCoords.h - 50;
->>>>>>> aca
+    this->healthBgCoords.y = this->healthCoords.y - 65;
 }
 
 void Inventory::render(void)
