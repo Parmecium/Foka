@@ -35,8 +35,6 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 
     if(timer != NULL)
         timer->add(130, new InventoryAnimator(this)); //bilo je 260
-
-    this->setScreenSize(width, height);
 }
 
 Inventory::~Inventory(void)
@@ -62,9 +60,14 @@ void Inventory::setScreenSize(float width, float height)
 {
     this->screen.w = width;
     this->screen.h = height;
+<<<<<<< HEAD
     this->heart.y = height - this->heart.h - 110;
     this->healthCoords.y = height - this->healthCoords.h - 100;
     this->healthBgCoords.y = this->healthCoords.y - 10;
+=======
+    this->heart.y = height - this->heart.h - 35;
+    this->healthCoords.y = height - this->healthCoords.h - 50;
+>>>>>>> aca
 }
 
 void Inventory::render(void)
