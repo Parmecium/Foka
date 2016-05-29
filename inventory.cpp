@@ -32,7 +32,7 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
     this->player = player;
 
     if(timer != NULL)
-        timer->add(110, new InventoryAnimator(this)); //bilo je 260
+        timer->add(100, new InventoryAnimator(this)); //bilo je 260
 }
 
 Inventory::~Inventory(void)
