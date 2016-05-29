@@ -24,8 +24,13 @@ class InventoryAnimator : public Ticker
 Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 {
     this->screen = { 0, 0, width, height };
+<<<<<<< HEAD
     this->heart = { 35, height - 110, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
     this->healthCoords = { 170, height - 100, 55, 55 };
+=======
+    this->heart = { 35, 0, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
+    this->healthCoords = { 150, 0, 55, 55 };
+>>>>>>> 59d76faf1fd6134c6c0b19e8b25ee06e1d2144b3
     this->textureState = 0;
     this->textureIncrement = 1;
 
@@ -33,6 +38,8 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 
     if(timer != NULL)
         timer->add(130, new InventoryAnimator(this)); //bilo je 260
+
+    this->setScreenSize(width, height);
 }
 
 Inventory::~Inventory(void)
@@ -57,8 +64,8 @@ void Inventory::setScreenSize(float width, float height)
 {
     this->screen.w = width;
     this->screen.h = height;
-    this->heart.y = height - this->heart.h - 35;
-    this->healthCoords.y = height - this->healthCoords.h - 50;
+    this->heart.y = height - this->heart.h - 110;
+    this->healthCoords.y = height - this->healthCoords.h - 100;
 }
 
 void Inventory::render(void)
