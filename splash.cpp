@@ -1,10 +1,28 @@
 #include "main.h"
 #include "functions.h"
+#include "timer.h"
 #include "splash.h"
+
+class SplashAnimator : public Ticker
+{
+    private:
+        Splash *splash;
+
+    public:
+        SplashAnimator(Splash *splash)
+        {
+            this->splash = splash;
+        }
+
+        virtual void tick(void)
+        {
+            this->splash->changeTexture();
+        }
+};
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 600;
+    this->width = 800;
     this->height = 600;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
@@ -12,18 +30,25 @@ Splash::Splash(int wWidth, int wHeight)
     this->y = wHeight / 2 - this->height / 2;
     this->time = 6200;
     this->music = NULL;
+    this->timer = new Timer();
+    this->textureState = 0;
     loadTexture();
 }
 
 Splash::~Splash(void)
 {
+    delete this->timer;
 }
 
 void Splash::loadTexture(void)
 {
-    this->texture[0] = loadModel("data/heart/heart_full1.png");
-    this->texture[1] = loadModel("data/heart/heart_full2.png");
-    this->texture[2] = loadModel("data/cover/Mersu_the_Pig.png");
+    int i;
+    SDL_Rect imgForCrop = { 0, 0, 142, 64 };
+    for(i = 0; i < SPLASH_SPRITES_COUNT; i++)
+    {
+        this->texture[i] = loadModel("data/cover/slike.png", imgForCrop);
+        imgForCrop.x += imgForCrop.w;
+    }
 }
 
 void Splash::event(SDL_Event event)
@@ -40,6 +65,13 @@ void Splash::event(SDL_Event event)
     }
 }
 
+void Splash::changeTexture(void)
+{
+    textureState++;
+    if(textureState >= SPLASH_SPRITES_COUNT)
+        textureState = 0;
+}
+
 void Splash::show(int *width, int *height)
 {
     int i;
@@ -54,50 +86,13 @@ void Splash::show(int *width, int *height)
     music = Mix_LoadMUS("data/muzika/opening_splash.mp3");
     Mix_PlayMusic(music, -1);
 
+    this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashAnimator(this));
+
     //glClear(GL_COLOR_BUFFER_BIT);
     //glPushMatrix();
     //glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
     // Begin render
-
-    for(i = 0; i < 8; i++)
-    {
-        for(j = 0; j < 3000 / 8; j += 10)
-        {
-            this->event(event);
-
-            glClear(GL_COLOR_BUFFER_BIT);
-            glPushMatrix();
-            glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
-
-            /*
-            glColor4ub(0, 0, 0, 255);
-            glBegin(GL_QUADS);
-                glVertex2f(0, 0);
-                glVertex2f(this->wWidth, 0);
-                glVertex2f(this->wWidth, this->wHeight);
-                glVertex2f(0, wHeight);
-            glEnd();
-            */
-
-            glColor4ub(255, 255, 255, 255);
-            glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, this->texture[i % 2]);
-            glBegin(GL_QUADS);
-                glTexCoord2d(0, 1); glVertex2f(x1, y1);
-                glTexCoord2d(1, 1); glVertex2f(x1 + w1, y1);
-                glTexCoord2d(1, 0); glVertex2f(x1 + w1, y1 + h1);
-                glTexCoord2d(0, 0); glVertex2f(x1, y1 + h1);
-            glEnd();
-            glDisable(GL_TEXTURE_2D);
-
-            glPopMatrix();
-            SDL_GL_SwapBuffers();
-            //SDL_Delay(3000 / 8);
-            //SDL_Delay(30 / 1000);
-            SDL_Delay(5);
-        }
-    }
 
     j = 0;
     while(1)
@@ -108,19 +103,11 @@ void Splash::show(int *width, int *height)
         glPushMatrix();
         glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
-        /*
-        glColor4ub(0, 0, 0, 255);
-        glBegin(GL_QUADS);
-            glVertex2f(0, 0);
-            glVertex2f(this->wWidth, 0);
-            glVertex2f(this->wWidth, wHeight);
-            glVertex2f(0, wHeight);
-        glEnd();
-        */
-
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, this->texture[2]);
+        glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glBegin(GL_QUADS);
             glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
             glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
@@ -137,7 +124,8 @@ void Splash::show(int *width, int *height)
         //j += 30.0f / 1000.0f;
         SDL_Delay(10);
         j += 10;
-        if(j > time - 4500)
+        this->timer->tick();
+        if(j > time)
             break;
     }
 
