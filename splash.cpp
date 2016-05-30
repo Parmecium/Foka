@@ -22,8 +22,8 @@ class SplashAnimator : public Ticker
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 800;
-    this->height = 600;
+    this->width = 1240;
+    this->height = 640;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
@@ -83,7 +83,7 @@ void Splash::show(int *width, int *height)
     SDL_Event event;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("data/muzika/opening_splash.mp3");
+    music = Mix_LoadMUS("data/muzika/over_and_over.mp3");
     Mix_PlayMusic(music, -1);
 
     this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashAnimator(this));
