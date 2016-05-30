@@ -1,7 +1,8 @@
 #ifndef SPLASH_H
 #define SPLASH_H
 
-#define SPLASH_SPRITES_COUNT            3
+#define SPLASH_SPRITES_COUNT            6
+#define SPLASH_ANIMATION_INTERVAL       100
 
 class Splash
 {
@@ -14,7 +15,9 @@ class Splash
         int wHeight;
         int time;
         Mix_Music *music;
+        int textureState;
         unsigned int texture[SPLASH_SPRITES_COUNT];
+        Timer *timer;
         void loadTexture(void);
         void event(SDL_Event event);
 
@@ -22,6 +25,7 @@ class Splash
         Splash(int wWidth, int wHeight);
         ~Splash(void);
         void show(int *width, int *height);
+        void changeTexture(void);
 };
 
 #endif  // SPLASH_H
