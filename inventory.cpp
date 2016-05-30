@@ -25,7 +25,7 @@ Inventory::Inventory(float width, float height, Timer *timer, Player *player)
 {
     this->screen = { 0, 0, width, height };
     this->heart = { 35, 0, 115, 135 };   // ne pomera se sa desne strane kao da je zalepljeno , javi Zi-u
-    this->healthCoords = { 170, 0, 55, 55 };
+    this->healthCoords = { 170, 0, 50, 50 };
     this->healthBgCoords = { healthCoords.x - 25,
                              0,
                              healthCoords.w * player->getHealth() + 100,
