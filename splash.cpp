@@ -22,8 +22,8 @@ class SplashAnimator : public Ticker
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 1300;
-    this->height = 640;
+    this->width = 1480;
+    this->height = 740;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
