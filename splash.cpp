@@ -22,7 +22,7 @@ class SplashAnimator : public Ticker
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 1280;
+    this->width = 1300;
     this->height = 640;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
@@ -46,7 +46,7 @@ void Splash::loadTexture(void)
     SDL_Rect imgForCrop = { 0, 0, 142, 64 };
     for(i = 0; i < SPLASH_SPRITES_COUNT; i++)
     {
-        this->texture[i] = loadModel("data/cover/slike.png", imgForCrop);
+        this->texture[i] = loadModel("data/cover/splash2.png", imgForCrop);
         imgForCrop.x += imgForCrop.w;
     }
 }
@@ -83,7 +83,7 @@ void Splash::show(int *width, int *height)
     SDL_Event event;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("data/muzika/over_and_over.mp3");
+    music = Mix_LoadMUS("data/muzika/secret_door.mp3");
     Mix_PlayMusic(music, -1);
 
     this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashAnimator(this));
