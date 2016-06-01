@@ -19,6 +19,7 @@ class Splash
         unsigned int texture[SPLASH_SPRITES_COUNT];
         Timer *timer;
         void loadTexture(void);
+        void resize(int width, int height);
         void event(SDL_Event event);
 
     public:
