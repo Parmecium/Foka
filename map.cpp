@@ -105,7 +105,7 @@ void Map::loadTexture(void)
         this->tile[i]->loadTexture();
     for(i = 0; i < this->enemy.size(); i++)
         this->enemy[i]->loadTexture();
-    this->bgImg = loadModel("data/pozadine/poz24.png"); //dobre pozadine su 15,18,22,24,28,29
+    this->bgImg = loadModel("data/pozadine/poz34.png"); //dobre pozadine su 15,18,22,24,28,29,34
     this->shadowImg = loadModel("data/senke/senke1.png");
 }
 

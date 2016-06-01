@@ -2,7 +2,7 @@
 #define SPLASH_H
 
 #define SPLASH_SPRITES_COUNT            9
-#define SPLASH_ANIMATION_INTERVAL       100
+#define SPLASH_ANIMATION_INTERVAL       111
 
 class Splash
 {
