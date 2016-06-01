@@ -20,23 +20,6 @@ class SplashAnimator : public Ticker
         }
 };
 
-class SplashFadeAnimator : public Ticker
-{
-    private:
-        Splash *splash;
-
-    public:
-        SplashFadeAnimator(Splash *splash)
-        {
-            this->splash = splash;
-        }
-
-        virtual void tick(void)
-        {
-            this->splash->changeTextureFade();
-        }
-};
-
 Splash::Splash(int wWidth, int wHeight)
 {
     this->width = 1480;
@@ -48,7 +31,7 @@ Splash::Splash(int wWidth, int wHeight)
     this->time = 6200;
     this->music = NULL;
     this->timer = new Timer();
-    this->textureState = -SPLASH_SPRITES_COUNT_FADE;
+    this->textureState = 0;
     loadTexture();
 }
 
@@ -60,16 +43,7 @@ Splash::~Splash(void)
 void Splash::loadTexture(void)
 {
     int i;
-    SDL_Rect imgForCrop;
-
-    imgForCrop = { 0, 0, 102, 86 };
-    for(i = 0; i < SPLASH_SPRITES_COUNT_FADE; i++)
-    {
-        this->textureFade[i] = loadModel("data/cover/splash1.png", imgForCrop);
-        imgForCrop.x += imgForCrop.w;
-    }
-
-    imgForCrop = { 0, 0, 142, 64 };
+    SDL_Rect imgForCrop = { 0, 0, 142, 64 };
     for(i = 0; i < SPLASH_SPRITES_COUNT; i++)
     {
         this->texture[i] = loadModel("data/cover/splash2.png", imgForCrop);
@@ -97,19 +71,6 @@ void Splash::changeTexture(void)
         textureState = 0;
 }
 
-void Splash::changeTextureFade(void)
-{
-    if(textureState >= 0)
-        return;
-
-    textureState++;
-    if(textureState == -1)
-    {
-        textureState = 0;
-        this->timer->add(100, new SplashAnimator(this));
-    }
-}
-
 void Splash::resize(int width, int height)
 {
     this->wWidth = width;
@@ -128,7 +89,7 @@ void Splash::show(int *width, int *height)
     music = Mix_LoadMUS("data/muzika/secret_door.mp3");
     Mix_PlayMusic(music, -1);
 
-    this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashFadeAnimator(this));
+    this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashAnimator(this));
 
     //glClear(GL_COLOR_BUFFER_BIT);
     //glPushMatrix();
@@ -147,11 +108,7 @@ void Splash::show(int *width, int *height)
 
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
-        if(this->textureState < 0)
-            glBindTexture(GL_TEXTURE_2D,
-                    this->textureFade[this->textureState + SPLASH_SPRITES_COUNT_FADE]);
-        else
-            glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
+        glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glBegin(GL_QUADS);
