@@ -57,8 +57,7 @@ void Splash::event(SDL_Event event)
     {
         if(event.type == SDL_VIDEORESIZE)
         {
-            this->wWidth = event.resize.w;
-            this->wHeight = event.resize.h;
+            this->resize(event.resize.w, event.resize.h);
             SDL_SetVideoMode(this->wWidth, this->wHeight, 32, SDL_OPENGL | SDL_RESIZABLE);
             glViewport(0, 0, this->wWidth, this->wHeight);
         }
@@ -72,14 +71,18 @@ void Splash::changeTexture(void)
         textureState = 0;
 }
 
+void Splash::resize(int width, int height)
+{
+    this->wWidth = width;
+    this->wHeight = height;
+    this->x = this->wWidth / 2 - this->width / 2;
+    this->y = this->wHeight / 2 - this->height / 2;
+}
+
 void Splash::show(int *width, int *height)
 {
     int i;
     float j;
-    int w1 = this->width / 2;
-    int h1 = this->height / 2;
-    int x1 = this->wWidth / 2 - w1 / 2;
-    int y1 = this->wHeight / 2 - h1 / 2;
     SDL_Event event;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
