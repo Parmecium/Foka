@@ -122,7 +122,7 @@ int MenuLanguage::mainLoop(int *width, int *height)
 
     for(i = 0; i < MENU_NUM_OF_LANGUAGES; i++)
         this->option[i]->loadTexture();
-    this->background = loadModel("data/cover/menu_cover.png");
+    this->background = loadModel("data/cover/poz_menu_providna2.png");
     this->logo = loadModel("data/cover/Mersu_the_Pig.png");
     this->hand = loadModel("data/pointer/pointer_menu.png");
     for(i = 0; i < 3; i++)
