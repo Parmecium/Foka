@@ -2,6 +2,7 @@
 #define SPLASH_H
 
 #define SPLASH_SPRITES_COUNT            9
+#define SPLASH_SPRITES_COUNT_FADE       11
 #define SPLASH_ANIMATION_INTERVAL       100
 
 class Splash
@@ -16,7 +17,9 @@ class Splash
         int time;
         Mix_Music *music;
         int textureState;
+        int textureStateFade;
         unsigned int texture[SPLASH_SPRITES_COUNT];
+        unsigned int textureFade[SPLASH_SPRITES_COUNT_FADE];
         Timer *timer;
         void loadTexture(void);
         void resize(int width, int height);
