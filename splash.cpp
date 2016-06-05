@@ -63,7 +63,8 @@ Splash::Splash(int wWidth, int wHeight)
     this->x = wWidth / 2 - this->width / 2;
     this->y = wHeight / 2 - this->height / 2;
     this->time = 6200;
-    this->music = NULL;
+    this->music1 = NULL;
+    this->music2 = NULL;
     this->timer = new Timer();
     this->textureState = 0;
     this->textureStateFade = 0;
@@ -89,21 +90,21 @@ void Splash::loadTexture(void)
     imgForCrop = { 0, 0, 102, 86 };
     for(i = 0; i < SPLASH_SPRITES_COUNT_FADE; i++)
     {
-        this->textureFade[i] = loadModel("data/cover/splash1.png", imgForCrop);
+        this->textureFade[i] = loadModel("data/splash/splash1.png", imgForCrop);
         imgForCrop.x += imgForCrop.w;
     }
 
     imgForCrop = { 0, 0, 142, 64 };
     for(i = 0; i < SPLASH_SPRITES_COUNT; i++)
     {
-        this->texture[i] = loadModel("data/cover/splash2.png", imgForCrop);
+        this->texture[i] = loadModel("data/splash/splash2.png", imgForCrop);
         imgForCrop.x += imgForCrop.w;
     }
 
     imgForCrop = { 0, 0, 56, 32 };
     for(i = 0; i < SPLASH_SPRITES_COUNT_START; i++)
     {
-        this->textureStart[i] = loadModel("data/cover/start.png", imgForCrop);
+        this->textureStart[i] = loadModel("data/splash/start.png", imgForCrop);
         imgForCrop.x += imgForCrop.w;
     }
 }
@@ -148,6 +149,7 @@ void Splash::changeTextureFade(void)
                 new SplashAnimator(this));
         this->timer->add(SPLASH_ANIMATION_INTERVAL_START,
                 new SplashStartAnimator(this));
+        Mix_PlayMusic(music2, -1);
     }
 }
 
@@ -173,8 +175,9 @@ void Splash::show(int *width, int *height)
     SDL_Event event;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("data/muzika/secret_door.mp3");
-    Mix_PlayMusic(music, -1);
+    music1 = Mix_LoadMUS("data/splash/splash1.mp3");
+    music2 = Mix_LoadMUS("data/splash/splash2.mp3");
+    Mix_PlayMusic(music1, -1);
 
     this->timer->add(SPLASH_ANIMATION_INTERVAL_FADE,
             new SplashFadeAnimator(this));
@@ -249,5 +252,6 @@ void Splash::show(int *width, int *height)
     *width = this->wWidth;
     *height = this->wHeight;
 
-    Mix_FreeMusic(music);
+    Mix_FreeMusic(music1);
+    Mix_FreeMusic(music2);
 }
