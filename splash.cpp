@@ -56,12 +56,10 @@ class SplashStartAnimator : public Ticker
 
 Splash::Splash(int wWidth, int wHeight)
 {
-    this->width = 1480;
+    this->width = 1500;
     this->height = 740;
     this->wWidth = wWidth;
     this->wHeight = wHeight;
-    this->x = wWidth / 2 - this->width / 2;
-    this->y = wHeight / 2 - this->height / 2;
     this->time = 0;
     this->music1 = NULL;
     this->music2 = NULL;
@@ -69,15 +67,16 @@ Splash::Splash(int wWidth, int wHeight)
     this->textureState = 0;
     this->textureStateFade = 0;
     this->textureStateStart = 0;
-    this->fadeCoords.x = this->x + 50;
-    this->fadeCoords.y = this->y + 50;
-    this->fadeCoords.w = this->width - 50;
-    this->fadeCoords.h = this->height - 50;
+    this->fadeCoords.w = 800;
+    this->fadeCoords.h = 800;
     this->startCoords.x = 60;
     this->startCoords.y = 60;
     this->startCoords.w = 400;
     this->startCoords.h = 110;
     this->isRunning = true;
+
+    this->resize(wWidth, wHeight);
+
     loadTexture();
 }
 
@@ -174,6 +173,8 @@ void Splash::resize(int width, int height)
     this->wHeight = height;
     this->x = this->wWidth / 2 - this->width / 2;
     this->y = this->wHeight / 2 - this->height / 2;
+    this->fadeCoords.x = this->wWidth / 2 - this->fadeCoords.w / 2;
+    this->fadeCoords.y = this->wHeight / 2 - this->fadeCoords.h / 2;
 }
 
 void Splash::show(int *width, int *height)
@@ -217,7 +218,6 @@ void Splash::show(int *width, int *height)
             h = this->fadeCoords.h;
             glBindTexture(GL_TEXTURE_2D,
                     this->textureFade[this->textureStateFade]);
-
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glBegin(GL_QUADS);
