@@ -100,7 +100,7 @@ void Splash::loadTexture(void)
         imgForCrop.x += imgForCrop.w;
     }
 
-    imgForCrop = { 0, 0, 32, 32 };
+    imgForCrop = { 0, 0, 56, 32 };
     for(i = 0; i < SPLASH_SPRITES_COUNT_START; i++)
     {
         this->textureStart[i] = loadModel("data/cover/start.png", imgForCrop);
@@ -212,21 +212,24 @@ void Splash::show(int *width, int *height)
             glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
         glEnd();
         glDisable(GL_TEXTURE_2D);
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        int x = this->startCoords.x;
-        int y = this->startCoords.y;
-        int w = this->startCoords.w;
-        int h = this->startCoords.h;
-        glBegin(GL_QUADS);
-            glTexCoord2d(0, 1); glVertex2f(x, y);
-            glTexCoord2d(1, 1); glVertex2f(x + w, y);
-            glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
-            glTexCoord2d(0, 0); glVertex2f(x, y + h);
-        glEnd();
-        glDisable(GL_TEXTURE_2D);
+        if(this->textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+        {
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            int x = this->startCoords.x;
+            int y = this->startCoords.y;
+            int w = this->startCoords.w;
+            int h = this->startCoords.h;
+            glBegin(GL_QUADS);
+                glTexCoord2d(0, 1); glVertex2f(x, y);
+                glTexCoord2d(1, 1); glVertex2f(x + w, y);
+                glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+                glTexCoord2d(0, 0); glVertex2f(x, y + h);
+            glEnd();
+            glDisable(GL_TEXTURE_2D);
+        }
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
