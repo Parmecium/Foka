@@ -33,7 +33,7 @@ class SplashFadeAnimator : public Ticker
 
         virtual void tick(void)
         {
-            //this->splash->changeTextureFade();
+            this->splash->changeTextureFade();
         }
 };
 
@@ -93,15 +93,20 @@ void Splash::event(SDL_Event event)
 
 void Splash::changeTexture(void)
 {
-    if(textureStateFade < SPLASH_SPRITES_COUNT_FADE)
-    {
-        textureStateFade++;
-        return;
-    }
-
     textureState++;
     if(textureState >= SPLASH_SPRITES_COUNT)
         textureState = 0;
+}
+
+void Splash::changeTextureFade(void)
+{
+    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+        return;
+
+    textureStateFade++;
+    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+        this->timer->add(SPLASH_ANIMATION_INTERVAL,
+                new SplashAnimator(this));
 }
 
 void Splash::resize(int width, int height)
@@ -122,7 +127,8 @@ void Splash::show(int *width, int *height)
     music = Mix_LoadMUS("data/muzika/secret_door.mp3");
     Mix_PlayMusic(music, -1);
 
-    this->timer->add(SPLASH_ANIMATION_INTERVAL, new SplashAnimator(this));
+    this->timer->add(SPLASH_ANIMATION_INTERVAL_FADE,
+            new SplashFadeAnimator(this));
 
     //glClear(GL_COLOR_BUFFER_BIT);
     //glPushMatrix();
