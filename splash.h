@@ -2,10 +2,10 @@
 #define SPLASH_H
 
 #define SPLASH_SPRITES_COUNT            9
-#define SPLASH_SPRITES_COUNT_FADE       11
+#define SPLASH_SPRITES_COUNT_FADE       18
 #define SPLASH_SPRITES_COUNT_START      5
 #define SPLASH_ANIMATION_INTERVAL       100
-#define SPLASH_ANIMATION_INTERVAL_FADE  111
+#define SPLASH_ANIMATION_INTERVAL_FADE  83
 #define SPLASH_ANIMATION_INTERVAL_START 100
 
 
@@ -21,7 +21,8 @@ class Splash
         SDL_Rect startCoords;
         int time;
         bool isRunning;
-        Mix_Music *music;
+        Mix_Music *music1;
+        Mix_Music *music2;
         int textureState;
         int textureStateFade;
         int textureStateStart;
