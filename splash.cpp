@@ -70,8 +70,8 @@ Splash::Splash(int wWidth, int wHeight)
     this->textureStateStart = 0;
     this->startCoords.x = 0;
     this->startCoords.y = 0;
-    this->startCoords.w = 500;
-    this->startCoords.h = 100;
+    this->startCoords.w = 200;
+    this->startCoords.h = 50;
     this->isRunning = true;
     loadTexture();
 }
