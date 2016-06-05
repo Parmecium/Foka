@@ -183,6 +183,8 @@ void Splash::show(int *width, int *height)
     //glPushMatrix();
     //glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
+    SDL_Delay(1500);
+
     // Begin render
 
     j = 0;
