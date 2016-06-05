@@ -4,6 +4,7 @@
 #define SPLASH_SPRITES_COUNT            9
 #define SPLASH_SPRITES_COUNT_FADE       11
 #define SPLASH_ANIMATION_INTERVAL       100
+#define SPLASH_ANIMATION_INTERVAL_FADE  111
 
 class Splash
 {
@@ -30,6 +31,7 @@ class Splash
         ~Splash(void);
         void show(int *width, int *height);
         void changeTexture(void);
+        void changeTextureFade(void);
 };
 
 #endif  // SPLASH_H
