@@ -18,6 +18,7 @@ class Splash
         int height;
         int wWidth;
         int wHeight;
+        SDL_Rect fadeCoords;
         SDL_Rect startCoords;
         int time;
         bool isRunning;
