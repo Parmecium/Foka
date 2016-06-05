@@ -69,6 +69,10 @@ Splash::Splash(int wWidth, int wHeight)
     this->textureState = 0;
     this->textureStateFade = 0;
     this->textureStateStart = 0;
+    this->fadeCoords.x = this->x + 50;
+    this->fadeCoords.y = this->y + 50;
+    this->fadeCoords.w = this->width - 50;
+    this->fadeCoords.h = this->height - 50;
     this->startCoords.x = 60;
     this->startCoords.y = 60;
     this->startCoords.w = 400;
@@ -195,6 +199,8 @@ void Splash::show(int *width, int *height)
 
     while(this->isRunning)
     {
+        int x, y, w, h;
+
         this->event(event);
 
         glClear(GL_COLOR_BUFFER_BIT);
@@ -204,37 +210,52 @@ void Splash::show(int *width, int *height)
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
         if(this->time < 2000)
+        {
+            x = this->fadeCoords.x;
+            y = this->fadeCoords.y;
+            w = this->fadeCoords.w;
+            h = this->fadeCoords.h;
             glBindTexture(GL_TEXTURE_2D,
                     this->textureFade[this->textureStateFade]);
-        else
-            glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glBegin(GL_QUADS);
-            glTexCoord2d(0, 1); glVertex2f(this->x, this->y);
-            glTexCoord2d(1, 1); glVertex2f(this->x + this->width, this->y);
-            glTexCoord2d(1, 0); glVertex2f(this->x + this->width, this->y + this->height);
-            glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
-        glEnd();
-        glDisable(GL_TEXTURE_2D);
-        if(this->time > 2000)
-        {
-            glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
+
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            int x = this->startCoords.x;
-            int y = this->startCoords.y;
-            int w = this->startCoords.w;
-            int h = this->startCoords.h;
             glBegin(GL_QUADS);
                 glTexCoord2d(0, 1); glVertex2f(x, y);
                 glTexCoord2d(1, 1); glVertex2f(x + w, y);
                 glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
                 glTexCoord2d(0, 0); glVertex2f(x, y + h);
             glEnd();
-            glDisable(GL_TEXTURE_2D);
+        } else
+        {
+            x = this->x;
+            y = this->y;
+            w = this->width;
+            h = this->height;
+            glBindTexture(GL_TEXTURE_2D, this->texture[this->textureState]);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glBegin(GL_QUADS);
+                glTexCoord2d(0, 1); glVertex2f(x, y);
+                glTexCoord2d(1, 1); glVertex2f(x + w, y);
+                glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+                glTexCoord2d(0, 0); glVertex2f(x, y + h);
+            glEnd();
+            glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            x = this->startCoords.x;
+            y = this->startCoords.y;
+            w = this->startCoords.w;
+            h = this->startCoords.h;
+            glBegin(GL_QUADS);
+                glTexCoord2d(0, 1); glVertex2f(x, y);
+                glTexCoord2d(1, 1); glVertex2f(x + w, y);
+                glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+                glTexCoord2d(0, 0); glVertex2f(x, y + h);
+            glEnd();
         }
+        glDisable(GL_TEXTURE_2D);
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
