@@ -62,7 +62,7 @@ Splash::Splash(int wWidth, int wHeight)
     this->wHeight = wHeight;
     this->x = wWidth / 2 - this->width / 2;
     this->y = wHeight / 2 - this->height / 2;
-    this->time = 6200;
+    this->time = 0;
     this->music1 = NULL;
     this->music2 = NULL;
     this->timer = new Timer();
@@ -135,15 +135,17 @@ void Splash::changeTexture(void)
     textureState++;
     if(textureState >= SPLASH_SPRITES_COUNT)
         textureState = 0;
+
+    this->time += SPLASH_ANIMATION_INTERVAL;
 }
 
 void Splash::changeTextureFade(void)
 {
-    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE - 1)
         return;
 
     textureStateFade++;
-    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+    if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE - 1)
     {
         this->timer->add(SPLASH_ANIMATION_INTERVAL,
                 new SplashAnimator(this));
@@ -151,6 +153,8 @@ void Splash::changeTextureFade(void)
                 new SplashStartAnimator(this));
         Mix_PlayMusic(music2, -1);
     }
+
+    this->time += SPLASH_ANIMATION_INTERVAL_FADE;
 }
 
 void Splash::changeTextureStart(void)
@@ -171,7 +175,6 @@ void Splash::resize(int width, int height)
 void Splash::show(int *width, int *height)
 {
     int i;
-    float j;
     SDL_Event event;
 
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
@@ -190,7 +193,6 @@ void Splash::show(int *width, int *height)
 
     // Begin render
 
-    j = 0;
     while(this->isRunning)
     {
         this->event(event);
@@ -201,7 +203,7 @@ void Splash::show(int *width, int *height)
 
         glColor4ub(255, 255, 255, 255);
         glEnable(GL_TEXTURE_2D);
-        if(this->textureStateFade < SPLASH_SPRITES_COUNT_FADE)
+        if(this->time < 2000)
             glBindTexture(GL_TEXTURE_2D,
                     this->textureFade[this->textureStateFade]);
         else
@@ -215,7 +217,7 @@ void Splash::show(int *width, int *height)
             glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
         glEnd();
         glDisable(GL_TEXTURE_2D);
-        if(this->textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+        if(this->time > 2000)
         {
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
@@ -241,7 +243,7 @@ void Splash::show(int *width, int *height)
         //SDL_Delay(30 / 1000);
         //j += 30.0f / 1000.0f;
         SDL_Delay(10);
-        j += 10;
+        this->time += 10;
         this->timer->tick();
         //if(j > time)
         //    break;
