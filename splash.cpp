@@ -37,6 +37,23 @@ class SplashFadeAnimator : public Ticker
         }
 };
 
+class SplashStartAnimator : public Ticker
+{
+    private:
+        Splash *splash;
+
+    public:
+        SplashStartAnimator(Splash *splash)
+        {
+            this->splash = splash;
+        }
+
+        virtual void tick(void)
+        {
+            this->splash->changeTextureStart();
+        }
+};
+
 Splash::Splash(int wWidth, int wHeight)
 {
     this->width = 1480;
@@ -50,6 +67,12 @@ Splash::Splash(int wWidth, int wHeight)
     this->timer = new Timer();
     this->textureState = 0;
     this->textureStateFade = 0;
+    this->textureStateStart = 0;
+    this->startCoords.x = 0;
+    this->startCoords.y = 0;
+    this->startCoords.w = 500;
+    this->startCoords.h = 100;
+    this->isRunning = true;
     loadTexture();
 }
 
@@ -76,6 +99,13 @@ void Splash::loadTexture(void)
         this->texture[i] = loadModel("data/cover/splash2.png", imgForCrop);
         imgForCrop.x += imgForCrop.w;
     }
+
+    imgForCrop = { 0, 0, 32, 32 };
+    for(i = 0; i < SPLASH_SPRITES_COUNT_START; i++)
+    {
+        this->textureStart[i] = loadModel("data/cover/start.png", imgForCrop);
+        imgForCrop.x += imgForCrop.w;
+    }
 }
 
 void Splash::event(SDL_Event event)
@@ -87,6 +117,14 @@ void Splash::event(SDL_Event event)
             this->resize(event.resize.w, event.resize.h);
             SDL_SetVideoMode(this->wWidth, this->wHeight, 32, SDL_OPENGL | SDL_RESIZABLE);
             glViewport(0, 0, this->wWidth, this->wHeight);
+        } else if(event.type == SDL_KEYDOWN)
+        {
+            switch(event.key.keysym.sym)
+            {
+                case SDLK_RETURN:
+                    this->isRunning = false;
+                    break;
+            }
         }
     }
 }
@@ -105,8 +143,19 @@ void Splash::changeTextureFade(void)
 
     textureStateFade++;
     if(textureStateFade >= SPLASH_SPRITES_COUNT_FADE)
+    {
         this->timer->add(SPLASH_ANIMATION_INTERVAL,
                 new SplashAnimator(this));
+        this->timer->add(SPLASH_ANIMATION_INTERVAL_START,
+                new SplashStartAnimator(this));
+    }
+}
+
+void Splash::changeTextureStart(void)
+{
+    textureStateStart++;
+    if(textureStateStart >= SPLASH_SPRITES_COUNT_START)
+        textureStateStart = 0;
 }
 
 void Splash::resize(int width, int height)
@@ -134,10 +183,12 @@ void Splash::show(int *width, int *height)
     //glPushMatrix();
     //glOrtho(0, this->wWidth, 0, this->wHeight, -1, 1);
 
+    SDL_Delay(1500);
+
     // Begin render
 
     j = 0;
-    while(1)
+    while(this->isRunning)
     {
         this->event(event);
 
@@ -161,6 +212,21 @@ void Splash::show(int *width, int *height)
             glTexCoord2d(0, 0); glVertex2f(this->x, this->y + this->height);
         glEnd();
         glDisable(GL_TEXTURE_2D);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, this->textureStart[this->textureStateStart]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        int x = this->startCoords.x;
+        int y = this->startCoords.y;
+        int w = this->startCoords.w;
+        int h = this->startCoords.h;
+        glBegin(GL_QUADS);
+            glTexCoord2d(0, 1); glVertex2f(x, y);
+            glTexCoord2d(1, 1); glVertex2f(x + w, y);
+            glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+            glTexCoord2d(0, 0); glVertex2f(x, y + h);
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
 
         glPopMatrix();
         SDL_GL_SwapBuffers();
@@ -171,8 +237,8 @@ void Splash::show(int *width, int *height)
         SDL_Delay(10);
         j += 10;
         this->timer->tick();
-        if(j > time)
-            break;
+        //if(j > time)
+        //    break;
     }
 
     // End render
