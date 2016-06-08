@@ -116,6 +116,7 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(std::string file)
 {
+<<<<<<< HEAD
     SDL_Rect imgForCrop = { 0, 0, 32, 32 };
     int i;
 
