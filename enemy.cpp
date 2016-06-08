@@ -66,27 +66,27 @@ void Enemy::move(void)
 
 void Enemy::loadTexture()
 {
-    int i;
+//    int i;
 
-    switch(type)
-    {
-        case ENEMY_TYPE_VOODOO:
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/ja/ja1.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/ja/ja2.png");
-            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/ja/ja3.png");
-            for(i = 0; i < 3; i++)
-            {
-                this->texture.up[i] = texture.down[i];
-                this->texture.left[i] = texture.down[i];
-                this->texture.right[i] = texture.down[i];
-            }
-            break;
-        case ENEMY_TYPE_BOZA:
-            Player::loadTexture("vitez/vitez");
-            break;
-    }
+//    switch(type)
+//    {
+//        case ENEMY_TYPE_VOODOO:
+//            Player::loadTexture(PLAYER_ANGLE_DOWN, 0, "data/ja/ja1.png");
+//            Player::loadTexture(PLAYER_ANGLE_DOWN, 1, "data/ja/ja2.png");
+//            Player::loadTexture(PLAYER_ANGLE_DOWN, 2, "data/ja/ja3.png");
+//            for(i = 0; i < 3; i++)
+//            {
+//                this->texture.up[i] = texture.down[i];
+//                this->texture.left[i] = texture.down[i];
+//                this->texture.right[i] = texture.down[i];
+//            }
+//            break;
+//        case ENEMY_TYPE_BOZA:
+//            Player::loadTexture("vitez/vitez");
+//            break;
+//    }
 
-    this->shadowTexture = loadModel("data/shadow2.png");
+//    this->shadowTexture = loadModel("data/shadow2.png");
 }
 
 void Enemy::seeLogic(Player *player)
