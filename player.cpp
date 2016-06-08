@@ -136,25 +136,6 @@ void Player::loadTexture(std::string file)
     std::cout << "Player texture initialized" << std::endl;
 }
 
-void Player::loadTexture(int side, int num, std::string file)
-{
-    switch(side)
-    {
-        case PLAYER_ANGLE_DOWN:
-            this->texture.down[num] = loadModel(file);
-            break;
-        case PLAYER_ANGLE_RIGHT:
-            this->texture.right[num] = loadModel(file);
-            break;
-        case PLAYER_ANGLE_UP:
-            this->texture.up[num] = loadModel(file);
-            break;
-        case PLAYER_ANGLE_LEFT:
-            this->texture.left[num] = loadModel(file);
-            break;
-    }
-}
-
 SDL_Rect Player::getCollCoords(void)
 {
     SDL_Rect collCoords = this->coords;
