@@ -125,7 +125,7 @@ void Splash::event(SDL_Event event)
         {
             switch(event.key.keysym.sym)
             {
-                case SDLK_RETURN:
+                case SDLK_RETURN: case SDLK_SPACE:
                     this->isRunning = false;
                     break;
             }
