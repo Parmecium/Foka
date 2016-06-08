@@ -12,10 +12,10 @@
 #define PLAYER_MOVE_LEFT    5
 
 // Player angle
-#define PLAYER_ANGLE_DOWN   6
-#define PLAYER_ANGLE_RIGHT  7
-#define PLAYER_ANGLE_UP     8
-#define PLAYER_ANGLE_LEFT   9
+#define PLAYER_ANGLE_DOWN   0
+#define PLAYER_ANGLE_RIGHT  1
+#define PLAYER_ANGLE_UP     2
+#define PLAYER_ANGLE_LEFT   3
 
 #define PLAYER_SPEED        3
 
@@ -37,6 +37,8 @@ class Player
         int health;
         int angle;
         PlayerTexture texture;
+        std::vector<unsigned int> bodyTexture[4];
+        std::vector<unsigned int> headTexture[4];
         unsigned int shadowTexture;
         int textureState;
         int textureIncrement;

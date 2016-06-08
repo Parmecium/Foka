@@ -25,7 +25,6 @@ Map::Map(float width, float height, float sWidth, float sHeight)
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
     player = new Player(190, 195, timer, 103.0, 117.0, 100);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
-    player2 = new Player(220, 195, timer, 70.0, 100.0, 90);
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer, player);
@@ -74,8 +73,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->tile.push_back(new Tile(500, 500, TILE_PLANT1));
 
     /***************** Neprijatelji za testiranje *******************/
-    this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
-    this->enemy.push_back(new Enemy(990, 1010, timer, ENEMY_TYPE_BOZA));
+    //this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
+    //this->enemy.push_back(new Enemy(990, 1010, timer, ENEMY_TYPE_BOZA));
     /****************************************************************/
 }
 
@@ -84,12 +83,12 @@ Map::~Map(void)
     int i;
 
     delete this->player;
-    delete this->player2;
+    //delete this->player2;
     delete this->inventory;
     for(i = 0; i < this->tile.size(); i++)
         delete this->tile[i];
-    for(i = 0; i < this->enemy.size(); i++)
-        delete this->enemy[i];
+    //for(i = 0; i < this->enemy.size(); i++)
+    //    delete this->enemy[i];
     delete timer;
     delete music;
 }
@@ -97,14 +96,13 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("pig/pig");
+    player->loadTexture("pig/pig_body/pig");
     //player2->loadTexture("grim/grim");
-    player2->loadTexture("vila/vila");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
         this->tile[i]->loadTexture();
-    for(i = 0; i < this->enemy.size(); i++)
-        this->enemy[i]->loadTexture();
+    //for(i = 0; i < this->enemy.size(); i++)
+    //    this->enemy[i]->loadTexture();
     this->bgImg = loadModel("data/pozadine/poz34.png"); //dobre pozadine su 15,18,22,24,28,29,34
     this->shadowImg = loadModel("data/senke/senke1.png");
 }
@@ -137,22 +135,22 @@ bool Map::logic(int musicVolume, int effectVolume)
 {
     int i, j;
     player->move();
-    player2->move();
+    //player2->move();
     player->collision(width, height);
-    player2->collision(width, height);
-    for(i = 0; i < enemy.size(); i++)
-    {
-        this->enemy[i]->seeLogic(player);
-        this->enemy[i]->move();
-        this->player->collision(this->enemy[i]);
-        //this->enemy[i]->collision(player);
-    }
+    //player2->collision(width, height);
+    //for(i = 0; i < enemy.size(); i++)
+    //{
+    //    this->enemy[i]->seeLogic(player);
+    //    this->enemy[i]->move();
+    //    this->player->collision(this->enemy[i]);
+    //    this->enemy[i]->collision(player);
+    //}
     for(i = 0; i < tile.size(); i++)
     {
         this->tile[i]->collision(player);
-        this->tile[i]->collision(player2);
-        for(j = 0; j < enemy.size(); j++)
-            this->tile[i]->collision(enemy[j]);
+        //this->tile[i]->collision(player2);
+        //for(j = 0; j < enemy.size(); j++)
+        //    this->tile[i]->collision(enemy[j]);
     }
     this->setCamera();
     this->timer->tick();
@@ -207,15 +205,15 @@ void Map::render(void)
         }
 
     this->player->renderShadow(camera);
-    this->player2->renderShadow(camera);
-    for(i = 0; i < enemy.size(); i++)
-        this->enemy[i]->renderShadow(camera);
+    //this->player2->renderShadow(camera);
+    //for(i = 0; i < enemy.size(); i++)
+    //    this->enemy[i]->renderShadow(camera);
     for(i = 0; i < tile.size(); i++)
         this->tile[i]->render(camera);
-    for(i = 0; i < enemy.size(); i++)
-        this->enemy[i]->render(camera);
+    //for(i = 0; i < enemy.size(); i++)
+    //    this->enemy[i]->render(camera);
     this->player->render(camera);
-    this->player2->render(camera);
+    //this->player2->render(camera);
 
     glColor4ub(255, 255, 255, 255);
     glEnable(GL_TEXTURE_2D);
