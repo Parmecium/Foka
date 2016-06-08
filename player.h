@@ -19,14 +19,6 @@
 
 #define PLAYER_SPEED        3
 
-typedef struct sPlayerTexture
-{
-    unsigned int down[3];
-    unsigned int right[3];
-    unsigned int up[3];
-    unsigned int left[3];
-} PlayerTexture;
-
 class Player
 {
     protected:
@@ -36,7 +28,6 @@ class Player
         int speedY;
         int health;
         int angle;
-        PlayerTexture texture;
         std::vector<unsigned int> bodyTexture[4];
         std::vector<unsigned int> headTexture[4];
         unsigned int shadowTexture;
