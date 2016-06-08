@@ -17,13 +17,7 @@
 #define PLAYER_ANGLE_UP     8
 #define PLAYER_ANGLE_LEFT   9
 
-typedef struct sPlayerMove
-{
-    bool down;
-    bool right;
-    bool up;
-    bool left;
-} PlayerMove;
+#define PLAYER_SPEED        3
 
 typedef struct sPlayerTexture
 {
@@ -38,10 +32,10 @@ class Player
     protected:
         SDL_Rect coords;
         //SDL_Rect collCoords;
-        float speed;
-        float health;
+        int speedX;
+        int speedY;
+        int health;
         int angle;
-        PlayerMove moveState;
         PlayerTexture texture;
         unsigned int shadowTexture;
         int textureState;

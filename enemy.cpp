@@ -25,7 +25,6 @@ Enemy::Enemy(float x, float y, Timer *timer, int type,
         float w, float h, int interval)
     : Player(x, y, NULL, w, h, interval)
 {
-    this->moveState.right = true;
     this->minX = x;
     this->maxX = x + 500;
     this->speedX = 0;
