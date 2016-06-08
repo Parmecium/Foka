@@ -116,19 +116,23 @@ void Player::changeMoveState(int type, int state)
 
 void Player::loadTexture(std::string file)
 {
-    this->texture.down[0] = loadModel("data/" + file + "_d2.png");
-    this->texture.right[0] = loadModel("data/" + file + "_r2.png");
-    this->texture.left[0] = loadModel("data/" + file + "_l2.png");
-    this->texture.up[0] = loadModel("data/" + file + "_u2.png");
-    this->texture.down[1] = loadModel("data/" + file + "_d.png");
-    this->texture.right[1] = loadModel("data/" + file + "_r.png");
-    this->texture.left[1] = loadModel("data/" + file + "_l.png");
-    this->texture.up[1] = loadModel("data/" + file + "_u.png");
-    this->texture.down[2] = loadModel("data/" + file + "_d3.png");
-    this->texture.right[2] = loadModel("data/" + file + "_r3.png");
-    this->texture.left[2] = loadModel("data/" + file + "_l3.png");
-    this->texture.up[2] = loadModel("data/" + file + "_u3.png");
-    this->shadowTexture = loadModel("data/shadow2.png");
+    SDL_Rect imgForCrop = { 0, 0, 32, 32 };
+    int i;
+
+    for(i = 0; i < 5; i++)
+    {
+        this->bodyTexture[PLAYER_ANGLE_DOWN].push_back(
+                loadModel("data/" + file + "_d.png", imgForCrop));
+        this->bodyTexture[PLAYER_ANGLE_RIGHT].push_back(
+                loadModel("data/" + file + "_r.png", imgForCrop));
+        this->bodyTexture[PLAYER_ANGLE_UP].push_back(
+                loadModel("data/" + file + "_u.png", imgForCrop));
+        this->bodyTexture[PLAYER_ANGLE_LEFT].push_back(
+                loadModel("data/" + file + "_r.png", imgForCrop));
+        imgForCrop.x += imgForCrop.w;
+    }
+    this->shadowTexture = loadModel("data/shadow.png");
+
     std::cout << "Player texture initialized" << std::endl;
 }
 
@@ -161,7 +165,7 @@ SDL_Rect Player::getCollCoords(void)
 void Player::changeTexture(void)
 {
     this->textureState += this->textureIncrement;
-    if(this->textureState != 1)
+    if(this->textureState <= 0 || this->textureState >= bodyTexture[0].size() - 1)
         this->textureIncrement = -this->textureIncrement;
 }
 
@@ -213,21 +217,9 @@ void Player::render(SDL_Rect camera)
     float w = this->coords.w;
     float h = this->coords.h;
 
-    switch(this->angle)
-    {
-        case PLAYER_ANGLE_DOWN:
-            glBindTexture(GL_TEXTURE_2D, this->texture.down[this->textureState]);
-            break;
-        case PLAYER_ANGLE_RIGHT:
-            glBindTexture(GL_TEXTURE_2D, this->texture.right[this->textureState]);
-            break;
-        case PLAYER_ANGLE_UP:
-            glBindTexture(GL_TEXTURE_2D, this->texture.up[this->textureState]);
-            break;
-        case PLAYER_ANGLE_LEFT:
-            glBindTexture(GL_TEXTURE_2D, this->texture.left[this->textureState]);
-            break;
-    }
+    glBindTexture(GL_TEXTURE_2D, this->bodyTexture[this->angle][this->textureState]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     glBegin(GL_QUADS);
         glTexCoord2d(0, 1); glVertex2f(x, y);
@@ -253,6 +245,8 @@ void Player::renderShadow(SDL_Rect camera)
     h -= 50;
 
     glBindTexture(GL_TEXTURE_2D, this->shadowTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glBegin(GL_QUADS);
         glTexCoord2d(0, 1); glVertex2f(x, y);
         glTexCoord2d(1, 1); glVertex2f(x + w, y);
