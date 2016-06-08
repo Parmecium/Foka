@@ -128,7 +128,7 @@ void Player::loadTexture(std::string file)
     this->texture.right[2] = loadModel("data/" + file + "_r3.png");
     this->texture.left[2] = loadModel("data/" + file + "_l3.png");
     this->texture.up[2] = loadModel("data/" + file + "_u3.png");
-    this->shadowTexture = loadModel("data/shadow2.png");
+    this->shadowTexture = loadModel("data/shadow.png");
     std::cout << "Player texture initialized" << std::endl;
 }
 
