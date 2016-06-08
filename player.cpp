@@ -26,12 +26,9 @@ Player::Player(float x, float y, Timer *timer, float w, float h, int interval)
     this->coords.y = y;
     this->coords.w = w;
     this->coords.h = h;
-    this->speed = 3.0;
-    this->health = 3.0;
-    this->moveState.down = false;
-    this->moveState.right = false;
-    this->moveState.up = false;
-    this->moveState.left = false;
+    this->speedX = 0;
+    this->speedY = 0;
+    this->health = 3;
     this->angle = PLAYER_ANGLE_DOWN;
     this->textureState = 1;
     this->textureIncrement = 0;
@@ -46,39 +43,34 @@ Player::~Player(void)
 
 void Player::move(void)
 {
-    if(!this->moveState.down &&
-            !this->moveState.up &&
-            !this->moveState.left &&
-            !this->moveState.right)
+    if(this->speedX > 0)
     {
-        this->textureState = 1;
-        this->textureIncrement = 0;
-        this->angle = PLAYER_ANGLE_DOWN;
-    } else
-    {
+        this->angle = PLAYER_ANGLE_RIGHT;
         if(this->textureIncrement == 0)
             this->textureIncrement = 1;
-        if(this->moveState.down)
-        {
-            this->coords.y -= this->speed;
-            this->angle = PLAYER_ANGLE_DOWN;
-        }
-        if(this->moveState.up)
-        {
-            this->coords.y += this->speed;
-            this->angle = PLAYER_ANGLE_UP;
-        }
-        if(this->moveState.left)
-        {
-            this->coords.x -= this->speed;
-            this->angle = PLAYER_ANGLE_LEFT;
-        }
-        if(this->moveState.right)
-        {
-            this->coords.x += this->speed;
-            this->angle = PLAYER_ANGLE_RIGHT;
-        }
+    } else if(this->speedX < 0)
+    {
+        this->angle = PLAYER_ANGLE_LEFT;
+        if(this->textureIncrement == 0)
+            this->textureIncrement = 1;
+    } else if(this->speedY > 0)
+    {
+        this->angle = PLAYER_ANGLE_UP;
+        if(this->textureIncrement == 0)
+            this->textureIncrement = 1;
+    } else if(this->speedY < 0)
+    {
+        this->angle = PLAYER_ANGLE_DOWN;
+        if(this->textureIncrement == 0)
+            this->textureIncrement = 1;
+    } else
+    {
+        this->angle = PLAYER_ANGLE_DOWN;
+        this->textureIncrement = 0;
+        this->textureState = 1;
     }
+    this->coords.x += this->speedX;
+    this->coords.y += this->speedY;
 }
 
 void Player::changeMoveState(int type, int state)
@@ -89,16 +81,16 @@ void Player::changeMoveState(int type, int state)
             switch(state)
             {
                 case PLAYER_MOVE_DOWN:
-                    this->moveState.down = true;
+                    this->speedY -= PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_RIGHT:
-                    this->moveState.right = true;
+                    this->speedX += PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_UP:
-                    this->moveState.up = true;
+                    this->speedY += PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_LEFT:
-                    this->moveState.left = true;
+                    this->speedX -= PLAYER_SPEED;
                     break;
             }
             break;
@@ -106,16 +98,16 @@ void Player::changeMoveState(int type, int state)
             switch(state)
             {
                 case PLAYER_MOVE_DOWN:
-                    this->moveState.down = false;
+                    this->speedY += PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_RIGHT:
-                    this->moveState.right = false;
+                    this->speedX -= PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_UP:
-                    this->moveState.up = false;
+                    this->speedY -= PLAYER_SPEED;
                     break;
                 case PLAYER_MOVE_LEFT:
-                    this->moveState.left = false;
+                    this->speedX += PLAYER_SPEED;
                     break;
             }
             break;
