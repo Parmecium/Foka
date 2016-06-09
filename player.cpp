@@ -221,8 +221,8 @@ void Player::render(SDL_Rect camera)
     glDisable(GL_TEXTURE_2D);
     glEnable(GL_TEXTURE_2D);
 
-    w = this->coords.w - 10;
-    h = this->coords.h - 10;
+    w = this->coords.w + 10;
+    h = this->coords.h + 10;
     x = this->coords.x - camera.x + this->coords.w / 2 - w / 2;
     y = this->coords.y - camera.y + this->coords.h / 2 - h / 2;
 
