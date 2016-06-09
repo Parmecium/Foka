@@ -185,7 +185,7 @@ void Splash::show(int *width, int *height)
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
     music1 = Mix_LoadMUS("data/splash/splash1.mp3");
     music2 = Mix_LoadMUS("data/splash/splash2.mp3");
-    Mix_PlayMusic(music1, -1);
+    //Mix_PlayMusic(music1, -1);
 
     this->timer->add(SPLASH_ANIMATION_INTERVAL_FADE,
             new SplashFadeAnimator(this));
