@@ -96,7 +96,7 @@ Map::~Map(void)
 void Map::loadTexture(void)
 {
     int i;
-    player->loadTexture("pig/pig_body/pig");
+    player->loadTexture("pig");
     //player2->loadTexture("grim/grim");
     inventory->loadTexture();
     for(i = 0; i < this->tile.size(); i++)
