@@ -122,13 +122,22 @@ void Player::loadTexture(std::string file)
     for(i = 0; i < 5; i++)
     {
         this->bodyTexture[PLAYER_ANGLE_DOWN].push_back(
-                loadModel("data/" + file + "_d.png", imgForCrop));
+                loadModel("data/" + file + "/" + file + "_body/" + file + "_d.png", imgForCrop));
         this->bodyTexture[PLAYER_ANGLE_RIGHT].push_back(
-                loadModel("data/" + file + "_r.png", imgForCrop));
+                loadModel("data/" + file + "/" + file + "_body/" + file + "_r.png", imgForCrop));
         this->bodyTexture[PLAYER_ANGLE_UP].push_back(
-                loadModel("data/" + file + "_u.png", imgForCrop));
+                loadModel("data/" + file + "/" + file + "_body/" + file + "_u.png", imgForCrop));
         this->bodyTexture[PLAYER_ANGLE_LEFT].push_back(
-                loadModel("data/" + file + "_r.png", imgForCrop));
+                loadModel("data/" + file + "/" + file + "_body/" + file + "_r.png", imgForCrop));
+        imgForCrop.x += imgForCrop.h;
+    }
+    // Precica za ucitavanje glava svinje
+    // (zahvaljujuci aci, dobro je stavio raspored na spritesheet)
+    imgForCrop = { 0, 0, 32, 32 };
+    for(i = 0; i < 4; i++)
+    {
+        this->headTexture[i].push_back(
+                loadModel("data/" + file + "/" + file + "_head/" + file + "_h.png", imgForCrop));
         imgForCrop.x += imgForCrop.w;
     }
     this->shadowTexture = loadModel("data/shadow.png");
@@ -199,6 +208,25 @@ void Player::render(SDL_Rect camera)
     float h = this->coords.h;
 
     glBindTexture(GL_TEXTURE_2D, this->bodyTexture[this->angle][this->textureState]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    glBegin(GL_QUADS);
+        glTexCoord2d(0, 1); glVertex2f(x, y);
+        glTexCoord2d(1, 1); glVertex2f(x + w, y);
+        glTexCoord2d(1, 0); glVertex2f(x + w, y + h);
+        glTexCoord2d(0, 0); glVertex2f(x, y + h);
+    glEnd();
+
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
+
+    x = this->coords.x - camera.x + this->coords.w / 4;
+    y = this->coords.y - camera.y + this->coords.h / 5;
+    w = this->coords.w / 2;
+    h = this->coords.h / 2;
+
+    glBindTexture(GL_TEXTURE_2D, this->headTexture[this->angle][0]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
