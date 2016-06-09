@@ -145,16 +145,16 @@ void Game::events(SDL_Event event)
                         map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_s:
-                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_DOWN);
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
                         break;
                     case SDLK_d:
-                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_RIGHT);
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
                         break;
                     case SDLK_w:
-                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_UP);
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
                         break;
                     case SDLK_a:
-                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_LEFT);
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_ESCAPE:
                         isRunning = false;
@@ -175,6 +175,18 @@ void Game::events(SDL_Event event)
                         break;
                     case SDLK_LEFT:
                         map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
+                        break;
+                    case SDLK_s:
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
+                        break;
+                    case SDLK_d:
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
+                        break;
+                    case SDLK_w:
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
+                        break;
+                    case SDLK_a:
+                        map->getPlayer()->changeHeadMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
                         break;
                 }
                 break;

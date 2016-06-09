@@ -19,6 +19,14 @@
 
 #define PLAYER_SPEED        3
 
+typedef struct
+{
+    bool down;
+    bool right;
+    bool up;
+    bool left;
+} PlayerHeadState;
+
 class Player
 {
     protected:
@@ -34,6 +42,7 @@ class Player
         unsigned int shadowTexture;
         int textureState;
         int textureIncrement;
+        PlayerHeadState headState;
 
     public:
         Player(float x, float y, Timer *timer,
@@ -41,6 +50,7 @@ class Player
         ~Player(void);
         void move(void);
         void changeMoveState(int type, int state);
+        void changeHeadMoveState(int type, int state);
         void loadTexture(std::string file);
         void loadTexture(int side, int num, std::string file);
         void render(SDL_Rect camera);
@@ -59,7 +69,6 @@ class Player
         SDL_Rect getCollCoords(void);
         int getTextureIncrement(void) { return this->textureIncrement; };
         void setTextureIncrement(int value) { this->textureIncrement = value; };
-        void setHeadAngle(int value) { this->headAngle = value; };
 
         bool isAlive(void) { return (this->health > 0 ? true : false); };
 };

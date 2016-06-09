@@ -33,6 +33,8 @@ Player::Player(float x, float y, Timer *timer, float w, float h, int interval)
     this->textureState = 1;
     this->textureIncrement = 0;
 
+    this->headState = { false, false, false, false };
+
     if(timer != NULL)
         timer->add(interval, new PlayerAnimator(this));  //Speed of sprites replacing each other.
 }
@@ -71,6 +73,17 @@ void Player::move(void)
     }
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
+
+    if(this->headState.down)
+        this->headAngle = PLAYER_ANGLE_DOWN;
+    else if(this->headState.right)
+        this->headAngle = PLAYER_ANGLE_RIGHT;
+    else if(this->headState.up)
+        this->headAngle = PLAYER_ANGLE_UP;
+    else if(this->headState.left)
+        this->headAngle = PLAYER_ANGLE_LEFT;
+    else
+        this->headAngle = this->angle;
 }
 
 void Player::changeMoveState(int type, int state)
@@ -108,6 +121,47 @@ void Player::changeMoveState(int type, int state)
                     break;
                 case PLAYER_MOVE_LEFT:
                     this->speedX += PLAYER_SPEED;
+                    break;
+            }
+            break;
+    }
+}
+
+void Player::changeHeadMoveState(int type, int state)
+{
+    switch(type)
+    {
+        case PLAYER_MOVE_ADD:
+            switch(state)
+            {
+                case PLAYER_MOVE_DOWN:
+                    this->headState.down = true;
+                    break;
+                case PLAYER_MOVE_RIGHT:
+                    this->headState.right = true;
+                    break;
+                case PLAYER_MOVE_UP:
+                    this->headState.up = true;
+                    break;
+                case PLAYER_MOVE_LEFT:
+                    this->headState.left = true;
+                    break;
+            }
+            break;
+        case PLAYER_MOVE_DELETE:
+            switch(state)
+            {
+                case PLAYER_MOVE_DOWN:
+                    this->headState.down = false;
+                    break;
+                case PLAYER_MOVE_RIGHT:
+                    this->headState.right = false;
+                    break;
+                case PLAYER_MOVE_UP:
+                    this->headState.up = false;
+                    break;
+                case PLAYER_MOVE_LEFT:
+                    this->headState.left = false;
                     break;
             }
             break;
