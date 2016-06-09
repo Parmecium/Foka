@@ -304,8 +304,10 @@ void Player::renderShadow(SDL_Rect camera)
     float w = this->coords.w;
     float h = this->coords.h;
 
-    y -= 35;
-    h -= 60;
+    y -= 15;
+    h -= 80;
+    w -= 20; 
+    x += 10;
 
     glBindTexture(GL_TEXTURE_2D, this->shadowTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
