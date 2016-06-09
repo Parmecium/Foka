@@ -226,7 +226,7 @@ void Player::render(SDL_Rect camera)
     x = this->coords.x - camera.x + this->coords.w / 2 - w / 2;
     y = this->coords.y - camera.y + this->coords.h / 2 - h / 2;
 
-    glBindTexture(GL_TEXTURE_2D, this->headTexture[this->angle][0]);
+    glBindTexture(GL_TEXTURE_2D, this->headTexture[this->headAngle][0]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 

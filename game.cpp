@@ -145,16 +145,16 @@ void Game::events(SDL_Event event)
                         map->getPlayer()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
                         break;
                     case SDLK_s:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_DOWN);
+                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_DOWN);
                         break;
                     case SDLK_d:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_RIGHT);
+                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_RIGHT);
                         break;
                     case SDLK_w:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_UP);
+                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_UP);
                         break;
                     case SDLK_a:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_ADD, PLAYER_MOVE_LEFT);
+                        map->getPlayer()->setHeadAngle(PLAYER_ANGLE_LEFT);
                         break;
                     case SDLK_ESCAPE:
                         isRunning = false;
@@ -175,18 +175,6 @@ void Game::events(SDL_Event event)
                         break;
                     case SDLK_LEFT:
                         map->getPlayer()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
-                        break;
-                    case SDLK_s:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_DOWN);
-                        break;
-                    case SDLK_d:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_RIGHT);
-                        break;
-                    case SDLK_w:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_UP);
-                        break;
-                    case SDLK_a:
-                        map->getPlayer2()->changeMoveState(PLAYER_MOVE_DELETE, PLAYER_MOVE_LEFT);
                         break;
                 }
                 break;

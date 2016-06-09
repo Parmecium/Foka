@@ -28,6 +28,7 @@ class Player
         int speedY;
         int health;
         int angle;
+        int headAngle;
         std::vector<unsigned int> bodyTexture[4];
         std::vector<unsigned int> headTexture[4];
         unsigned int shadowTexture;
@@ -39,7 +40,7 @@ class Player
                 float w = 90.0f, float h = 107.0f, int interval = 90);
         ~Player(void);
         void move(void);
-        void changeMoveState(int type, int size);
+        void changeMoveState(int type, int state);
         void loadTexture(std::string file);
         void loadTexture(int side, int num, std::string file);
         void render(SDL_Rect camera);
@@ -58,8 +59,9 @@ class Player
         SDL_Rect getCollCoords(void);
         int getTextureIncrement(void) { return this->textureIncrement; };
         void setTextureIncrement(int value) { this->textureIncrement = value; };
+        void setHeadAngle(int value) { this->headAngle = value; };
 
-        bool isAlive(void) { return (this->health > 0 ? true : false); }
+        bool isAlive(void) { return (this->health > 0 ? true : false); };
 };
 
 #endif  // PLAYER_H
