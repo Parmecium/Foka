@@ -60,7 +60,7 @@ int Menu::events(SDL_Event event)
                             this->state = MENU_NUM_OF_CHOICES - 1;
                         Mix_PlayChannel(-1, selectedSound, 0);
                         break;
-                    case SDLK_RETURN:
+                    case SDLK_RETURN: case SDLK_SPACE:
                         return state;
                         break;
                 }
