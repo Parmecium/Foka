@@ -77,7 +77,7 @@ int MenuLanguage::events(SDL_Event event)
                         if(--this->state < 0)
                             this->state = MENU_NUM_OF_LANGUAGES - 1;
                         break;
-                    case SDLK_RETURN:
+                    case SDLK_RETURN: case SDLK_SPACE:
                         return state;
                         break;
                 }
