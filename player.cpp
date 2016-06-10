@@ -210,7 +210,7 @@ void Player::changeTexture(void)
 {
     this->textureState += this->textureIncrement;
     if(this->textureState <= 0 || this->textureState >= bodyTexture[0].size() - 1)
-        this->textureIncrement = -this->textureIncrement;
+        this->textureState = 0;
 }
 
 void Player::collision(float width, float height)
