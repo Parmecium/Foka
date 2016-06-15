@@ -69,7 +69,7 @@ void Player::move(void)
     {
         this->angle = PLAYER_ANGLE_DOWN;
         this->textureIncrement = 0;
-        this->textureState = 1;
+        this->textureState = 0;
     }
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
@@ -177,10 +177,16 @@ void Player::loadTexture(std::string file)
     {
         this->bodyTexture[PLAYER_ANGLE_DOWN].push_back(
                 loadModel("data/" + file + "/" + file + "_body/" + file + "_d.png", imgForCrop));
-        this->bodyTexture[PLAYER_ANGLE_RIGHT].push_back(
-                loadModel("data/" + file + "/" + file + "_body/" + file + "_r.png", imgForCrop));
         this->bodyTexture[PLAYER_ANGLE_UP].push_back(
                 loadModel("data/" + file + "/" + file + "_body/" + file + "_u.png", imgForCrop));
+        imgForCrop.x += imgForCrop.h;
+    }
+    imgForCrop.x = 0;
+    imgForCrop.y = 0;
+    for(i = 0; i < 6; i++)
+    {
+        this->bodyTexture[PLAYER_ANGLE_RIGHT].push_back(
+                loadModel("data/" + file + "/" + file + "_body/" + file + "_r.png", imgForCrop));
         this->bodyTexture[PLAYER_ANGLE_LEFT].push_back(
                 loadModel("data/" + file + "/" + file + "_body/" + file + "_r.png", imgForCrop));
         imgForCrop.x += imgForCrop.h;
