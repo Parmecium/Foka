@@ -24,7 +24,7 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     this->effectVolume = 4;
 
     /******************* Velicina igraca, i interval ***bilo je 90.0, 107, 90 ****************/
-    player = new Player(190, 195, timer, 103.0, 117.0, 100);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
+    player = new Player(190, 195, timer, 103, 117, 90);                                           /**** Savrsene dimenzije svine  103.0, 117.0  ****/
     /*******************************************************************/
 
     inventory = new Inventory(this->sWidth, this->sHeight, timer, player);
