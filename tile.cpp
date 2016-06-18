@@ -127,7 +127,7 @@ void Tile::collision(Player *player)
                     n = k * (-p) + q;
                     a = 1 + pow(k, 2);
                     b = 2 * p - 2 * k * n + 2 * k * q;
-                    c = pow(r, 2) + pow(n, 2) - 2 * n * q - pow(q, 2) - pow(p, 2);
+                    c = - pow(r, 2) + pow(n, 2) - 2 * n * q + pow(q, 2) + pow(p, 2);
                     x1 = (-b + sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
                     x2 = (-b - sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
                     y1 = k * x1 + n;
@@ -136,7 +136,7 @@ void Tile::collision(Player *player)
                     if(x1 == x2)
                     {
                         player->setX(x1);
-                        player->setY(x1);
+                        player->setY(y1);
                     } else
                     {
                         float d1 = pow(x1 + playerCoords.x, 2) +
