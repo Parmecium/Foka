@@ -74,6 +74,11 @@ void Player::move(void)
     this->coords.x += this->speedX;
     this->coords.y += this->speedY;
 
+    if(this->textureState > this->bodyTexture[this->angle].size() - 1)
+    {
+        this->textureState = 0;
+    }
+
     if(this->headState.down)
         this->headAngle = PLAYER_ANGLE_DOWN;
     else if(this->headState.right)
