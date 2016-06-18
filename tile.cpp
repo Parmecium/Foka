@@ -111,27 +111,37 @@ void Tile::collision(Player *player)
     {
         case TILE_PLANT1:
             {
-                int p = this->collCoords.x + this->collCoords.w / 2;
-                int q = this->collCoords.y + this->collCoords.h / 2;
-                int r = this->collCoords.w / 2;
-                int k;
-                int n;
-                int a, b, c;
+                float p = this->collCoords.x + this->collCoords.w / 2.0f;
+                float q = this->collCoords.y + this->collCoords.h / 2.0f;
+                float r = this->collCoords.w / 2.0f;
+                float k;
+                float n;
+                float a, b, c;
                 float x1, x2, y1, y2;
 
                 if(pow(playerCoords.x - p, 2) + pow(playerCoords.y - q, 2)
                         < pow(r, 2))
                 {
                     // (x1/2 = -b +- sqrt(b^2 - 4ac)) / 2a
-                    k = (playerCoords.y - q) / (playerCoords.x - p);
-                    n = k * (-p) + q;
-                    a = 1 + pow(k, 2);
-                    b = 2 * p - 2 * k * n + 2 * k * q;
-                    c = - pow(r, 2) + pow(n, 2) - 2 * n * q + pow(q, 2) + pow(p, 2);
+                    k = (playerCoords.y - q) / (float)(playerCoords.x - p) * (-p);
+                    n = k + q;
+                    a = 1.0f + pow(k, 2);
+                    b = 2.0f * p - 2.0f * k * n + 2.0f * k * q;
+                    c = - pow(r, 2) + pow(n, 2) - 2.0f * n * q + pow(q, 2) + pow(p, 2);
                     x1 = (-b + sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
                     x2 = (-b - sqrt(pow(b, 2) - 4 * a * c)) / 2 * a;
                     y1 = k * x1 + n;
                     y2 = k * x2 + n;
+
+                    std::cout << "k = " << k << std::endl;
+                    std::cout << "n = " << n << std::endl;
+                    std::cout << "a = " << a << std::endl;
+                    std::cout << "b = " << b << std::endl;
+                    std::cout << "c = " << c << std::endl;
+                    std::cout << "x1 = " << x1 << std::endl;
+                    std::cout << "y1 = " << y1 << std::endl;
+                    std::cout << "x2 = " << x2 << std::endl;
+                    std::cout << "y2 = " << y2 << std::endl;
 
                     if(x1 == x2)
                     {
