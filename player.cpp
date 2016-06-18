@@ -215,7 +215,7 @@ SDL_Rect Player::getCollCoords(void)
 void Player::changeTexture(void)
 {
     this->textureState += this->textureIncrement;
-    if(this->textureState <= 0 || this->textureState >= bodyTexture[0].size() - 1)
+    if(this->textureState <= 0 || this->textureState >= bodyTexture[this->angle].size() - 1)
         this->textureState = 0;
 }
 
