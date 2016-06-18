@@ -70,7 +70,8 @@ Map::Map(float width, float height, float sWidth, float sHeight)
     }
     */
 
-    this->tile.push_back(new Tile(500, 500, TILE_PLANT1));
+    //this->tile.push_back(new Tile(500, 500, TILE_PLANT1));
+    this->tile.push_back(new Tile(500, 500, TILE_DESK));
 
     /***************** Neprijatelji za testiranje *******************/
     //this->enemy.push_back(new Enemy(790, 810, timer, ENEMY_TYPE_VOODOO, 100, 117, 200));
