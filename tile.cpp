@@ -81,7 +81,7 @@ void Tile::loadTexture(void)
             this->texture = loadModel("data/zid/zid2_ul.png");
             break;
         case TILE_DESK:
-            this->texture = loadModel("data/stocic_bloody.png");
+            this->texture = loadModel("data/stvari/table_sveca.png");
             break;
         case TILE_TREE_FALL:
             this->texture = loadModel("data/stvari/stocic_bloody.png");
