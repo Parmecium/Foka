@@ -25,8 +25,8 @@ Tile::Tile(float x, float y, int type)
             this->coords.h = 150;
             break;
         case TILE_DESK:
-            this->coords.w = 150;
-            this->coords.h = 120;
+            this->coords.w = 280;
+            this->coords.h = 220;
             break;
         case TILE_TREE_FALL:
             this->coords.w = 90;
