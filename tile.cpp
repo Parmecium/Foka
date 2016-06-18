@@ -124,7 +124,7 @@ void Tile::collision(Player *player)
                 {
                     // (x1/2 = -b +- sqrt(b^2 - 4ac)) / 2a
                     k = (playerCoords.y - q) / (float)(playerCoords.x - p) * (-p);
-                    n = k * (float)(-p) + q;
+                    n = k + q;
                     a = 1.0f + pow(k, 2);
                     b = 2.0f * p - 2.0f * k * n + 2.0f * k * q;
                     c = - pow(r, 2) + pow(n, 2) - 2.0f * n * q + pow(q, 2) + pow(p, 2);
